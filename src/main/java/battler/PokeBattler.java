@@ -44,10 +44,6 @@ public class PokeBattler {
                 KeyValuePair pokemonEntry = getRandomEntry(pokemonListCopy);
                 String pokemonCode = pokemonEntry.getKey();
                 String pokemonName = pokemonEntry.getValue();
-                if (i == 0) {
-                    pokemonCode = "0x28";
-                    pokemonName = "Chansey";
-                }
                 Pokemon pokemon = new Pokemon(pokemonCode, pokemonName, pokemonLevel);
                 pokemon.setHp(statCalculations.getHpStat(pokemonName));
                 pokemon.setAttack(statCalculations.getAttackStat(pokemonName));

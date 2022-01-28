@@ -46,7 +46,7 @@ public class FileWriter {
         }
         contents.append("}\r\nreturn teams");
         try {
-            BufferedWriter writer = new BufferedWriter(new java.io.FileWriter("TeamTable.lua"));
+            BufferedWriter writer = new BufferedWriter(new java.io.FileWriter("src/main/scripts/TeamTable.lua"));
             writer.write(contents.toString());
             System.out.println(contents.toString());
             writer.close();
