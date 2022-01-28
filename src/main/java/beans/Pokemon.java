@@ -9,6 +9,11 @@ public class Pokemon {
     private String name;
     private List<Move> moves;
     private String level;
+    private String hp;
+    private String attack;
+    private String defense;
+    private String speed;
+    private String special;
 
     public Pokemon(String pokemonCode, String name, String level) {
         this.pokemonCode = pokemonCode;
@@ -44,5 +49,45 @@ public class Pokemon {
 
     public String getLevel() {
         return level;
+    }
+
+    public String getHp() {
+        return hp;
+    }
+
+    public void setHp(String hp) {
+        this.hp = hp;
+    }
+
+    public String getAttack() {
+        return attack;
+    }
+
+    public void setAttack(String attack) {
+        this.attack = attack;
+    }
+
+    public String getDefense() {
+        return defense;
+    }
+
+    public void setDefense(String defense) {
+        this.defense = defense;
+    }
+
+    public String getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(String speed) {
+        this.speed = speed;
+    }
+
+    public String getSpecial() {
+        return special;
+    }
+
+    public void setSpecial(String special) {
+        this.special = special;
     }
 }
