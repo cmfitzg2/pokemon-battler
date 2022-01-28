@@ -14,6 +14,8 @@ public class Pokemon {
     private String defense;
     private String speed;
     private String special;
+    private String type1;
+    private String type2;
 
     public Pokemon(String pokemonCode, String name, String level) {
         this.pokemonCode = pokemonCode;
@@ -89,5 +91,21 @@ public class Pokemon {
 
     public void setSpecial(String special) {
         this.special = special;
+    }
+
+    public String getType1() {
+        return type1;
+    }
+
+    public void setType1(String type1) {
+        this.type1 = type1;
+    }
+
+    public String getType2() {
+        return type2;
+    }
+
+    public void setType2(String type2) {
+        this.type2 = type2;
     }
 }

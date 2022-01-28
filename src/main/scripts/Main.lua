@@ -3,6 +3,8 @@ local teams = require('TeamTable')
 --Address Constants
 local pokemonSlot1AAddr = 0xD164
 local pokemonSlot1BAddr = 0xD16B
+local pokemonSlot1Type1 = 0xD170
+local pokemonSlot1Type2 = 0xD171
 local pokemonSlot1CurrentHpAAddr = 0xD16C
 local pokemonSlot1CurrentHpBAddr = 0xD16D
 local pokemonSlot1HpAAddr = 0xD18D
@@ -27,6 +29,8 @@ local pokemonSlot1LevelAddr = 0xD18C
 
 local pokemonSlot2AAddr = 0xD165
 local pokemonSlot2BAddr = 0xD197
+local pokemonSlot2Type1 = 0xD19C
+local pokemonSlot2Type2 = 0xD19D
 local pokemonSlot2CurrentHpAAddr = 0xD198
 local pokemonSlot2CurrentHpBAddr = 0xD199
 local pokemonSlot2HpAAddr = 0xD1B9
@@ -51,6 +55,8 @@ local pokemonSlot2LevelAddr = 0xD1B8
 
 local pokemonSlot3AAddr = 0xD166
 local pokemonSlot3BAddr = 0xD1C3
+local pokemonSlot3Type1 = 0xD1C8
+local pokemonSlot3Type2 = 0xD1C9
 local pokemonSlot3CurrentHpAAddr = 0xD1C4
 local pokemonSlot3CurrentHpBAddr = 0xD1C5
 local pokemonSlot3HpAAddr = 0xD1E5
@@ -78,6 +84,8 @@ memory.usememorydomain("L System Bus")
 
 memory.writebyte(pokemonSlot1AAddr, teams.team1.pokemon1.pokemonCode)
 memory.writebyte(pokemonSlot1BAddr, teams.team1.pokemon1.pokemonCode)
+memory.writebyte(pokemonSlot1Type1, teams.team1.pokemon1.pokemonType1)
+memory.writebyte(pokemonSlot1Type2, teams.team1.pokemon1.pokemonType2)
 memory.writebyte(pokemonSlot1HpAAddr, teams.team1.pokemon1.pokemonHp1)
 memory.writebyte(pokemonSlot1HpBAddr, teams.team1.pokemon1.pokemonHp2)
 memory.writebyte(pokemonSlot1CurrentHpAAddr, teams.team1.pokemon1.pokemonHp1)
@@ -102,6 +110,8 @@ memory.writebyte(pokemonSlot1LevelAddr, teams.team1.pokemon1.pokemonLevel)
 
 memory.writebyte(pokemonSlot2AAddr, teams.team1.pokemon2.pokemonCode)
 memory.writebyte(pokemonSlot2BAddr, teams.team1.pokemon2.pokemonCode)
+memory.writebyte(pokemonSlot2Type1, teams.team1.pokemon2.pokemonType1)
+memory.writebyte(pokemonSlot2Type2, teams.team1.pokemon2.pokemonType2)
 memory.writebyte(pokemonSlot2HpAAddr, teams.team1.pokemon2.pokemonHp1)
 memory.writebyte(pokemonSlot2HpBAddr, teams.team1.pokemon2.pokemonHp2)
 memory.writebyte(pokemonSlot2CurrentHpAAddr, teams.team1.pokemon2.pokemonHp1)
@@ -126,6 +136,8 @@ memory.writebyte(pokemonSlot2LevelAddr, teams.team1.pokemon2.pokemonLevel)
 
 memory.writebyte(pokemonSlot3AAddr, teams.team1.pokemon3.pokemonCode)
 memory.writebyte(pokemonSlot3BAddr, teams.team1.pokemon3.pokemonCode)
+memory.writebyte(pokemonSlot3Type1, teams.team1.pokemon3.pokemonType1)
+memory.writebyte(pokemonSlot3Type2, teams.team1.pokemon3.pokemonType2)
 memory.writebyte(pokemonSlot3HpAAddr, teams.team1.pokemon3.pokemonHp1)
 memory.writebyte(pokemonSlot3HpBAddr, teams.team1.pokemon3.pokemonHp2)
 memory.writebyte(pokemonSlot3CurrentHpAAddr, teams.team1.pokemon3.pokemonHp1)
@@ -153,6 +165,8 @@ memory.usememorydomain("R System Bus")
 
 memory.writebyte(pokemonSlot1AAddr, teams.team2.pokemon1.pokemonCode)
 memory.writebyte(pokemonSlot1BAddr, teams.team2.pokemon1.pokemonCode)
+memory.writebyte(pokemonSlot1Type1, teams.team2.pokemon1.pokemonType1)
+memory.writebyte(pokemonSlot1Type2, teams.team2.pokemon1.pokemonType2)
 memory.writebyte(pokemonSlot1HpAAddr, teams.team2.pokemon1.pokemonHp1)
 memory.writebyte(pokemonSlot1HpBAddr, teams.team2.pokemon1.pokemonHp2)
 memory.writebyte(pokemonSlot1CurrentHpAAddr, teams.team2.pokemon1.pokemonHp1)
@@ -177,6 +191,8 @@ memory.writebyte(pokemonSlot1LevelAddr, teams.team2.pokemon1.pokemonLevel)
 
 memory.writebyte(pokemonSlot2AAddr, teams.team2.pokemon2.pokemonCode)
 memory.writebyte(pokemonSlot2BAddr, teams.team2.pokemon2.pokemonCode)
+memory.writebyte(pokemonSlot2Type1, teams.team2.pokemon2.pokemonType1)
+memory.writebyte(pokemonSlot2Type2, teams.team2.pokemon2.pokemonType2)
 memory.writebyte(pokemonSlot2HpAAddr, teams.team2.pokemon2.pokemonHp1)
 memory.writebyte(pokemonSlot2HpBAddr, teams.team2.pokemon2.pokemonHp2)
 memory.writebyte(pokemonSlot2CurrentHpAAddr, teams.team2.pokemon2.pokemonHp1)
@@ -201,6 +217,8 @@ memory.writebyte(pokemonSlot2LevelAddr, teams.team2.pokemon2.pokemonLevel)
 
 memory.writebyte(pokemonSlot3AAddr, teams.team2.pokemon3.pokemonCode)
 memory.writebyte(pokemonSlot3BAddr, teams.team2.pokemon3.pokemonCode)
+memory.writebyte(pokemonSlot3Type1, teams.team2.pokemon3.pokemonType1)
+memory.writebyte(pokemonSlot3Type2, teams.team2.pokemon3.pokemonType2)
 memory.writebyte(pokemonSlot3HpAAddr, teams.team2.pokemon3.pokemonHp1)
 memory.writebyte(pokemonSlot3HpBAddr, teams.team2.pokemon3.pokemonHp2)
 memory.writebyte(pokemonSlot3CurrentHpAAddr, teams.team2.pokemon3.pokemonHp1)

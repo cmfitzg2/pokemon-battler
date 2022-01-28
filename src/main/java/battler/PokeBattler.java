@@ -19,6 +19,7 @@ public class PokeBattler {
     public static Map<String, String> pokemonMasterList;
     public static Map<String, String> movesMasterList;
     public static Map<String, ArrayList> pokemonStatsList;
+    public static Map<String, ArrayList> pokemonTypesList;
     public static Map<String, ArrayList> pokemonMovePropsList;
 
     public PokeBattler() {
@@ -28,6 +29,7 @@ public class PokeBattler {
             pokemonMasterList = jsonParse.getMapFromJson("src/main/resources/pokemon-codes.json");
             movesMasterList = jsonParse.getMapFromJson("src/main/resources/move-codes.json");
             pokemonStatsList = jsonParse.getArrayListMapFromJson("src/main/resources/pokemon-stats.json");
+            pokemonTypesList = jsonParse.getArrayListMapFromJson("src/main/resources/pokemon-types.json");
             pokemonMovePropsList = jsonParse.getArrayListMapFromJson("src/main/resources/move-props.json");
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,6 +54,9 @@ public class PokeBattler {
                 pokemon.setDefense(statCalculations.getDefenseStat(pokemonName));
                 pokemon.setSpeed(statCalculations.getSpeedStat(pokemonName));
                 pokemon.setSpecial(statCalculations.getSpecialStat(pokemonName));
+                ArrayList<String> types = pokemonTypesList.get(pokemonName);
+                pokemon.setType1(types.get(0));
+                pokemon.setType2(types.get(1));
                 pokemonListCopy.remove(pokemonCode);
                 for (int j = 0; j < 4; j++) {
                     KeyValuePair moveEntry = getRandomEntry(moveListCopy);

@@ -17,6 +17,8 @@ public class FileWriter {
                         .append("\t\t\tpokemonName = \"").append(pokemon.getName()).append("\",\r\n" +
                         "\t\t\tpokemonCode = ").append(pokemon.getPokemonCode()).append(",\r\n" +
                         "\t\t\tpokemonLevel = ").append(pokemon.getLevel()).append(",\r\n" +
+                        "\t\t\tpokemonType1 = 0x").append(pokemon.getType1()).append(",\r\n" +
+                        "\t\t\tpokemonType2 = 0x").append(pokemon.getType2()).append(",\r\n" +
                         "\t\t\tpokemonHp1 = 0x").append(pokemon.getHp().length() > 2 ? "0" + pokemon.getHp().charAt(0) : "00").append(",\r\n" +
                         "\t\t\tpokemonHp2 = 0x").append(pokemon.getHp().substring(pokemon.getHp().length() - 2)).append(",\r\n" +
                         "\t\t\tpokemonAttack1 = 0x").append(pokemon.getAttack().length() > 2 ? "0" + pokemon.getAttack().charAt(0) : "00").append(",\r\n" +
