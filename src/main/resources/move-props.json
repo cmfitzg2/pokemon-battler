@@ -1,0 +1,822 @@
+{
+  "Pound": [
+    "Normal",
+    "35",
+    "100%"
+  ],
+  "Karate Chop": [
+    "Normal",
+    "25",
+    "100%"
+  ],
+  "Doubleslap": [
+    "Normal",
+    "10",
+    "85%"
+  ],
+  "Comet Punch": [
+    "Normal",
+    "15",
+    "85%"
+  ],
+  "Mega Punch": [
+    "Normal",
+    "20",
+    "85%"
+  ],
+  "Pay Day": [
+    "Normal",
+    "20",
+    "100%"
+  ],
+  "Fire Punch": [
+    "Fire",
+    "15",
+    "100%"
+  ],
+  "Ice Punch": [
+    "Ice",
+    "15",
+    "100%"
+  ],
+  "Thunderpunch": [
+    "Electric",
+    "15",
+    "100%"
+  ],
+  "Scratch": [
+    "Normal",
+    "35",
+    "100%"
+  ],
+  "Vicegrip": [
+    "Normal",
+    "30",
+    "100%"
+  ],
+  "Guillotine": [
+    "Normal",
+    "5",
+    "30%"
+  ],
+  "Razor Wind": [
+    "Normal",
+    "10",
+    "75%"
+  ],
+  "Swords Dance": [
+    "Normal",
+    "30",
+    "N/A"
+  ],
+  "Cut": [
+    "Normal",
+    "30",
+    "95%"
+  ],
+  "Gust": [
+    "Normal",
+    "35",
+    "100%"
+  ],
+  "Wing Attack": [
+    "Flying",
+    "35",
+    "100%"
+  ],
+  "Whirlwind": [
+    "Normal",
+    "20",
+    "85%"
+  ],
+  "Fly": [
+    "Flying",
+    "15",
+    "95%"
+  ],
+  "Bind": [
+    "Normal",
+    "20",
+    "75%"
+  ],
+  "Slam": [
+    "Normal",
+    "20",
+    "75%"
+  ],
+  "Vine Whip": [
+    "Grass",
+    "10",
+    "100%"
+  ],
+  "Stomp": [
+    "Normal",
+    "20",
+    "100%"
+  ],
+  "Double Kick": [
+    "Fighting",
+    "30",
+    "100%"
+  ],
+  "Mega Kick": [
+    "Normal",
+    "5",
+    "75%"
+  ],
+  "Jump Kick": [
+    "Fighting",
+    "25",
+    "95%"
+  ],
+  "Rolling Kick": [
+    "Fighting",
+    "15",
+    "85%"
+  ],
+  "Sand Attack": [
+    "Normal",
+    "15",
+    "100%"
+  ],
+  "Headbutt": [
+    "Normal",
+    "15",
+    "100%"
+  ],
+  "Horn Attack": [
+    "Normal",
+    "25",
+    "100%"
+  ],
+  "Fury Attack": [
+    "Normal",
+    "20",
+    "85%"
+  ],
+  "Horn Drill": [
+    "Normal",
+    "5",
+    "30%"
+  ],
+  "Tackle": [
+    "Normal",
+    "35",
+    "95%"
+  ],
+  "Body Slam": [
+    "Normal",
+    "15",
+    "100%"
+  ],
+  "Wrap": [
+    "Normal",
+    "20",
+    "85%"
+  ],
+  "Take Down": [
+    "Normal",
+    "20",
+    "85%"
+  ],
+  "Thrash": [
+    "Normal",
+    "20",
+    "100%"
+  ],
+  "Double-Edge": [
+    "Normal",
+    "15",
+    "100%"
+  ],
+  "Tail Whip": [
+    "Normal",
+    "30",
+    "100%"
+  ],
+  "Poison Sting": [
+    "Poison",
+    "35",
+    "100%"
+  ],
+  "Twineedle": [
+    "Bug",
+    "20",
+    "100%"
+  ],
+  "Pin Missile": [
+    "Bug",
+    "20",
+    "85%"
+  ],
+  "Leer": [
+    "Normal",
+    "30",
+    "100%"
+  ],
+  "Bite": [
+    "Normal",
+    "25",
+    "100%"
+  ],
+  "Growl": [
+    "Normal",
+    "40",
+    "100%"
+  ],
+  "Roar": [
+    "Normal",
+    "20",
+    "100%"
+  ],
+  "Sing": [
+    "Normal",
+    "15",
+    "55%"
+  ],
+  "Supersonic": [
+    "Normal",
+    "20",
+    "55%"
+  ],
+  "Sonicboom": [
+    "Normal",
+    "20",
+    "90%"
+  ],
+  "Disable": [
+    "Normal",
+    "20",
+    "55%"
+  ],
+  "Acid": [
+    "Poison",
+    "30",
+    "100%"
+  ],
+  "Ember": [
+    "Fire",
+    "25",
+    "100%"
+  ],
+  "Flamethrower": [
+    "Fire",
+    "15",
+    "100%"
+  ],
+  "Mist": [
+    "Ice",
+    "30",
+    "N/A"
+  ],
+  "Water Gun": [
+    "Water",
+    "25",
+    "100%"
+  ],
+  "Hydro Pump": [
+    "Water",
+    "5",
+    "80%"
+  ],
+  "Surf": [
+    "Water",
+    "15",
+    "100%"
+  ],
+  "Ice Beam": [
+    "Ice",
+    "10",
+    "100%"
+  ],
+  "Blizzard": [
+    "Ice",
+    "5",
+    "90%"
+  ],
+  "Psybeam": [
+    "Psychic",
+    "20",
+    "100%"
+  ],
+  "Bubblebeam": [
+    "Water",
+    "20",
+    "100%"
+  ],
+  "Aurora Beam": [
+    "Ice",
+    "20",
+    "100%"
+  ],
+  "Hyper Beam": [
+    "Normal",
+    "5",
+    "90%"
+  ],
+  "Peck": [
+    "Flying",
+    "35",
+    "100%"
+  ],
+  "Drill Peck": [
+    "Flying",
+    "20",
+    "100%"
+  ],
+  "Submission": [
+    "Fighting",
+    "25",
+    "80%"
+  ],
+  "Low Kick": [
+    "Fighting",
+    "20",
+    "90%"
+  ],
+  "Counter": [
+    "Fighting",
+    "20",
+    "100%"
+  ],
+  "Seismic Toss": [
+    "Fighting",
+    "20",
+    "100%"
+  ],
+  "Strength": [
+    "Normal",
+    "15",
+    "100%"
+  ],
+  "Absorb": [
+    "Grass",
+    "20",
+    "100%"
+  ],
+  "Mega Drain": [
+    "Grass",
+    "10",
+    "100%"
+  ],
+  "Leech Seed": [
+    "Grass",
+    "10",
+    "90%"
+  ],
+  "Growth": [
+    "Normal",
+    "40",
+    "N/A"
+  ],
+  "Razor Leaf": [
+    "Grass",
+    "25",
+    "95%"
+  ],
+  "Solar Beam": [
+    "Grass",
+    "10",
+    "100%"
+  ],
+  "Poisonpowder": [
+    "Poison",
+    "35",
+    "75%"
+  ],
+  "Stun Spore": [
+    "Grass",
+    "30",
+    "75%"
+  ],
+  "Sleep Powder": [
+    "Grass",
+    "15",
+    "75%"
+  ],
+  "Petal Dance": [
+    "Grass",
+    "20",
+    "100%"
+  ],
+  "String Shot": [
+    "Bug",
+    "40",
+    "95%"
+  ],
+  "Dragon Rage": [
+    "Dragon",
+    "10",
+    "100%"
+  ],
+  "Fire Spin": [
+    "Fire",
+    "15",
+    "70%"
+  ],
+  "Thundershock": [
+    "Electric",
+    "30",
+    "100%"
+  ],
+  "Thunderbolt": [
+    "Electric",
+    "15",
+    "100%"
+  ],
+  "Thunder Wave": [
+    "Electric",
+    "20",
+    "100%"
+  ],
+  "Thunder": [
+    "Electric",
+    "10",
+    "70%"
+  ],
+  "Rock Throw": [
+    "Rock",
+    "15",
+    "65%"
+  ],
+  "Earthquake": [
+    "Ground",
+    "10",
+    "100%"
+  ],
+  "Fissure": [
+    "Ground",
+    "5",
+    "30%"
+  ],
+  "Dig": [
+    "Ground",
+    "10",
+    "100%"
+  ],
+  "Toxic": [
+    "Poison",
+    "10",
+    "85%"
+  ],
+  "Confusion": [
+    "Psychic",
+    "25",
+    "100%"
+  ],
+  "Psychic": [
+    "Psychic",
+    "10",
+    "100%"
+  ],
+  "Hypnosis": [
+    "Psychic",
+    "20",
+    "60%"
+  ],
+  "Meditate": [
+    "Psychic",
+    "40",
+    "N/A"
+  ],
+  "Agility": [
+    "Psychic",
+    "30",
+    "N/A"
+  ],
+  "Quick Attack": [
+    "Normal",
+    "30",
+    "100%"
+  ],
+  "Rage": [
+    "Normal",
+    "20",
+    "100%"
+  ],
+  "Teleport": [
+    "Psychic",
+    "20",
+    "N/A"
+  ],
+  "Night Shade": [
+    "Ghost",
+    "15",
+    "100%"
+  ],
+  "Mimic": [
+    "Normal",
+    "10",
+    "100%"
+  ],
+  "Screech": [
+    "Normal",
+    "40",
+    "85%"
+  ],
+  "Double Team": [
+    "Normal",
+    "15",
+    "N/A"
+  ],
+  "Recover": [
+    "Normal",
+    "20",
+    "N/A"
+  ],
+  "Harden": [
+    "Normal",
+    "30",
+    "N/A"
+  ],
+  "Minimize": [
+    "Normal",
+    "20",
+    "N/A"
+  ],
+  "Smokescreen": [
+    "Normal",
+    "20",
+    "100%"
+  ],
+  "Confuse Ray": [
+    "Ghost",
+    "10",
+    "100%"
+  ],
+  "Withdraw": [
+    "Water",
+    "40",
+    "N/A"
+  ],
+  "Defense Curl": [
+    "Normal",
+    "40",
+    "N/A"
+  ],
+  "Barrier": [
+    "Psychic",
+    "30",
+    "N/A"
+  ],
+  "Light Screen": [
+    "Psychic",
+    "30",
+    "N/A"
+  ],
+  "Haze": [
+    "Ice",
+    "30",
+    "N/A"
+  ],
+  "Reflect": [
+    "Psychic",
+    "20",
+    "N/A"
+  ],
+  "Focus Energy": [
+    "Normal",
+    "30",
+    "N/A"
+  ],
+  "Bide": [
+    "Normal",
+    "10",
+    "100%"
+  ],
+  "Metronome": [
+    "Normal",
+    "10",
+    "N/A"
+  ],
+  "Mirror Move": [
+    "Flying",
+    "20",
+    "N/A"
+  ],
+  "Selfdestruct": [
+    "Normal",
+    "5",
+    "100%"
+  ],
+  "Egg Bomb": [
+    "Normal",
+    "10",
+    "75%"
+  ],
+  "Lick": [
+    "Ghost",
+    "30",
+    "100%"
+  ],
+  "Smog": [
+    "Poison",
+    "20",
+    "70%"
+  ],
+  "Sludge": [
+    "Poison",
+    "20",
+    "100%"
+  ],
+  "Bone Club": [
+    "Ground",
+    "20",
+    "85%"
+  ],
+  "Fire Blast": [
+    "Fire",
+    "5",
+    "85%"
+  ],
+  "Waterfall": [
+    "Water",
+    "15",
+    "100%"
+  ],
+  "Clamp": [
+    "Water",
+    "10",
+    "75%"
+  ],
+  "Swift": [
+    "Normal",
+    "20",
+    "N/A"
+  ],
+  "Skull Bash": [
+    "Normal",
+    "15",
+    "100%"
+  ],
+  "Spike Cannon": [
+    "Normal",
+    "15",
+    "100%"
+  ],
+  "Constrict": [
+    "Normal",
+    "35",
+    "100%"
+  ],
+  "Amnesia": [
+    "Psychic",
+    "20",
+    "N/A"
+  ],
+  "Kinesis": [
+    "Psychic",
+    "15",
+    "80%"
+  ],
+  "Softboiled": [
+    "Normal",
+    "10",
+    "N/A"
+  ],
+  "Hi Jump Kick": [
+    "Fighting",
+    "20",
+    "90%"
+  ],
+  "Glare": [
+    "Normal",
+    "30",
+    "75%"
+  ],
+  "Dream Eater": [
+    "Psychic",
+    "15",
+    "100%"
+  ],
+  "Poison Gas": [
+    "Poison",
+    "40",
+    "55%"
+  ],
+  "Barrage": [
+    "Normal",
+    "20",
+    "85%"
+  ],
+  "Leech Life": [
+    "Bug",
+    "15",
+    "100%"
+  ],
+  "Lovely Kiss": [
+    "Normal",
+    "10",
+    "75%"
+  ],
+  "Sky Attack": [
+    "Flying",
+    "5",
+    "90%"
+  ],
+  "Transform": [
+    "Normal",
+    "10",
+    "N/A"
+  ],
+  "Bubble": [
+    "Water",
+    "30",
+    "100%"
+  ],
+  "Dizzy Punch": [
+    "Normal",
+    "10",
+    "100%"
+  ],
+  "Spore": [
+    "Grass",
+    "15",
+    "100%"
+  ],
+  "Flash": [
+    "Normal",
+    "20",
+    "70%"
+  ],
+  "Psywave": [
+    "Psychic",
+    "15",
+    "80%"
+  ],
+  "Splash": [
+    "Normal",
+    "40",
+    "N/A"
+  ],
+  "Acid Armor": [
+    "Poison",
+    "40",
+    "N/A"
+  ],
+  "Crabhammer": [
+    "Water",
+    "10",
+    "85%"
+  ],
+  "Explosion": [
+    "Normal",
+    "5",
+    "100%"
+  ],
+  "Fury Swipes": [
+    "Normal",
+    "15",
+    "80%"
+  ],
+  "Bonemerang": [
+    "Ground",
+    "10",
+    "90%"
+  ],
+  "Rest": [
+    "Psychic",
+    "10",
+    "N/A"
+  ],
+  "Rock Slide": [
+    "Rock",
+    "10",
+    "90%"
+  ],
+  "Hyper Fang": [
+    "Normal",
+    "15",
+    "90%"
+  ],
+  "Sharpen": [
+    "Normal",
+    "30",
+    "N/A"
+  ],
+  "Conversion": [
+    "Normal",
+    "30",
+    "N/A"
+  ],
+  "Tri Attack": [
+    "Normal",
+    "10",
+    "100%"
+  ],
+  "Super Fang": [
+    "Normal",
+    "10",
+    "90%"
+  ],
+  "Slash": [
+    "Normal",
+    "20",
+    "100%"
+  ],
+  "Substitute": [
+    "Normal",
+    "10",
+    "N/A"
+  ]
+}

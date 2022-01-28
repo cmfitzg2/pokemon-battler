@@ -22,8 +22,8 @@ public class Pokemon {
         moves = new ArrayList<>();
     }
 
-    public void addMove(String moveName, String moveCode) {
-        moves.add(new Move(moveName, moveCode));
+    public void addMove(String moveName, String moveCode, String type, String pp, String accuracy) {
+        moves.add(new Move(moveName, moveCode, type, pp, accuracy));
     }
 
     @Override

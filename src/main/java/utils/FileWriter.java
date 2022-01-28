@@ -28,9 +28,13 @@ public class FileWriter {
                         "\t\t\tpokemonSpecial1 = 0x").append(pokemon.getSpecial().length() > 2 ? "0" + pokemon.getSpecial().charAt(0) : "00").append(",\r\n" +
                         "\t\t\tpokemonSpecial2 = 0x").append(pokemon.getSpecial().substring(pokemon.getSpecial().length() - 2)).append(",\r\n" +
                         "\t\t\tmove1Code = ").append(pokemon.getMoves().get(0).getCode()).append(",\r\n" +
+                        "\t\t\tmove1Pp = 0x").append(pokemon.getMoves().get(0).getPp()).append(",\r\n" +
                         "\t\t\tmove2Code = ").append(pokemon.getMoves().get(1).getCode()).append(",\r\n" +
+                        "\t\t\tmove2Pp = 0x").append(pokemon.getMoves().get(1).getPp()).append(",\r\n" +
                         "\t\t\tmove3Code = ").append(pokemon.getMoves().get(2).getCode()).append(",\r\n" +
-                        "\t\t\tmove4Code = ").append(pokemon.getMoves().get(3).getCode()).append("\r\n" +
+                        "\t\t\tmove3Pp = 0x").append(pokemon.getMoves().get(2).getPp()).append(",\r\n" +
+                        "\t\t\tmove4Code = ").append(pokemon.getMoves().get(3).getCode()).append(",\r\n" +
+                        "\t\t\tmove4Pp = 0x").append(pokemon.getMoves().get(3).getPp()).append("\r\n" +
                         "\t\t}");
                 if (i < teamSize - 1) {
                     contents.append(",");

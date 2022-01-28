@@ -19,6 +19,7 @@ public class PokeBattler {
     public static Map<String, String> pokemonMasterList;
     public static Map<String, String> movesMasterList;
     public static Map<String, ArrayList> pokemonStatsList;
+    public static Map<String, ArrayList> pokemonMovePropsList;
 
     public PokeBattler() {
         random = new Random();
@@ -27,6 +28,7 @@ public class PokeBattler {
             pokemonMasterList = jsonParse.getMapFromJson("src/main/resources/pokemon-codes.json");
             movesMasterList = jsonParse.getMapFromJson("src/main/resources/move-codes.json");
             pokemonStatsList = jsonParse.getArrayListMapFromJson("src/main/resources/pokemon-stats.json");
+            pokemonMovePropsList = jsonParse.getArrayListMapFromJson("src/main/resources/move-props.json");
         } catch (Exception e) {
             e.printStackTrace();
             return;
@@ -55,7 +57,11 @@ public class PokeBattler {
                     KeyValuePair moveEntry = getRandomEntry(moveListCopy);
                     String moveCode = moveEntry.getKey();
                     String moveName = moveEntry.getValue();
-                    pokemon.addMove(moveName, moveCode);
+                    ArrayList<String> moveProps = pokemonMovePropsList.get(moveName);
+                    String moveType = moveProps.get(0);
+                    String movePp = Integer.toHexString(Integer.parseInt(moveProps.get(1)));
+                    String moveAccuracy = moveProps.get(2);
+                    pokemon.addMove(moveName, moveCode, moveType, movePp, moveAccuracy);
                     moveListCopy.remove(moveCode);
                 }
                 team.add(pokemon);
