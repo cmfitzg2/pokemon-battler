@@ -3,3 +3,4 @@
 .idea/workspace.xml
 *.tsx
 /target
+/src/main/scripts/TeamTable.lua
