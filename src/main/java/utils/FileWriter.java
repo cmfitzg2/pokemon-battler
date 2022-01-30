@@ -1,7 +1,10 @@
 package utils;
 
 import beans.Pokemon;
+
 import java.io.BufferedWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 public class FileWriter {
@@ -50,9 +53,12 @@ public class FileWriter {
             }
             contents.append("\r\n");
         }
-        contents.append("}\r\nreturn teams");
+        contents.append("}\r\n\r\n");
         try {
-            BufferedWriter writer = new BufferedWriter(new java.io.FileWriter("src/main/scripts/TeamTable.lua"));
+            Path fileName = Path.of("src/main/scripts/main-template.lua");
+            String template = Files.readString(fileName);
+            contents.append(template);
+            BufferedWriter writer = new BufferedWriter(new java.io.FileWriter("src/main/scripts/Randomize-Teams.lua"));
             writer.write(contents.toString());
             System.out.println(contents.toString());
             writer.close();

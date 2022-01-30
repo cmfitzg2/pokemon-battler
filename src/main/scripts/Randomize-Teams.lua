@@ -1,4 +1,169 @@
-local teams = require('TeamTable')
+local teams =
+{
+	team1 =
+	{
+		pokemon1 =
+		{
+			pokemonName = "Golduck",
+			pokemonCode = 0x80,
+			pokemonLevel = 0x32,
+			pokemonType1 = 0x15,
+			pokemonType2 = 0x15,
+			pokemonHp1 = 0x00,
+			pokemonHp2 = 0xb1,
+			pokemonAttack1 = 0x00,
+			pokemonAttack2 = 0x7d,
+			pokemonDefense1 = 0x00,
+			pokemonDefense2 = 0x73,
+			pokemonSpeed1 = 0x00,
+			pokemonSpeed2 = 0x70,
+			pokemonSpecial1 = 0x00,
+			pokemonSpecial2 = 0x72,
+			move1Code = 0x94,
+			move1Pp = 0x14,
+			move2Code = 0x1E,
+			move2Pp = 0x19,
+			move3Code = 0x1C,
+			move3Pp = 0xf,
+			move4Code = 0x74,
+			move4Pp = 0x1e
+		},
+		pokemon2 =
+		{
+			pokemonName = "Butterfree",
+			pokemonCode = 0x7D,
+			pokemonLevel = 0x32,
+			pokemonType1 = 0x07,
+			pokemonType2 = 0x02,
+			pokemonHp1 = 0x00,
+			pokemonHp2 = 0x98,
+			pokemonAttack1 = 0x00,
+			pokemonAttack2 = 0x50,
+			pokemonDefense1 = 0x00,
+			pokemonDefense2 = 0x4b,
+			pokemonSpeed1 = 0x00,
+			pokemonSpeed2 = 0x6a,
+			pokemonSpecial1 = 0x00,
+			pokemonSpecial2 = 0x75,
+			move1Code = 0x9B,
+			move1Pp = 0xa,
+			move2Code = 0x8F,
+			move2Pp = 0x5,
+			move3Code = 0xA3,
+			move3Pp = 0x14,
+			move4Code = 0x44,
+			move4Pp = 0x14
+		},
+		pokemon3 =
+		{
+			pokemonName = "Sandshrew",
+			pokemonCode = 0x60,
+			pokemonLevel = 0x32,
+			pokemonType1 = 0x04,
+			pokemonType2 = 0x04,
+			pokemonHp1 = 0x00,
+			pokemonHp2 = 0x83,
+			pokemonAttack1 = 0x00,
+			pokemonAttack2 = 0x7a,
+			pokemonDefense1 = 0x00,
+			pokemonDefense2 = 0x68,
+			pokemonSpeed1 = 0x00,
+			pokemonSpeed2 = 0x43,
+			pokemonSpecial1 = 0x00,
+			pokemonSpecial2 = 0x3e,
+			move1Code = 0x3F,
+			move1Pp = 0x5,
+			move2Code = 0x22,
+			move2Pp = 0xf,
+			move3Code = 0x57,
+			move3Pp = 0xa,
+			move4Code = 0x86,
+			move4Pp = 0xf
+		}
+	},
+	team2 =
+	{
+		pokemon1 =
+		{
+			pokemonName = "Eevee",
+			pokemonCode = 0x66,
+			pokemonLevel = 0x32,
+			pokemonType1 = 0x00,
+			pokemonType2 = 0x00,
+			pokemonHp1 = 0x00,
+			pokemonHp2 = 0x95,
+			pokemonAttack1 = 0x00,
+			pokemonAttack2 = 0x54,
+			pokemonDefense1 = 0x00,
+			pokemonDefense2 = 0x51,
+			pokemonSpeed1 = 0x00,
+			pokemonSpeed2 = 0x65,
+			pokemonSpecial1 = 0x00,
+			pokemonSpecial2 = 0x57,
+			move1Code = 0x79,
+			move1Pp = 0xa,
+			move2Code = 0x2C,
+			move2Pp = 0x19,
+			move3Code = 0x5C,
+			move3Pp = 0xa,
+			move4Code = 0x70,
+			move4Pp = 0x1e
+		},
+		pokemon2 =
+		{
+			pokemonName = "Exeggcute",
+			pokemonCode = 0x0C,
+			pokemonLevel = 0x32,
+			pokemonType1 = 0x16,
+			pokemonType2 = 0x18,
+			pokemonHp1 = 0x00,
+			pokemonHp2 = 0x8b,
+			pokemonAttack1 = 0x00,
+			pokemonAttack2 = 0x40,
+			pokemonDefense1 = 0x00,
+			pokemonDefense2 = 0x75,
+			pokemonSpeed1 = 0x00,
+			pokemonSpeed2 = 0x46,
+			pokemonSpecial1 = 0x00,
+			pokemonSpecial2 = 0x49,
+			move1Code = 0x8D,
+			move1Pp = 0xf,
+			move2Code = 0x72,
+			move2Pp = 0x1e,
+			move3Code = 0x78,
+			move3Pp = 0x5,
+			move4Code = 0x2A,
+			move4Pp = 0x14
+		},
+		pokemon3 =
+		{
+			pokemonName = "Slowbro",
+			pokemonCode = 0x08,
+			pokemonLevel = 0x32,
+			pokemonType1 = 0x15,
+			pokemonType2 = 0x18,
+			pokemonHp1 = 0x00,
+			pokemonHp2 = 0xbe,
+			pokemonAttack1 = 0x00,
+			pokemonAttack2 = 0x64,
+			pokemonDefense1 = 0x00,
+			pokemonDefense2 = 0x96,
+			pokemonSpeed1 = 0x00,
+			pokemonSpeed2 = 0x4c,
+			pokemonSpecial1 = 0x00,
+			pokemonSpecial2 = 0x6a,
+			move1Code = 0x40,
+			move1Pp = 0x23,
+			move2Code = 0x3B,
+			move2Pp = 0x5,
+			move3Code = 0x2F,
+			move3Pp = 0xf,
+			move4Code = 0x32,
+			move4Pp = 0x14
+		}
+	}
+}
+
 
 --Address Constants
 local pokemonSlot1AAddr = 0xD164

@@ -2,29 +2,29 @@
 <!-- saved from url=(0014)about:internet -->
 <html class="client-js" lang="en" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>Pokémon Red/Blue:RAM map - Data Crystal</title>
-<div style="border: 1px solid rgb(170, 170, 136); margin: 0.5em; padding: 0.5em; background-color: rgb(238, 238, 238);" class="plainlinks">
-<h2><span class="mw-headline" id="Saved_data_.28SRAM.29">Saved data (SRAM)</span></h2>
-<h3><span class="mw-headline" id="Bank_0">Bank 0</span></h3>
-<p>Sprite decompression zone + Hall of Fame
-</p>
-<pre>A000 - A187&nbsp;: Sprite buffer #0
+    <title>Pokémon Red/Blue:RAM map - Data Crystal</title>
+    <div style="border: 1px solid rgb(170, 170, 136); margin: 0.5em; padding: 0.5em; background-color: rgb(238, 238, 238);" class="plainlinks">
+        <h2><span class="mw-headline" id="Saved_data_.28SRAM.29">Saved data (SRAM)</span></h2>
+        <h3><span class="mw-headline" id="Bank_0">Bank 0</span></h3>
+        <p>Sprite decompression zone + Hall of Fame
+        </p>
+        <pre>A000 - A187&nbsp;: Sprite buffer #0
 A188 - A30F&nbsp;: Sprite buffer #1
 A310 - A497&nbsp;: Sprite buffer #2
 </pre>
-<pre>A498 - A597&nbsp;: Unused&nbsp;?
+        <pre>A498 - A597&nbsp;: Unused&nbsp;?
 </pre>
-<pre>A598 - B857&nbsp;: Hall Of Fame data
+        <pre>A598 - B857&nbsp;: Hall Of Fame data
 </pre>
-<pre>B858 - BFFF&nbsp;: Unused&nbsp;?
+        <pre>B858 - BFFF&nbsp;: Unused&nbsp;?
 </pre>
-<p>Note&nbsp;: this is the reason Missingno corrupts the HoF data&nbsp;: its invalid sprite, when decompressed, overwrites data past the buffers' boundaries... right into HoF data.
-</p><p>Other Pokémon with even larger corruptions reach WRAM - usually leading to crashes.
-</p>
-<h3><span class="mw-headline" id="Bank_1">Bank 1</span></h3>
-<pre>A000 - A597&nbsp;: Unused&nbsp;?
+        <p>Note&nbsp;: this is the reason Missingno corrupts the HoF data&nbsp;: its invalid sprite, when decompressed, overwrites data past the buffers' boundaries... right into HoF data.
+        </p><p>Other Pokémon with even larger corruptions reach WRAM - usually leading to crashes.
+    </p>
+        <h3><span class="mw-headline" id="Bank_1">Bank 1</span></h3>
+        <pre>A000 - A597&nbsp;: Unused&nbsp;?
 </pre>
-<pre>A598 - A5A2&nbsp;: Player name
+        <pre>A598 - A5A2&nbsp;: Player name
 A5A3 - AD2B&nbsp;: Main data
 AD2C - AF2B&nbsp;: Sprite data
 AF2C - B0BF&nbsp;: Party data
@@ -32,12 +32,12 @@ B0C0 - B521&nbsp;: Current box data
 B522       &nbsp;: Tileset type
 B523       &nbsp;: Main data checksum
 </pre>
-<pre>B524 - BFFF&nbsp;: Unused&nbsp;?
+        <pre>B524 - BFFF&nbsp;: Unused&nbsp;?
 </pre>
-<h3><span class="mw-headline" id="Bank_2">Bank 2</span></h3>
-<p>Pokémon boxes 1-6
-</p>
-<pre>A000 - A461&nbsp;: Box 1
+        <h3><span class="mw-headline" id="Bank_2">Bank 2</span></h3>
+        <p>Pokémon boxes 1-6
+        </p>
+        <pre>A000 - A461&nbsp;: Box 1
 A462 - A8C3&nbsp;: Box 2
 A8C4 - AD25&nbsp;: Box 3
 AD26 - B187&nbsp;: Box 4
@@ -46,12 +46,12 @@ B5EA - BA4B&nbsp;: Box 6
 BA4C       &nbsp;: Global checksum
 BA4D - BA52&nbsp;: Individual checksums
 </pre>
-<pre>BA53 - BFFF&nbsp;: Unused
+        <pre>BA53 - BFFF&nbsp;: Unused
 </pre>
-<h3><span class="mw-headline" id="Bank_3">Bank 3</span></h3>
-<p>Pokémon boxes 7-12
-</p>
-<pre>A000 - A461&nbsp;: Box 7
+        <h3><span class="mw-headline" id="Bank_3">Bank 3</span></h3>
+        <p>Pokémon boxes 7-12
+        </p>
+        <pre>A000 - A461&nbsp;: Box 7
 A462 - A8C3&nbsp;: Box 8
 A8C4 - AD25&nbsp;: Box 9
 AD26 - B187&nbsp;: Box 10
@@ -60,21 +60,21 @@ B5EA - BA4B&nbsp;: Box 12
 BA4C       &nbsp;: Global checksum
 BA4D - BA52&nbsp;: Individual checksums
 </pre>
-<pre>BA53 - BFFF&nbsp;: Unused
+        <pre>BA53 - BFFF&nbsp;: Unused
 </pre>
-<h2><span class="mw-headline" id="Main_data_.28WRAM.29">Main data (WRAM)</span></h2>
-<h3><span class="mw-headline" id="Audio">Audio</span></h3>
-<p>Addresses C000 to C0F2 are used by the sound engine.
-</p>
-<pre>C002 - Bit 7&nbsp;: 1 if audio is muted. Other bits&nbsp;: if non-zero, pauses music and continues SFX until it ends.
+        <h2><span class="mw-headline" id="Main_data_.28WRAM.29">Main data (WRAM)</span></h2>
+        <h3><span class="mw-headline" id="Audio">Audio</span></h3>
+        <p>Addresses C000 to C0F2 are used by the sound engine.
+        </p>
+        <pre>C002 - Bit 7&nbsp;: 1 if audio is muted. Other bits&nbsp;: if non-zero, pauses music and continues SFX until it ends.
 C0DE - Volumes for all music channels (and fade for those who support it)
 C0EF - Current sound bank
 C0F0 - Saved sound bank
 </pre>
-<p>Bytes C0F3 to C0FF are undocumented (if used)
-</p>
-<h3><span class="mw-headline" id="Sprite_Data">Sprite Data</span></h3>
-<pre>C100 to C1FF&nbsp;: Data for all sprites on the current map
+        <p>Bytes C0F3 to C0FF are undocumented (if used)
+        </p>
+        <h3><span class="mw-headline" id="Sprite_Data">Sprite Data</span></h3>
+        <pre>C100 to C1FF&nbsp;: Data for all sprites on the current map
                Holds info for 16 sprites with $10 bytes each
                Note&nbsp;: player is always sprite 0
 
@@ -91,7 +91,7 @@ Replace x with the sprite ID
     C1x9: facing direction (0: down, 4: up, 8: left, $c: right)
     C1xA to C1xF are unudocumented (if used)
 </pre>
-<pre>C200 to C2FF&nbsp;: More data for all sprites on the current map
+        <pre>C200 to C2FF&nbsp;: More data for all sprites on the current map
                Holds info for 16 sprites with $10 bytes each
                Note&nbsp;: player sprite is always sprite 0
 
@@ -108,18 +108,18 @@ Replace x with the sprite ID
     C2xE: sprite image base offset (in video ram, player always has value 1, used to compute c1x2)
     C2xF isn't documented
 </pre>
-<p>C300 to C39F&nbsp;: OAM DMA buffer (source for the DMA Transfer)
-</p>
-<h3><span class="mw-headline" id="Tile_Data">Tile Data</span></h3>
-<pre>C3A0 to C507&nbsp;: Buffer of all tiles onscreen
+        <p>C300 to C39F&nbsp;: OAM DMA buffer (source for the DMA Transfer)
+        </p>
+        <h3><span class="mw-headline" id="Tile_Data">Tile Data</span></h3>
+        <pre>C3A0 to C507&nbsp;: Buffer of all tiles onscreen
 C508 to C5CF&nbsp;: Copy of previous buffer (used to restore tiles after closing menus)
 </pre>
-<h3><span class="mw-headline" id="Menu_Data">Menu Data</span></h3>
-<pre>Coordinates of the position of the cursor for the top menu item (id 0)
+        <h3><span class="mw-headline" id="Menu_Data">Menu Data</span></h3>
+        <pre>Coordinates of the position of the cursor for the top menu item (id 0)
 CC24&nbsp;: Y position
 CC25&nbsp;: X position
 </pre>
-<pre>CC26 - Currently selected menu item (topmost is 0)
+        <pre><h1> this one is important CC26 - Currently selected menu item (topmost is 0) - yindex i think - topmost is 1 on battle FIGHT menu </h1>
 CC27 - Tile "hidden" by the menu cursor
 CC28 - ID of the last menu item
 CC29 - bitmask applied to the key port for the current menu
@@ -132,20 +132,18 @@ CC30~CC31 - Pointer to cursor tile in C3A0 buffer
 CC36 - ID of the first <i>displayed</i> menu item
 CC35 - Item highlighted with Select (01 = first item, 00 = no item, etc.)
 </pre>
-<p>CC3A and CC3B are unused
-</p>
-<h3><span class="mw-headline" id="Link_Data">Link Data</span></h3>
-<p>CC3C to CC49 hold data used for Cable Club stuff
-</p>
-<pre>The meaning of CC47 depends on the context
+        <h3><span class="mw-headline" id="Link_Data">Link Data</span></h3>
+        <p>CC3C to CC49 hold data used for Cable Club stuff
+        </p>
+        <pre>The meaning of CC47 depends on the context
 CC47 - Link timeout counter
 CC47 - Is player entering Cable Club&nbsp;?
 </pre>
-<h3><span class="mw-headline" id="Misc.">Misc.</span></h3>
-<pre>CC97 to CCA0&nbsp;: buffer for when swapping party Pokémon
+        <h3><span class="mw-headline" id="Misc.">Misc.</span></h3>
+        <pre>CC97 to CCA0&nbsp;: buffer for when swapping party Pokémon
 </pre>
-<h3><span class="mw-headline" id="Battle">Battle</span></h3>
-<pre>CCD5 - Number of turns in current battle
+        <h3><span class="mw-headline" id="Battle">Battle</span></h3>
+        <pre>CCD5 - Number of turns in current battle
 CCD6 is undocumented (if used)
 CCD7 - Player's Substitute HP
 CCD8 - Enemy Substitute HP
@@ -154,12 +152,7 @@ CCDC - Player-selected move
 CCDD - Enemy-selected move
 CCE5~CCE7 - Money earned by Pay Day
 </pre>
-<p>Safari Zone data&nbsp;:
-</p>
-<pre>CCE8 - Opponent escaping factor
-CCE9 - Opponent baiting factor
-</pre>
-<pre>CCED - Is current Pokémon disobedient&nbsp;?
+        <pre>CCED - Is current Pokémon disobedient&nbsp;?
 CCEE - Player's disabled move
 CCEF - Enemy's disabled move
 CCF6 - Is low-health alarm disabled&nbsp;?
@@ -178,19 +171,19 @@ CD31 - Enemy's Pokémon Special modifier
 CD32 - Enemy's Pokémon Accuracy modifier
 CD33 - Enemy's Pokémon Evasion modifier
 </pre>
-<h3><span class="mw-headline" id="Battle_2">Battle</span></h3>
-<pre>CFD3 - Your Move Effect (e.g. 10h = coins scatter everywhere)
+        <h3><span class="mw-headline" id="Battle_2">Battle</span></h3>
+        <pre>CFD3 - Your Move Effect (e.g. 10h = coins scatter everywhere)
 CFD5 - Your Move Type
 CCDC - Your Move Used
 </pre>
-<table border="1" align="center" cellpadding="4" cellspacing="0" style="margin: 0 0 1em 1em; background: #f7f8ff; border: 1px #8888cc solid; border-collapse: collapse; font-size: 95%">
+        <table border="1" align="center" cellpadding="4" cellspacing="0" style="margin: 0 0 1em 1em; background: #f7f8ff; border: 1px #8888cc solid; border-collapse: collapse; font-size: 95%">
 
-<tbody><tr style="background:#ccccff">
-<th>Japanese version </th>
-<th> International versions
-</th></tr>
-<tr>
-<td>
+            <tbody><tr style="background:#ccccff">
+                <th>Japanese version </th>
+                <th> International versions
+                </th></tr>
+            <tr>
+                <td>
 <pre>CFB3 - Enemy's Move ID
 CFB4 - Enemy's Move Effect
 CFB5 - Enemy's Move Power
@@ -238,8 +231,8 @@ CFE9-CFED - Enemy's Base Stats
 CFEE - Enemy's Catch Rate
 CFEF - Enemy's Base Experience
 </pre>
-</td>
-<td>
+                </td>
+                <td>
 <pre>CFCC - Enemy's Move ID
 CFCD - Enemy's Move Effect
 CFCE - Enemy's Move Power
@@ -287,17 +280,17 @@ D002-D006 - Enemy's Base Stats
 D007 - Enemy's Catch Rate
 D008 - Enemy's Base Experience
 </pre>
-</td></tr></tbody></table>
-<p>Pokémon 1st Slot (In-Battle)
-</p>
-<table border="1" align="center" cellpadding="4" cellspacing="0" style="margin: 0 0 1em 1em; background: #f7f8ff; border: 1px #8888cc solid; border-collapse: collapse; font-size: 95%">
+                </td></tr></tbody></table>
+        <p>Pokémon 1st Slot (In-Battle)
+        </p>
+        <table border="1" align="center" cellpadding="4" cellspacing="0" style="margin: 0 0 1em 1em; background: #f7f8ff; border: 1px #8888cc solid; border-collapse: collapse; font-size: 95%">
 
-<tbody><tr style="background:#ccccff">
-<th>Japanese version </th>
-<th> International versions
-</th></tr>
-<tr>
-<td>
+            <tbody><tr style="background:#ccccff">
+                <th>Japanese version </th>
+                <th> International versions
+                </th></tr>
+            <tr>
+                <td>
 <pre>CFF0-CFFA - Name
 CFFB - Pokémon Number
 CFFC-CFFD - Current HP
@@ -328,8 +321,8 @@ D015 - PP (Second Slot)
 D016 - PP (Third Slot)
 D017 - PP (Fourth Slot)
 </pre>
-</td>
-<td>
+                </td>
+                <td>
 <pre>D009-D013 - Name
 D014 - Pokémon Number
 D015-D016 - Current HP
@@ -360,19 +353,19 @@ D02E - PP (Second Slot)
 D02F - PP (Third Slot)
 D030 - PP (Fourth Slot)
 </pre>
-</td></tr></tbody></table>
-<pre>D057 - Type of battle
+                </td></tr></tbody></table>
+        <pre>D057 - Type of battle
 </pre>
-<pre>D05A - Battle Type (Normal battle, Safari Zone, Old Man battle...)
+        <pre>D05A - Battle Type (Normal battle, Safari Zone, Old Man battle...)
 </pre>
-<pre>D05C - Is Gym Leader battle music playing?
+        <pre>D05C - Is Gym Leader battle music playing?
 D05D - 
 D05E - Critical Hit / OHKO Flag
        01 - Critical Hit!
        02 - One-hit KO!
 D05F - Hooked Pokémon Flag
 </pre>
-<pre>D062-D064 - Battle Status (Player)
+        <pre>D062-D064 - Battle Status (Player)
           D062:
             bit 0 - Bide
             bit 1 - Thrash / petal dance
@@ -407,15 +400,15 @@ D070 - Confusion counter (CPU)
 D071 - Toxic counter (CPU)
 D072 - Disable counter (CPU)
 </pre>
-<pre>D0D8 - Amount of damage attack is about to do. Max possible damage may appear one frame before actual damage.
+        <pre>D0D8 - Amount of damage attack is about to do. Max possible damage may appear one frame before actual damage.
 </pre>
-<h3><span class="mw-headline" id="Link_Battle_PRNG">Link Battle PRNG</span></h3>
-<pre>D148-D150 - 9 Pseudo-Random Numbers used during Link Battles. Once a batch is used up, it generates a new batch with n × 5 + 1.
+        <h3><span class="mw-headline" id="Link_Battle_PRNG">Link Battle PRNG</span></h3>
+        <pre>D148-D150 - 9 Pseudo-Random Numbers used during Link Battles. Once a batch is used up, it generates a new batch with n × 5 + 1.
 </pre>
-<h3><span class="mw-headline" id="Player">Player</span></h3>
-<pre>D158-D162 - Your Name
+        <h3><span class="mw-headline" id="Player">Player</span></h3>
+        <pre>D158-D162 - Your Name
 </pre>
-<pre>D163 - # Pokémon In Party
+        <pre>D163 - # Pokémon In Party
 D164 - Pokémon 1
 D165 - Pokémon 2
 D166 - Pokémon 3
@@ -424,9 +417,9 @@ D168 - Pokémon 5
 D169 - Pokémon 6
 D16A - End of list
 </pre>
-<p>Pokémon 1
-</p>
-<pre>D16B - Pokémon (Again)
+        <p>Pokémon 1
+        </p>
+        <pre>D16B - Pokémon (Again)
 D16C-D16D - Current HP
 D16E - 'Level' (not the actual level, see <a href="https://datacrystal.romhacking.net/wiki/Pok%C3%A9mon_Red_and_Blue:Notes#False_.27level.27_addresses" title="Pokémon Red and Blue:Notes">the notes article</a>)
 D16F - Status (Poisoned, Paralyzed, etc.)
@@ -457,9 +450,9 @@ D191-D192 - Defense
 D193-D194 - Speed
 D195-D196 - Special
 </pre>
-<p>Pokémon 2
-</p>
-<pre>D197 - Pokémon
+        <p>Pokémon 2
+        </p>
+        <pre>D197 - Pokémon
 D198-D199 - Current HP
 D19A - 'Level' (not the actual level, see <a href="https://datacrystal.romhacking.net/wiki/Pok%C3%A9mon_Red_and_Blue:Notes#False_.27level.27_addresses" title="Pokémon Red and Blue:Notes">the notes article</a>)
 D19B - Status
@@ -490,9 +483,9 @@ D1BD-D1BE - Defense
 D1BF-D1C0 - Speed
 D1C1-D1C2 - Special
 </pre>
-<p>Pokémon 3
-</p>
-<pre>D1C3 - Pokémon
+        <p>Pokémon 3
+        </p>
+        <pre>D1C3 - Pokémon
 D1C4-D1C5 - Current HP
 D1C6 - 'Level' (not the actual level, see <a href="https://datacrystal.romhacking.net/wiki/Pok%C3%A9mon_Red_and_Blue:Notes#False_.27level.27_addresses" title="Pokémon Red and Blue:Notes">the notes article</a>)
 D1C7 - Status
@@ -523,9 +516,9 @@ D1E9-D1EA - Defense
 D1EB-D1EC - Speed
 D1ED-D1EE - Special
 </pre>
-<p>Pokémon 4
-</p>
-<pre>D1EF - Pokémon
+        <p>Pokémon 4
+        </p>
+        <pre>D1EF - Pokémon
 D1F0-D1F1 - Current HP
 D1F2 - 'Level' (not the actual level, see <a href="https://datacrystal.romhacking.net/wiki/Pok%C3%A9mon_Red_and_Blue:Notes#False_.27level.27_addresses" title="Pokémon Red and Blue:Notes">the notes article</a>)
 D1F3 - Status
@@ -556,9 +549,9 @@ D215-D216 - Defense
 D217-D218 - Speed
 D219-D21A - Special
 </pre>
-<p>Pokémon 5
-</p>
-<pre>D21B - Pokémon
+        <p>Pokémon 5
+        </p>
+        <pre>D21B - Pokémon
 D21C-D21D - Current HP
 D21E - 'Level' (not the actual level, see <a href="https://datacrystal.romhacking.net/wiki/Pok%C3%A9mon_Red_and_Blue:Notes#False_.27level.27_addresses" title="Pokémon Red and Blue:Notes">the notes article</a>)
 D21F - Status
@@ -589,9 +582,9 @@ D241-D242 - Defense
 D243-D244 - Speed
 D245-D246 - Special
 </pre>
-<p>Pokémon 6
-</p>
-<pre>D247 - Pokémon
+        <p>Pokémon 6
+        </p>
+        <pre>D247 - Pokémon
 D248-D249 - Current HP
 D24A - 'Level' (not the actual level, see <a href="https://datacrystal.romhacking.net/wiki/Pok%C3%A9mon_Red_and_Blue:Notes#False_.27level.27_addresses" title="Pokémon Red and Blue:Notes">the notes article</a>)
 D24B - Status
@@ -622,503 +615,503 @@ D26D-D26E - Defense
 D26F-D270 - Speed
 D271-D272 - Special
 </pre>
-<p>Trainer Name
-</p>
-<pre>D273-D27D - Trainer name for 1st
+        <p>Trainer Name
+        </p>
+        <pre>D273-D27D - Trainer name for 1st
 D27E-D288 - Trainer name for 2nd
 D289-D293 - Trainer name for 3rd
 D294-D29E - Trainer name for 4th
 D29F-D2A9 - Trainer name for 5th
 D2AA-D2B4 - Trainer name for 6th
 </pre>
-<p>Nickname
-</p>
-<pre>D2B5-D2BF - Nickname for 1st
+        <p>Nickname
+        </p>
+        <pre>D2B5-D2BF - Nickname for 1st
 D2C0-D2CA - Nickname for 2nd
 D2CB-D2D5 - Nickname for 3rd
 D2D6-D2E0 - Nickname for 4th
 D2E1-D2EB - Nickname for 5th
 D2EC-D2F6 - Nickname for 6th
 </pre>
-<h3><span class="mw-headline" id="Pokedex">Pokedex</span></h3>
-<table border="1" align="center" cellpadding="4" cellspacing="0" style="margin: 0 0 1em 1em; background: #f7f8ff; border: 1px #8888cc solid; border-collapse: collapse; font-size: 95%">
+        <h3><span class="mw-headline" id="Pokedex">Pokedex</span></h3>
+        <table border="1" align="center" cellpadding="4" cellspacing="0" style="margin: 0 0 1em 1em; background: #f7f8ff; border: 1px #8888cc solid; border-collapse: collapse; font-size: 95%">
 
-<tbody><tr style="background:#ccccff">
-<th>Japanese version </th>
-<th> International versions
-</th></tr>
-<tr>
-<td>
-<dl><dd>D27B - Own 1-8</dd>
-<dd>D27C - Own 9-16</dd>
-<dd>D27D - Own 17-24</dd>
-<dd>D27E - Own 25-32</dd>
-<dd>D27F - Own 33-40</dd>
-<dd>D280 - Own 41-48</dd>
-<dd>D281 - Own 49-56</dd>
-<dd>D282 - Own 57-64</dd>
-<dd>D283 - Own 65-72</dd>
-<dd>D284 - Own 73-80</dd>
-<dd>D285 - Own 81-88</dd>
-<dd>D286 - Own 89-96</dd>
-<dd>D287 - Own 97-104</dd>
-<dd>D288 - Own 105-112</dd>
-<dd>D289 - Own 113-120</dd>
-<dd>D28A - Own 121-128</dd>
-<dd>D28B - Own 129-136</dd>
-<dd>D28C - Own 137-144</dd>
-<dd>D28D - Own 145-152 </dd>
-<dd>D28E - Seen 1-8</dd>
-<dd>D28F - Seen 9-16</dd>
-<dd>D290 - Seen 17-24</dd>
-<dd>D291 - Seen 25-32</dd>
-<dd>D292 - Seen 33-40</dd>
-<dd>D293 - Seen 41-48</dd>
-<dd>D294 - Seen 49-56</dd>
-<dd>D295 - Seen 57-64</dd>
-<dd>D296 - Seen 65-72</dd>
-<dd>D297 - Seen 73-80</dd>
-<dd>D298 - Seen 81-88</dd>
-<dd>D299 - Seen 89-96</dd>
-<dd>D29A - Seen 97-104</dd>
-<dd>D29B - Seen 105-112</dd>
-<dd>D29C - Seen 113-120</dd>
-<dd>D29D - Seen 121-128</dd>
-<dd>D29E - Seen 129-136</dd>
-<dd>D29F - Seen 137-144</dd>
-<dd>D2A0 - Seen 145-152</dd></dl>
-</td>
-<td>
-<dl><dd>D2F7 - Own 1-8</dd>
-<dd>D2F8 - Own 9-16</dd>
-<dd>D2F9 - Own 17-24</dd>
-<dd>D2FA - Own 25-32</dd>
-<dd>D2FB - Own 33-40</dd>
-<dd>D2FC - Own 41-48</dd>
-<dd>D2FD - Own 49-56</dd>
-<dd>D2FE - Own 57-64</dd>
-<dd>D2FF - Own 65-72</dd>
-<dd>D300 - Own 73-80</dd>
-<dd>D301 - Own 81-88</dd>
-<dd>D302 - Own 89-96</dd>
-<dd>D303 - Own 97-104</dd>
-<dd>D304 - Own 105-112</dd>
-<dd>D305 - Own 113-120</dd>
-<dd>D306 - Own 121-128</dd>
-<dd>D307 - Own 129-136</dd>
-<dd>D308 - Own 137-144</dd>
-<dd>D309 - Own 145-152 </dd>
-<dd>D30A - Seen 1-8</dd>
-<dd>D30B - Seen 9-16</dd>
-<dd>D30C - Seen 17-24</dd>
-<dd>D30D - Seen 25-32</dd>
-<dd>D30E - Seen 33-40</dd>
-<dd>D30F - Seen 41-48</dd>
-<dd>D310 - Seen 49-56</dd>
-<dd>D311 - Seen 57-64</dd>
-<dd>D312 - Seen 65-72</dd>
-<dd>D313 - Seen 73-80</dd>
-<dd>D314 - Seen 81-88</dd>
-<dd>D315 - Seen 89-96</dd>
-<dd>D316 - Seen 97-104</dd>
-<dd>D317 - Seen 105-112</dd>
-<dd>D318 - Seen 113-120</dd>
-<dd>D319 - Seen 121-128</dd>
-<dd>D31A - Seen 129-136</dd>
-<dd>D31B - Seen 137-144</dd>
-<dd>D31C - Seen 145-152</dd></dl>
-</td></tr></tbody></table>
-<h3><span class="mw-headline" id="Items">Items</span></h3>
-<dl><dd>D31D - Total Items</dd>
-<dd>D31E - Item 1</dd>
-<dd>D31F - Item 1 Quantity</dd>
-<dd>D320 - Item 2 </dd>
-<dd>D321 - Item 2 Quantity</dd>
-<dd>D322 - Item 3</dd>
-<dd>D323 - Item 3 Quantity</dd>
-<dd>D324 - Item 4</dd>
-<dd>D325 - Item 4 Quantity</dd>
-<dd>D326 - Item 5</dd>
-<dd>D327 - Item 5 Quantity</dd>
-<dd>D328 - Item 6</dd>
-<dd>D329 - Item 6 Quantity</dd>
-<dd>D32A - Item 7</dd>
-<dd>D32B - Item 7 Quantity</dd>
-<dd>D32C - Item 8</dd>
-<dd>D32D - Item 8 Quantity</dd>
-<dd>D32E - Item 9</dd>
-<dd>D32F - Item 9 Quantity</dd>
-<dd>D330 - Item 10</dd>
-<dd>D331 - Item 10 Quantity</dd>
-<dd>D332 - Item 11</dd>
-<dd>D333 - Item 11 Quantity</dd>
-<dd>D334 - Item 12</dd>
-<dd>D335 - Item 12 Quantity</dd>
-<dd>D336 - Item 13</dd>
-<dd>D337 - Item 13 Quantity</dd>
-<dd>D338 - Item 14 </dd>
-<dd>D339 - Item 14 Quantity</dd>
-<dd>D33A - Item 15</dd>
-<dd>D33B - Item 15 Quantity</dd>
-<dd>D33C - Item 16</dd>
-<dd>D33D - Item 16 Quantity</dd>
-<dd>D33E - Item 17</dd>
-<dd>D33F - Item 17 Quantity</dd>
-<dd>D340 - Item 18</dd>
-<dd>D341 - Item 18 Quantity</dd>
-<dd>D342 - Item 19</dd>
-<dd>D343 - Item 19 Quantity</dd>
-<dd>D344 - Item 20</dd>
-<dd>D345 - Item 20 Quantity</dd>
-<dd>D346 - Item End of List</dd></dl>
-<h3><span class="mw-headline" id="Money">Money</span></h3>
-<dl><dd>D347 - Money Byte 1</dd>
-<dd>D348 - Money Byte 2</dd>
-<dd>D349 - Money Byte 3</dd></dl>
-<h3><span class="mw-headline" id="Rival">Rival</span></h3>
-<dl><dd>D34A-D351 - Rival's Name</dd></dl>
-<h3><span class="mw-headline" id="Miscellaneous">Miscellaneous</span></h3>
-<p>D355 - Options
-</p>
-<dl><dd>Bit 7 = Battle Animation (1 = Off, 0 = On)</dd>
-<dd>Bit 6 = Battle Style (1 = Set, 0 = Shift)</dd>
-<dd>Bit 5-4 = probably unused</dd>
-<dd>Low Nybble = Text Speed (0x0 = fastest, 0xF = slowest)
-<dl><dd><dl><dd>Fast = 1</dd>
-<dd>Medium = 3</dd>
-<dd>Slow = 5</dd></dl></dd></dl></dd></dl>
-<p>D356 = Badges (Binary Switches)
-</p><p>D358 = If bit0 = 0, delay is limited to 1 frame between each letter. If bit1 = 0, no delay during text printing. Overrides previous setting.
-</p><p>D359 = Player ID [1] (Multiple of 256) D35A = Player ID [2] (...+1-255)
-</p><p>D35B = Audio track (See Audio section)
-D35C = Audio bank (See Audio section)
-</p><p>D35D = Controls the map's palette. Usually 0, but is set to 6 when Flash is required.
-</p><p>D35E = Current Map Number
-</p>
-<dl><dd>D35F-D360 = Event Displacement (view Notes, for more info)</dd>
-<dd>D361 - 1 byte integer = Current Player Y-Position</dd>
-<dd>D362 - 1 byte integer = Current Player X-Position</dd>
-<dd>D363 = Current Player Y-Position (Current Block)</dd>
-<dd>D364 = Current Player X-Position (Current Block)</dd></dl>
-<p>D365 = Last map location for walking through certain exits (e.g. Safari Zone gate)
-</p>
-<h3><span class="mw-headline" id="Audio_2">Audio</span></h3>
-<p>C022 = Audio track channel 1
-</p><p>C023 = Audio track channel 2
-</p><p>C024 = Audio track channel 3
-</p><p>C025 = Audio track channel 4
-</p><p>C0E8, C0E9 = Music tempo (lower values in C0E9 may = faster except for particularly low values)
-</p><p>C0EA, C0EB = Sound effects tempo
-</p><p>C0EC, C0ED = Sound effects header pointer
-</p><p>C0EE = New sound ID
-</p><p>C0EF = Audio bank
-</p><p>C0F0 = Audio bank
-</p><p>D35B = Audio track in current map
-</p><p>D35C = Audio bank in current map
-</p>
-<dl><dd>Bank 02
-<dl><dd>B3 = Validate</dd>
-<dd>B4 = Bump</dd>
-<dd>B5 = Exit of a house</dd>
-<dd>B6 = Save Game</dd>
-<dd>B8 = Pokéflute</dd>
-<dd>B9 = Ding Dong</dd>
-<dd>BA = PalletTown</dd>
-<dd>BD = Pokecenter</dd>
-<dd>C0 = Gym</dd>
-<dd>C3 = Viridian City, Pewter City, Saffron City</dd>
-<dd>C7 = Cerulean City, Fuchsia City</dd>
-<dd>CA = Celadon City</dd>
-<dd>CD = Cinnabar City</dd>
-<dd>D0 = Vermilion City</dd>
-<dd>D4 = Lavender Town</dd>
-<dd>D8 = SS Anne</dd>
-<dd>DB = Meet Oak</dd>
-<dd>DE = Meet Blue</dd>
-<dd>E1 = Follow me</dd>
-<dd>E5 = Safari Zone / Evolution</dd>
-<dd>E8 = Pokémon Healding</dd>
-<dd>EB = Road 1, 2</dd>
-<dd>EF = Road 24, 25</dd>
-<dd>F3 = Road 3, 4, 5, 6, 7, 8, 9, 10, 16, 17, 18, 19, 20, 21, 22</dd>
-<dd>F7 = Road 11, 12, 13, 14, 15</dd>
-<dd>FB = Indigo Plateau</dd></dl></dd></dl>
-<dl><dd>Bank 08
-<dl><dd>EA = Gym Leader Battle</dd>
-<dd>ED = Trainer Battle</dd>
-<dd>F0 = Wild Battle</dd>
-<dd>F3 = Final Battle</dd>
-<dd>F6 = Defeated Trainer</dd>
-<dd>F9 = Defeated Wild Pokemon</dd>
-<dd>FC = Defeated Champion / Gym</dd></dl></dd></dl>
-<dl><dd>Bank 1F
-<dl><dd>C3 = Title Screen</dd>
-<dd>C7 = Credits </dd>
-<dd>CA = Hall of fame</dd>
-<dd>CD = Oak's Lab</dd>
-<dd>D0 = Jigglypuff Song</dd>
-<dd>D2 = Bike Riding</dd>
-<dd>D6 = Surfing</dd>
-<dd>D9 = Came Corner</dd>
-<dd>DC = Intro Game</dd>
-<dd>DF = Power Plant, Unknown Dungeon, Rocket HQ</dd>
-<dd>E3 = Viridian Forest, Seafoam Islands</dd>
-<dd>E7 = Mt. Moon, Rock Tunnel, Victory Road</dd>
-<dd>EB = Cinnabar City Mansion</dd>
-<dd>EF = Pokemon Tower</dd>
-<dd>F2 = Silph Co.</dd>
-<dd>F5 = Eye contact Evil Trainer</dd>
-<dd>F8 = Eye contact Female Trainer</dd>
-<dd>FB = Eye contact Male Trainer</dd>
-<dd>FF = Stop Sound</dd></dl></dd></dl>
-<h3><span class="mw-headline" id="Event_Flags">Event Flags</span></h3>
-<p>D5A6 to D5C5&nbsp;: Missable Objects Flags (flags for every (dis)appearing sprites, like the guard in Cerulean City or the Pokéballs in Oak's Lab)
-</p><p>D5AB - Starters Back?
-</p><p>D5C0(bit 1) - 0=Mewtwo appears, 1=Doesn't  (See D85F)
-</p><p>D5F3 - Have Town map?
-</p><p>D60D - Have Oak's Parcel?
-</p><p>D700 - Bike Speed
-</p>
-<dl><dd>D70B - Fly Anywhere Byte 1</dd>
-<dd>D70C - Fly Anywhere Byte 2</dd></dl>
-<dl><dd>D70D - Safari Zone Time Byte 1</dd>
-<dd>D70E - Safari Zone Time Byte 2</dd></dl>
-<p>D710 - Fossilized Pokémon?
-</p><p>D714 - Position in Air
-</p><p>D72E - Did you get Lapras Yet?
-</p><p>D732 - Debug New Game
-</p><p>D751 - Fought Giovanni Yet?
-</p><p>D755 - Fought Brock Yet?
-</p><p>D75E - Fought Misty Yet?
-</p><p>D773 - Fought Lt. Surge Yet?
-</p><p>D77C - Fought Erika Yet?
-</p><p>D782 - Fought Articuno Yet?
-</p><p>D790 - If bit 7 is set, Safari Game over
-</p><p>D792 - Fought Koga Yet?
-</p><p>D79A - Fought Blaine Yet?
-</p><p>D7B3 - Fought Sabrina Yet?
-</p><p>D7D4 - Fought Zapdos Yet?
-</p><p>D7D8 - Fought Snorlax Yet (Vermilion)
-</p><p>D7E0 - Fought Snorlax Yet? (Celadon)
-</p><p>D7EE - Fought Moltres Yet?
-</p><p>D803 - Is SS Anne here?
-</p><p>D85F - Mewtwo can be caught if bit 2 clear - Needs D5C0 bit 1 clear, too
-</p>
-<h3><span class="mw-headline" id="Opponent_Trainer.E2.80.99s_Pok.C3.A9mon">Opponent Trainer’s Pokémon</span></h3>
-<dl><dd>D89C - Total enemy Pokémon</dd>
-<dd>D89D - Pokémon 1</dd>
-<dd>D89E - Pokémon 2</dd>
-<dd>D89F - Pokémon 3</dd>
-<dd>D8A0 - Pokémon 4</dd>
-<dd>D8A1 - Pokémon 5</dd>
-<dd>D8A2 - Pokémon 6</dd>
-<dd>D8A3 - End of list</dd></dl>
-<p>Pokémon 1
-</p>
-<dl><dd>D8A4 - Pokémon</dd>
-<dd>D8A5-D8A6 - Current HP</dd>
-<dd>D8A7 - </dd>
-<dd>D8A8 - Status</dd>
-<dd>D8A9 - Type 1</dd>
-<dd>D8AA - Type 2</dd>
-<dd>D8AB - </dd>
-<dd>D8AC - Move 1</dd>
-<dd>D8AD - Move 2</dd>
-<dd>D8AE - Move 3</dd>
-<dd>D8AF - Move 4</dd>
-<dd>D8B0-D8B1 - Trainer ID</dd>
-<dd>D8B2-D8B4 - Experience</dd>
-<dd>D8B5-D8B6 - HP EV</dd>
-<dd>D8B7-D8B8 - Attack EV</dd>
-<dd>D8B9-D8BA - Defense EV</dd>
-<dd>D8BB-D8BC - Speed EV</dd>
-<dd>D8BD-D8BE - Special EV</dd>
-<dd>D8BF - Attack/Defense IV</dd>
-<dd>D8C0 - Speed/Special IV</dd>
-<dd>D8C1 - PP Move 1</dd>
-<dd>D8C2 - PP Move 2</dd>
-<dd>D8C3 - PP Move 3</dd>
-<dd>D8C4 - PP Move 4</dd>
-<dd>D8C5 - Level</dd>
-<dd>D8C6-D8C7 - Max HP</dd>
-<dd>D8C8-D8C9 - Attack</dd>
-<dd>D8CA-D8CB - Defense</dd>
-<dd>D8CC-D8CD - Speed</dd>
-<dd>D8CE-D8CF - Special</dd></dl>
-<p>Pokémon 2
-</p>
-<dl><dd>D8D0 - Pokémon</dd>
-<dd>D8D1-D8D2 - Current HP</dd>
-<dd>D8D3 - </dd>
-<dd>D8D4 - Status</dd>
-<dd>D8D5 - Type 1</dd>
-<dd>D8D6 - Type 2</dd>
-<dd>D8D7 - </dd>
-<dd>D8D8 - Move 1</dd>
-<dd>D8D9 - Move 2</dd>
-<dd>D8DA - Move 3</dd>
-<dd>D8DB - Move 4</dd>
-<dd>D8DC-D8DD - Trainer ID</dd>
-<dd>D8DE-D8E0 - Experience</dd>
-<dd>D8E1-D8E2 - HP EV</dd>
-<dd>D8E3-D8E4 - Attack EV</dd>
-<dd>D8E5-D8E6 - Defense EV</dd>
-<dd>D8E7-D8E8 - Speed EV</dd>
-<dd>D8E9-D8EA - Special EV</dd>
-<dd>D8EB - Attack/Defense IV</dd>
-<dd>D8EC - Speed/Special IV</dd>
-<dd>D8ED - PP Move 1</dd>
-<dd>D8EE - PP Move 2</dd>
-<dd>D8EF - PP Move 3</dd>
-<dd>D8F0 - PP Move 4</dd>
-<dd>D8F1 - Level</dd>
-<dd>D8F2-D8F3 - Max HP</dd>
-<dd>D8F4-D8F5 - Attack</dd>
-<dd>D8F6-D8F7 - Defense</dd>
-<dd>D8F8-D8F9 - Speed</dd>
-<dd>D8FA-D8FB - Special</dd></dl>
-<p>Pokémon 3
-</p>
-<dl><dd>D8FC - Pokémon</dd>
-<dd>D8FD-D8FE - Current HP</dd>
-<dd>D8FF - </dd>
-<dd>D900 - Status</dd>
-<dd>D901 - Type 1</dd>
-<dd>D902 - Type 2</dd>
-<dd>D903 - </dd>
-<dd>D904 - Move 1</dd>
-<dd>D905 - Move 2</dd>
-<dd>D906 - Move 3</dd>
-<dd>D907 - Move 4</dd>
-<dd>D908-D909 - Trainer ID</dd>
-<dd>D90A-D90C - Experience</dd>
-<dd>D90D-D90E - HP EV</dd>
-<dd>D90F-D910 - Attack EV</dd>
-<dd>D911-D912 - Defense EV</dd>
-<dd>D913-D914 - Speed EV</dd>
-<dd>D915-D916 - Special EV</dd>
-<dd>D917 - Attack/Defense IV</dd>
-<dd>D918 - Speed/Special IV</dd>
-<dd>D919 - PP Move 1</dd>
-<dd>D91A - PP Move 2</dd>
-<dd>D91B - PP Move 3</dd>
-<dd>D91C - PP Move 4</dd>
-<dd>D91D - Level</dd>
-<dd>D91E-D91F - Max HP</dd>
-<dd>D920-D921 - Attack</dd>
-<dd>D922-D923 - Defense</dd>
-<dd>D924-D925 - Speed</dd>
-<dd>D926-D927 - Special</dd></dl>
-<p>Pokémon 4
-</p>
-<dl><dd>D928 - Pokémon</dd>
-<dd>D929-D92A - Current HP</dd>
-<dd>D92B - </dd>
-<dd>D92C - Status</dd>
-<dd>D92D - Type 1</dd>
-<dd>D92E - Type 2</dd>
-<dd>D92F - </dd>
-<dd>D930 - Move 1</dd>
-<dd>D931 - Move 2</dd>
-<dd>D932 - Move 3</dd>
-<dd>D933 - Move 4</dd>
-<dd>D934-D935 - Trainer ID</dd>
-<dd>D936-D938 - Experience</dd>
-<dd>D939-D93A - HP EV</dd>
-<dd>D93B-D93C - Attack EV</dd>
-<dd>D93D-D93E - Defense EV</dd>
-<dd>D93F-D940 - Speed EV</dd>
-<dd>D941-D942 - Special EV</dd>
-<dd>D943 - Attack/Defense IV</dd>
-<dd>D944 - Speed/Special IV</dd>
-<dd>D945 - PP Move 1</dd>
-<dd>D946 - PP Move 2</dd>
-<dd>D947 - PP Move 3</dd>
-<dd>D948 - PP Move 4</dd>
-<dd>D949 - Level</dd>
-<dd>D94A-D94B - Max HP</dd>
-<dd>D94C-D94D - Attack</dd>
-<dd>D94E-D94F - Defense</dd>
-<dd>D950-D951 - Speed</dd>
-<dd>D952-D953 - Special</dd></dl>
-<p>Pokémon 5
-</p>
-<dl><dd>D954 - Pokémon</dd>
-<dd>D955-D956 - Current HP</dd>
-<dd>D957 - </dd>
-<dd>D958 - Status</dd>
-<dd>D959 - Type 1</dd>
-<dd>D95A - Type 2</dd>
-<dd>D95B - </dd>
-<dd>D95C - Move 1</dd>
-<dd>D95D - Move 2</dd>
-<dd>D95E - Move 3</dd>
-<dd>D95F - Move 4</dd>
-<dd>D960-D961 - Trainer ID</dd>
-<dd>D962-D964 - Experience</dd>
-<dd>D965-D966 - HP EV</dd>
-<dd>D967-D968 - Attack EV</dd>
-<dd>D969-D96A - Defense EV</dd>
-<dd>D96B-D96C - Speed EV</dd>
-<dd>D96D-D96E - Special EV</dd>
-<dd>D96F - Attack/Defense IV</dd>
-<dd>D970 - Speed/Special IV</dd>
-<dd>D971 - PP Move 1</dd>
-<dd>D972 - PP Move 2</dd>
-<dd>D973 - PP Move 3</dd>
-<dd>D974 - PP Move 4</dd>
-<dd>D975 - Level</dd>
-<dd>D976-D977 - Max HP</dd>
-<dd>D978-D979 - Attack</dd>
-<dd>D97A-D97B - Defense</dd>
-<dd>D97C-D97D - Speed</dd>
-<dd>D97E-D97F - Special</dd></dl>
-<p>Pokémon 6
-</p>
-<dl><dd>D980 - Pokémon</dd>
-<dd>D981-D982 - Current HP</dd>
-<dd>D983 - </dd>
-<dd>D984 - Status</dd>
-<dd>D985 - Type 1</dd>
-<dd>D986 - Type 2</dd>
-<dd>D987 - </dd>
-<dd>D988 - Move 1</dd>
-<dd>D989 - Move 2</dd>
-<dd>D98A - Move 3</dd>
-<dd>D98B - Move 4</dd>
-<dd>D98C-D98D - Trainer ID</dd>
-<dd>D98E-D990 - Experience</dd>
-<dd>D991-D992 - HP EV</dd>
-<dd>D993-D994 - Attack EV</dd>
-<dd>D995-D996 - Defense EV</dd>
-<dd>D997-D998 - Speed EV</dd>
-<dd>D999-D99A - Special EV</dd>
-<dd>D99B - Attack/Defense IV</dd>
-<dd>D99C - Speed/Special IV</dd>
-<dd>D99D - PP Move 1</dd>
-<dd>D99E - PP Move 2</dd>
-<dd>D99F - PP Move 3</dd>
-<dd>D9A0 - PP Move 4</dd>
-<dd>D9A1 - Level</dd>
-<dd>D9A2-D9A3 - Max HP</dd>
-<dd>D9A4-D9A5 - Attack</dd>
-<dd>D9A6-D9A7 - Defense</dd>
-<dd>D9A8-D9A9 - Speed</dd>
-<dd>D9AA-D9AB - Special</dd></dl>
-<p>Trainer Name
-</p>
-<dl><dd>D9AC-D9B6 - Trainer name for 1st</dd>
-<dd>D9B7-D9C1 - Trainer name for 2nd</dd>
-<dd>D9C2-D9CC - Trainer name for 3rd</dd>
-<dd>D9CD-D9D7 - Trainer name for 4th</dd>
-<dd>D9D8-D9E2 - Trainer name for 5th</dd>
-<dd>D9E3-D9ED - Trainer name for 6th</dd></dl>
-<p>Nickname
-</p>
-<dl><dd>D9EE-D9F8 - Nickname for 1st</dd>
-<dd>D9F9-DA03 - Nickname for 2nd</dd>
-<dd>DA04-DA0E - Nickname for 3rd</dd>
-<dd>DA0F-DA19 - Nickname for 4th</dd>
-<dd>DA1A-DA24 - Nickname for 5th</dd>
-<dd>DA25-DA2F - Nickname for 6th</dd></dl>
-</div></body></html>
+            <tbody><tr style="background:#ccccff">
+                <th>Japanese version </th>
+                <th> International versions
+                </th></tr>
+            <tr>
+                <td>
+                    <dl><dd>D27B - Own 1-8</dd>
+                        <dd>D27C - Own 9-16</dd>
+                        <dd>D27D - Own 17-24</dd>
+                        <dd>D27E - Own 25-32</dd>
+                        <dd>D27F - Own 33-40</dd>
+                        <dd>D280 - Own 41-48</dd>
+                        <dd>D281 - Own 49-56</dd>
+                        <dd>D282 - Own 57-64</dd>
+                        <dd>D283 - Own 65-72</dd>
+                        <dd>D284 - Own 73-80</dd>
+                        <dd>D285 - Own 81-88</dd>
+                        <dd>D286 - Own 89-96</dd>
+                        <dd>D287 - Own 97-104</dd>
+                        <dd>D288 - Own 105-112</dd>
+                        <dd>D289 - Own 113-120</dd>
+                        <dd>D28A - Own 121-128</dd>
+                        <dd>D28B - Own 129-136</dd>
+                        <dd>D28C - Own 137-144</dd>
+                        <dd>D28D - Own 145-152 </dd>
+                        <dd>D28E - Seen 1-8</dd>
+                        <dd>D28F - Seen 9-16</dd>
+                        <dd>D290 - Seen 17-24</dd>
+                        <dd>D291 - Seen 25-32</dd>
+                        <dd>D292 - Seen 33-40</dd>
+                        <dd>D293 - Seen 41-48</dd>
+                        <dd>D294 - Seen 49-56</dd>
+                        <dd>D295 - Seen 57-64</dd>
+                        <dd>D296 - Seen 65-72</dd>
+                        <dd>D297 - Seen 73-80</dd>
+                        <dd>D298 - Seen 81-88</dd>
+                        <dd>D299 - Seen 89-96</dd>
+                        <dd>D29A - Seen 97-104</dd>
+                        <dd>D29B - Seen 105-112</dd>
+                        <dd>D29C - Seen 113-120</dd>
+                        <dd>D29D - Seen 121-128</dd>
+                        <dd>D29E - Seen 129-136</dd>
+                        <dd>D29F - Seen 137-144</dd>
+                        <dd>D2A0 - Seen 145-152</dd></dl>
+                </td>
+                <td>
+                    <dl><dd>D2F7 - Own 1-8</dd>
+                        <dd>D2F8 - Own 9-16</dd>
+                        <dd>D2F9 - Own 17-24</dd>
+                        <dd>D2FA - Own 25-32</dd>
+                        <dd>D2FB - Own 33-40</dd>
+                        <dd>D2FC - Own 41-48</dd>
+                        <dd>D2FD - Own 49-56</dd>
+                        <dd>D2FE - Own 57-64</dd>
+                        <dd>D2FF - Own 65-72</dd>
+                        <dd>D300 - Own 73-80</dd>
+                        <dd>D301 - Own 81-88</dd>
+                        <dd>D302 - Own 89-96</dd>
+                        <dd>D303 - Own 97-104</dd>
+                        <dd>D304 - Own 105-112</dd>
+                        <dd>D305 - Own 113-120</dd>
+                        <dd>D306 - Own 121-128</dd>
+                        <dd>D307 - Own 129-136</dd>
+                        <dd>D308 - Own 137-144</dd>
+                        <dd>D309 - Own 145-152 </dd>
+                        <dd>D30A - Seen 1-8</dd>
+                        <dd>D30B - Seen 9-16</dd>
+                        <dd>D30C - Seen 17-24</dd>
+                        <dd>D30D - Seen 25-32</dd>
+                        <dd>D30E - Seen 33-40</dd>
+                        <dd>D30F - Seen 41-48</dd>
+                        <dd>D310 - Seen 49-56</dd>
+                        <dd>D311 - Seen 57-64</dd>
+                        <dd>D312 - Seen 65-72</dd>
+                        <dd>D313 - Seen 73-80</dd>
+                        <dd>D314 - Seen 81-88</dd>
+                        <dd>D315 - Seen 89-96</dd>
+                        <dd>D316 - Seen 97-104</dd>
+                        <dd>D317 - Seen 105-112</dd>
+                        <dd>D318 - Seen 113-120</dd>
+                        <dd>D319 - Seen 121-128</dd>
+                        <dd>D31A - Seen 129-136</dd>
+                        <dd>D31B - Seen 137-144</dd>
+                        <dd>D31C - Seen 145-152</dd></dl>
+                </td></tr></tbody></table>
+        <h3><span class="mw-headline" id="Items">Items</span></h3>
+        <dl><dd>D31D - Total Items</dd>
+            <dd>D31E - Item 1</dd>
+            <dd>D31F - Item 1 Quantity</dd>
+            <dd>D320 - Item 2 </dd>
+            <dd>D321 - Item 2 Quantity</dd>
+            <dd>D322 - Item 3</dd>
+            <dd>D323 - Item 3 Quantity</dd>
+            <dd>D324 - Item 4</dd>
+            <dd>D325 - Item 4 Quantity</dd>
+            <dd>D326 - Item 5</dd>
+            <dd>D327 - Item 5 Quantity</dd>
+            <dd>D328 - Item 6</dd>
+            <dd>D329 - Item 6 Quantity</dd>
+            <dd>D32A - Item 7</dd>
+            <dd>D32B - Item 7 Quantity</dd>
+            <dd>D32C - Item 8</dd>
+            <dd>D32D - Item 8 Quantity</dd>
+            <dd>D32E - Item 9</dd>
+            <dd>D32F - Item 9 Quantity</dd>
+            <dd>D330 - Item 10</dd>
+            <dd>D331 - Item 10 Quantity</dd>
+            <dd>D332 - Item 11</dd>
+            <dd>D333 - Item 11 Quantity</dd>
+            <dd>D334 - Item 12</dd>
+            <dd>D335 - Item 12 Quantity</dd>
+            <dd>D336 - Item 13</dd>
+            <dd>D337 - Item 13 Quantity</dd>
+            <dd>D338 - Item 14 </dd>
+            <dd>D339 - Item 14 Quantity</dd>
+            <dd>D33A - Item 15</dd>
+            <dd>D33B - Item 15 Quantity</dd>
+            <dd>D33C - Item 16</dd>
+            <dd>D33D - Item 16 Quantity</dd>
+            <dd>D33E - Item 17</dd>
+            <dd>D33F - Item 17 Quantity</dd>
+            <dd>D340 - Item 18</dd>
+            <dd>D341 - Item 18 Quantity</dd>
+            <dd>D342 - Item 19</dd>
+            <dd>D343 - Item 19 Quantity</dd>
+            <dd>D344 - Item 20</dd>
+            <dd>D345 - Item 20 Quantity</dd>
+            <dd>D346 - Item End of List</dd></dl>
+        <h3><span class="mw-headline" id="Money">Money</span></h3>
+        <dl><dd>D347 - Money Byte 1</dd>
+            <dd>D348 - Money Byte 2</dd>
+            <dd>D349 - Money Byte 3</dd></dl>
+        <h3><span class="mw-headline" id="Rival">Rival</span></h3>
+        <dl><dd>D34A-D351 - Rival's Name</dd></dl>
+        <h3><span class="mw-headline" id="Miscellaneous">Miscellaneous</span></h3>
+        <p>D355 - Options
+        </p>
+        <dl><dd>Bit 7 = Battle Animation (1 = Off, 0 = On)</dd>
+            <dd>Bit 6 = Battle Style (1 = Set, 0 = Shift)</dd>
+            <dd>Bit 5-4 = probably unused</dd>
+            <dd>Low Nybble = Text Speed (0x0 = fastest, 0xF = slowest)
+                <dl><dd><dl><dd>Fast = 1</dd>
+                    <dd>Medium = 3</dd>
+                    <dd>Slow = 5</dd></dl></dd></dl></dd></dl>
+        <p>D356 = Badges (Binary Switches)
+        </p><p>D358 = If bit0 = 0, delay is limited to 1 frame between each letter. If bit1 = 0, no delay during text printing. Overrides previous setting.
+    </p><p>D359 = Player ID [1] (Multiple of 256) D35A = Player ID [2] (...+1-255)
+    </p><p>D35B = Audio track (See Audio section)
+        D35C = Audio bank (See Audio section)
+    </p><p>D35D = Controls the map's palette. Usually 0, but is set to 6 when Flash is required.
+    </p><p>D35E = Current Map Number
+    </p>
+        <dl><dd>D35F-D360 = Event Displacement (view Notes, for more info)</dd>
+            <dd>D361 - 1 byte integer = Current Player Y-Position</dd>
+            <dd>D362 - 1 byte integer = Current Player X-Position</dd>
+            <dd>D363 = Current Player Y-Position (Current Block)</dd>
+            <dd>D364 = Current Player X-Position (Current Block)</dd></dl>
+        <p>D365 = Last map location for walking through certain exits (e.g. Safari Zone gate)
+        </p>
+        <h3><span class="mw-headline" id="Audio_2">Audio</span></h3>
+        <p>C022 = Audio track channel 1
+        </p><p>C023 = Audio track channel 2
+    </p><p>C024 = Audio track channel 3
+    </p><p>C025 = Audio track channel 4
+    </p><p>C0E8, C0E9 = Music tempo (lower values in C0E9 may = faster except for particularly low values)
+    </p><p>C0EA, C0EB = Sound effects tempo
+    </p><p>C0EC, C0ED = Sound effects header pointer
+    </p><p>C0EE = New sound ID
+    </p><p>C0EF = Audio bank
+    </p><p>C0F0 = Audio bank
+    </p><p>D35B = Audio track in current map
+    </p><p>D35C = Audio bank in current map
+    </p>
+        <dl><dd>Bank 02
+            <dl><dd>B3 = Validate</dd>
+                <dd>B4 = Bump</dd>
+                <dd>B5 = Exit of a house</dd>
+                <dd>B6 = Save Game</dd>
+                <dd>B8 = Pokéflute</dd>
+                <dd>B9 = Ding Dong</dd>
+                <dd>BA = PalletTown</dd>
+                <dd>BD = Pokecenter</dd>
+                <dd>C0 = Gym</dd>
+                <dd>C3 = Viridian City, Pewter City, Saffron City</dd>
+                <dd>C7 = Cerulean City, Fuchsia City</dd>
+                <dd>CA = Celadon City</dd>
+                <dd>CD = Cinnabar City</dd>
+                <dd>D0 = Vermilion City</dd>
+                <dd>D4 = Lavender Town</dd>
+                <dd>D8 = SS Anne</dd>
+                <dd>DB = Meet Oak</dd>
+                <dd>DE = Meet Blue</dd>
+                <dd>E1 = Follow me</dd>
+                <dd>E5 = Safari Zone / Evolution</dd>
+                <dd>E8 = Pokémon Healding</dd>
+                <dd>EB = Road 1, 2</dd>
+                <dd>EF = Road 24, 25</dd>
+                <dd>F3 = Road 3, 4, 5, 6, 7, 8, 9, 10, 16, 17, 18, 19, 20, 21, 22</dd>
+                <dd>F7 = Road 11, 12, 13, 14, 15</dd>
+                <dd>FB = Indigo Plateau</dd></dl></dd></dl>
+        <dl><dd>Bank 08
+            <dl><dd>EA = Gym Leader Battle</dd>
+                <dd>ED = Trainer Battle</dd>
+                <dd>F0 = Wild Battle</dd>
+                <dd>F3 = Final Battle</dd>
+                <dd>F6 = Defeated Trainer</dd>
+                <dd>F9 = Defeated Wild Pokemon</dd>
+                <dd>FC = Defeated Champion / Gym</dd></dl></dd></dl>
+        <dl><dd>Bank 1F
+            <dl><dd>C3 = Title Screen</dd>
+                <dd>C7 = Credits </dd>
+                <dd>CA = Hall of fame</dd>
+                <dd>CD = Oak's Lab</dd>
+                <dd>D0 = Jigglypuff Song</dd>
+                <dd>D2 = Bike Riding</dd>
+                <dd>D6 = Surfing</dd>
+                <dd>D9 = Came Corner</dd>
+                <dd>DC = Intro Game</dd>
+                <dd>DF = Power Plant, Unknown Dungeon, Rocket HQ</dd>
+                <dd>E3 = Viridian Forest, Seafoam Islands</dd>
+                <dd>E7 = Mt. Moon, Rock Tunnel, Victory Road</dd>
+                <dd>EB = Cinnabar City Mansion</dd>
+                <dd>EF = Pokemon Tower</dd>
+                <dd>F2 = Silph Co.</dd>
+                <dd>F5 = Eye contact Evil Trainer</dd>
+                <dd>F8 = Eye contact Female Trainer</dd>
+                <dd>FB = Eye contact Male Trainer</dd>
+                <dd>FF = Stop Sound</dd></dl></dd></dl>
+        <h3><span class="mw-headline" id="Event_Flags">Event Flags</span></h3>
+        <p>D5A6 to D5C5&nbsp;: Missable Objects Flags (flags for every (dis)appearing sprites, like the guard in Cerulean City or the Pokéballs in Oak's Lab)
+        </p><p>D5AB - Starters Back?
+    </p><p>D5C0(bit 1) - 0=Mewtwo appears, 1=Doesn't  (See D85F)
+    </p><p>D5F3 - Have Town map?
+    </p><p>D60D - Have Oak's Parcel?
+    </p><p>D700 - Bike Speed
+    </p>
+        <dl><dd>D70B - Fly Anywhere Byte 1</dd>
+            <dd>D70C - Fly Anywhere Byte 2</dd></dl>
+        <dl><dd>D70D - Safari Zone Time Byte 1</dd>
+            <dd>D70E - Safari Zone Time Byte 2</dd></dl>
+        <p>D710 - Fossilized Pokémon?
+        </p><p>D714 - Position in Air
+    </p><p>D72E - Did you get Lapras Yet?
+    </p><p>D732 - Debug New Game
+    </p><p>D751 - Fought Giovanni Yet?
+    </p><p>D755 - Fought Brock Yet?
+    </p><p>D75E - Fought Misty Yet?
+    </p><p>D773 - Fought Lt. Surge Yet?
+    </p><p>D77C - Fought Erika Yet?
+    </p><p>D782 - Fought Articuno Yet?
+    </p><p>D790 - If bit 7 is set, Safari Game over
+    </p><p>D792 - Fought Koga Yet?
+    </p><p>D79A - Fought Blaine Yet?
+    </p><p>D7B3 - Fought Sabrina Yet?
+    </p><p>D7D4 - Fought Zapdos Yet?
+    </p><p>D7D8 - Fought Snorlax Yet (Vermilion)
+    </p><p>D7E0 - Fought Snorlax Yet? (Celadon)
+    </p><p>D7EE - Fought Moltres Yet?
+    </p><p>D803 - Is SS Anne here?
+    </p><p>D85F - Mewtwo can be caught if bit 2 clear - Needs D5C0 bit 1 clear, too
+    </p>
+        <h3><span class="mw-headline" id="Opponent_Trainer.E2.80.99s_Pok.C3.A9mon">Opponent Trainer’s Pokémon</span></h3>
+        <dl><dd>D89C - Total enemy Pokémon</dd>
+            <dd>D89D - Pokémon 1</dd>
+            <dd>D89E - Pokémon 2</dd>
+            <dd>D89F - Pokémon 3</dd>
+            <dd>D8A0 - Pokémon 4</dd>
+            <dd>D8A1 - Pokémon 5</dd>
+            <dd>D8A2 - Pokémon 6</dd>
+            <dd>D8A3 - End of list</dd></dl>
+        <p>Pokémon 1
+        </p>
+        <dl><dd>D8A4 - Pokémon</dd>
+            <dd>D8A5-D8A6 - Current HP</dd>
+            <dd>D8A7 - </dd>
+            <dd>D8A8 - Status</dd>
+            <dd>D8A9 - Type 1</dd>
+            <dd>D8AA - Type 2</dd>
+            <dd>D8AB - </dd>
+            <dd>D8AC - Move 1</dd>
+            <dd>D8AD - Move 2</dd>
+            <dd>D8AE - Move 3</dd>
+            <dd>D8AF - Move 4</dd>
+            <dd>D8B0-D8B1 - Trainer ID</dd>
+            <dd>D8B2-D8B4 - Experience</dd>
+            <dd>D8B5-D8B6 - HP EV</dd>
+            <dd>D8B7-D8B8 - Attack EV</dd>
+            <dd>D8B9-D8BA - Defense EV</dd>
+            <dd>D8BB-D8BC - Speed EV</dd>
+            <dd>D8BD-D8BE - Special EV</dd>
+            <dd>D8BF - Attack/Defense IV</dd>
+            <dd>D8C0 - Speed/Special IV</dd>
+            <dd>D8C1 - PP Move 1</dd>
+            <dd>D8C2 - PP Move 2</dd>
+            <dd>D8C3 - PP Move 3</dd>
+            <dd>D8C4 - PP Move 4</dd>
+            <dd>D8C5 - Level</dd>
+            <dd>D8C6-D8C7 - Max HP</dd>
+            <dd>D8C8-D8C9 - Attack</dd>
+            <dd>D8CA-D8CB - Defense</dd>
+            <dd>D8CC-D8CD - Speed</dd>
+            <dd>D8CE-D8CF - Special</dd></dl>
+        <p>Pokémon 2
+        </p>
+        <dl><dd>D8D0 - Pokémon</dd>
+            <dd>D8D1-D8D2 - Current HP</dd>
+            <dd>D8D3 - </dd>
+            <dd>D8D4 - Status</dd>
+            <dd>D8D5 - Type 1</dd>
+            <dd>D8D6 - Type 2</dd>
+            <dd>D8D7 - </dd>
+            <dd>D8D8 - Move 1</dd>
+            <dd>D8D9 - Move 2</dd>
+            <dd>D8DA - Move 3</dd>
+            <dd>D8DB - Move 4</dd>
+            <dd>D8DC-D8DD - Trainer ID</dd>
+            <dd>D8DE-D8E0 - Experience</dd>
+            <dd>D8E1-D8E2 - HP EV</dd>
+            <dd>D8E3-D8E4 - Attack EV</dd>
+            <dd>D8E5-D8E6 - Defense EV</dd>
+            <dd>D8E7-D8E8 - Speed EV</dd>
+            <dd>D8E9-D8EA - Special EV</dd>
+            <dd>D8EB - Attack/Defense IV</dd>
+            <dd>D8EC - Speed/Special IV</dd>
+            <dd>D8ED - PP Move 1</dd>
+            <dd>D8EE - PP Move 2</dd>
+            <dd>D8EF - PP Move 3</dd>
+            <dd>D8F0 - PP Move 4</dd>
+            <dd>D8F1 - Level</dd>
+            <dd>D8F2-D8F3 - Max HP</dd>
+            <dd>D8F4-D8F5 - Attack</dd>
+            <dd>D8F6-D8F7 - Defense</dd>
+            <dd>D8F8-D8F9 - Speed</dd>
+            <dd>D8FA-D8FB - Special</dd></dl>
+        <p>Pokémon 3
+        </p>
+        <dl><dd>D8FC - Pokémon</dd>
+            <dd>D8FD-D8FE - Current HP</dd>
+            <dd>D8FF - </dd>
+            <dd>D900 - Status</dd>
+            <dd>D901 - Type 1</dd>
+            <dd>D902 - Type 2</dd>
+            <dd>D903 - </dd>
+            <dd>D904 - Move 1</dd>
+            <dd>D905 - Move 2</dd>
+            <dd>D906 - Move 3</dd>
+            <dd>D907 - Move 4</dd>
+            <dd>D908-D909 - Trainer ID</dd>
+            <dd>D90A-D90C - Experience</dd>
+            <dd>D90D-D90E - HP EV</dd>
+            <dd>D90F-D910 - Attack EV</dd>
+            <dd>D911-D912 - Defense EV</dd>
+            <dd>D913-D914 - Speed EV</dd>
+            <dd>D915-D916 - Special EV</dd>
+            <dd>D917 - Attack/Defense IV</dd>
+            <dd>D918 - Speed/Special IV</dd>
+            <dd>D919 - PP Move 1</dd>
+            <dd>D91A - PP Move 2</dd>
+            <dd>D91B - PP Move 3</dd>
+            <dd>D91C - PP Move 4</dd>
+            <dd>D91D - Level</dd>
+            <dd>D91E-D91F - Max HP</dd>
+            <dd>D920-D921 - Attack</dd>
+            <dd>D922-D923 - Defense</dd>
+            <dd>D924-D925 - Speed</dd>
+            <dd>D926-D927 - Special</dd></dl>
+        <p>Pokémon 4
+        </p>
+        <dl><dd>D928 - Pokémon</dd>
+            <dd>D929-D92A - Current HP</dd>
+            <dd>D92B - </dd>
+            <dd>D92C - Status</dd>
+            <dd>D92D - Type 1</dd>
+            <dd>D92E - Type 2</dd>
+            <dd>D92F - </dd>
+            <dd>D930 - Move 1</dd>
+            <dd>D931 - Move 2</dd>
+            <dd>D932 - Move 3</dd>
+            <dd>D933 - Move 4</dd>
+            <dd>D934-D935 - Trainer ID</dd>
+            <dd>D936-D938 - Experience</dd>
+            <dd>D939-D93A - HP EV</dd>
+            <dd>D93B-D93C - Attack EV</dd>
+            <dd>D93D-D93E - Defense EV</dd>
+            <dd>D93F-D940 - Speed EV</dd>
+            <dd>D941-D942 - Special EV</dd>
+            <dd>D943 - Attack/Defense IV</dd>
+            <dd>D944 - Speed/Special IV</dd>
+            <dd>D945 - PP Move 1</dd>
+            <dd>D946 - PP Move 2</dd>
+            <dd>D947 - PP Move 3</dd>
+            <dd>D948 - PP Move 4</dd>
+            <dd>D949 - Level</dd>
+            <dd>D94A-D94B - Max HP</dd>
+            <dd>D94C-D94D - Attack</dd>
+            <dd>D94E-D94F - Defense</dd>
+            <dd>D950-D951 - Speed</dd>
+            <dd>D952-D953 - Special</dd></dl>
+        <p>Pokémon 5
+        </p>
+        <dl><dd>D954 - Pokémon</dd>
+            <dd>D955-D956 - Current HP</dd>
+            <dd>D957 - </dd>
+            <dd>D958 - Status</dd>
+            <dd>D959 - Type 1</dd>
+            <dd>D95A - Type 2</dd>
+            <dd>D95B - </dd>
+            <dd>D95C - Move 1</dd>
+            <dd>D95D - Move 2</dd>
+            <dd>D95E - Move 3</dd>
+            <dd>D95F - Move 4</dd>
+            <dd>D960-D961 - Trainer ID</dd>
+            <dd>D962-D964 - Experience</dd>
+            <dd>D965-D966 - HP EV</dd>
+            <dd>D967-D968 - Attack EV</dd>
+            <dd>D969-D96A - Defense EV</dd>
+            <dd>D96B-D96C - Speed EV</dd>
+            <dd>D96D-D96E - Special EV</dd>
+            <dd>D96F - Attack/Defense IV</dd>
+            <dd>D970 - Speed/Special IV</dd>
+            <dd>D971 - PP Move 1</dd>
+            <dd>D972 - PP Move 2</dd>
+            <dd>D973 - PP Move 3</dd>
+            <dd>D974 - PP Move 4</dd>
+            <dd>D975 - Level</dd>
+            <dd>D976-D977 - Max HP</dd>
+            <dd>D978-D979 - Attack</dd>
+            <dd>D97A-D97B - Defense</dd>
+            <dd>D97C-D97D - Speed</dd>
+            <dd>D97E-D97F - Special</dd></dl>
+        <p>Pokémon 6
+        </p>
+        <dl><dd>D980 - Pokémon</dd>
+            <dd>D981-D982 - Current HP</dd>
+            <dd>D983 - </dd>
+            <dd>D984 - Status</dd>
+            <dd>D985 - Type 1</dd>
+            <dd>D986 - Type 2</dd>
+            <dd>D987 - </dd>
+            <dd>D988 - Move 1</dd>
+            <dd>D989 - Move 2</dd>
+            <dd>D98A - Move 3</dd>
+            <dd>D98B - Move 4</dd>
+            <dd>D98C-D98D - Trainer ID</dd>
+            <dd>D98E-D990 - Experience</dd>
+            <dd>D991-D992 - HP EV</dd>
+            <dd>D993-D994 - Attack EV</dd>
+            <dd>D995-D996 - Defense EV</dd>
+            <dd>D997-D998 - Speed EV</dd>
+            <dd>D999-D99A - Special EV</dd>
+            <dd>D99B - Attack/Defense IV</dd>
+            <dd>D99C - Speed/Special IV</dd>
+            <dd>D99D - PP Move 1</dd>
+            <dd>D99E - PP Move 2</dd>
+            <dd>D99F - PP Move 3</dd>
+            <dd>D9A0 - PP Move 4</dd>
+            <dd>D9A1 - Level</dd>
+            <dd>D9A2-D9A3 - Max HP</dd>
+            <dd>D9A4-D9A5 - Attack</dd>
+            <dd>D9A6-D9A7 - Defense</dd>
+            <dd>D9A8-D9A9 - Speed</dd>
+            <dd>D9AA-D9AB - Special</dd></dl>
+        <p>Trainer Name
+        </p>
+        <dl><dd>D9AC-D9B6 - Trainer name for 1st</dd>
+            <dd>D9B7-D9C1 - Trainer name for 2nd</dd>
+            <dd>D9C2-D9CC - Trainer name for 3rd</dd>
+            <dd>D9CD-D9D7 - Trainer name for 4th</dd>
+            <dd>D9D8-D9E2 - Trainer name for 5th</dd>
+            <dd>D9E3-D9ED - Trainer name for 6th</dd></dl>
+        <p>Nickname
+        </p>
+        <dl><dd>D9EE-D9F8 - Nickname for 1st</dd>
+            <dd>D9F9-DA03 - Nickname for 2nd</dd>
+            <dd>DA04-DA0E - Nickname for 3rd</dd>
+            <dd>DA0F-DA19 - Nickname for 4th</dd>
+            <dd>DA1A-DA24 - Nickname for 5th</dd>
+            <dd>DA25-DA2F - Nickname for 6th</dd></dl>
+    </div></body></html>
