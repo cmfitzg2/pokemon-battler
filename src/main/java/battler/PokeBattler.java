@@ -46,7 +46,7 @@ public class PokeBattler {
     private void idleLoop() {
         while (true) {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(10000);
                 //Poll for new battle outcome
                 File tempFile = new File("src/main/scripts/battle-log.txt");
                 if (tempFile.exists()) {
@@ -103,14 +103,6 @@ public class PokeBattler {
                 KeyValuePair pokemonEntry = getRandomEntry(pokemonListCopy);
                 String pokemonCode = pokemonEntry.getKey();
                 String pokemonName = pokemonEntry.getValue();
-                if (i == 1) {
-                    pokemonCode = "0x03";
-                    pokemonName = "Nidoran1";
-                }
-                if (i == 2) {
-                    pokemonCode = "0x0F";
-                    pokemonName = "Nidoran2";
-                }
                 Pokemon pokemon = new Pokemon(pokemonCode, pokemonName, pokemonLevel);
                 pokemon.setHp(statCalculations.getHpStat(pokemonName));
                 pokemon.setAttack(statCalculations.getAttackStat(pokemonName));
