@@ -80,12 +80,15 @@ local pokemonSlot3LevelAddr = 0xD1E4
 
 function charToHex(char)
     --Nidoran gender codes
+    --Mr. Mime period
     if char == "1" then
         return 0xEF
     elseif char == "2" then
         return 0xF5
     elseif char == 0x50 then
         return 0x50
+    elseif char == "." then
+        return 0xE8
     end
     local alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     for i = 1, #alphabet do

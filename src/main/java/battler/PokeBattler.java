@@ -75,6 +75,7 @@ public class PokeBattler {
                         //The battler has already loaded its team by now, so we will now get the team for the game after
                         //This offers a very large cushion of space between when the team is needed and when it's supplied
                         getNewTeam();
+                        System.out.println("New team output");
                     } else {
                         System.out.println("Failed to delete battle log");
                         //this is bad, guess we'll exit!
