@@ -4,168 +4,169 @@ local teams =
 	{
 		pokemon1 =
 		{
-			pokemonName = "Mew",
-			pokemonCode = 0x15,
+			pokemonName = "POLIWHIRL",
+			pokemonCode = 0x6E,
 			pokemonLevel = 0x32,
-			pokemonType1 = 0x18,
-			pokemonType2 = 0x18,
+			pokemonType1 = 0x15,
+			pokemonType2 = 0x15,
 			pokemonHp1 = 0x00,
-			pokemonHp2 = 0xc9,
+			pokemonHp2 = 0x8a,
 			pokemonAttack1 = 0x00,
-			pokemonAttack2 = 0x77,
+			pokemonAttack2 = 0x6c,
 			pokemonDefense1 = 0x00,
-			pokemonDefense2 = 0x87,
+			pokemonDefense2 = 0x58,
 			pokemonSpeed1 = 0x00,
-			pokemonSpeed2 = 0x87,
+			pokemonSpeed2 = 0x85,
 			pokemonSpecial1 = 0x00,
-			pokemonSpecial2 = 0x77,
-			move1Code = 0x08,
-			move1Pp = 0xf,
-			move2Code = 0x12,
-			move2Pp = 0x14,
-			move3Code = 0x13,
+			pokemonSpecial2 = 0x45,
+			move1Code = 0x94,
+			move1Pp = 0x14,
+			move2Code = 0x95,
+			move2Pp = 0xf,
+			move3Code = 0x09,
 			move3Pp = 0xf,
-			move4Code = 0x2B,
-			move4Pp = 0x1e
+			move4Code = 0x76,
+			move4Pp = 0xa
 		},
 		pokemon2 =
 		{
-			pokemonName = "Gengar",
-			pokemonCode = 0x0E,
+			pokemonName = "SANDSHREW",
+			pokemonCode = 0x60,
 			pokemonLevel = 0x32,
-			pokemonType1 = 0x08,
-			pokemonType2 = 0x03,
+			pokemonType1 = 0x04,
+			pokemonType2 = 0x04,
 			pokemonHp1 = 0x00,
-			pokemonHp2 = 0x9a,
+			pokemonHp2 = 0x8c,
 			pokemonAttack1 = 0x00,
-			pokemonAttack2 = 0x5c,
+			pokemonAttack2 = 0x75,
 			pokemonDefense1 = 0x00,
-			pokemonDefense2 = 0x62,
+			pokemonDefense2 = 0x76,
 			pokemonSpeed1 = 0x00,
-			pokemonSpeed2 = 0x92,
+			pokemonSpeed2 = 0x45,
 			pokemonSpecial1 = 0x00,
-			pokemonSpecial2 = 0xad,
-			move1Code = 0x11,
-			move1Pp = 0x23,
-			move2Code = 0x48,
-			move2Pp = 0xa,
-			move3Code = 0x2D,
-			move3Pp = 0x28,
-			move4Code = 0x44,
-			move4Pp = 0x14
+			pokemonSpecial2 = 0x4b,
+			move1Code = 0x26,
+			move1Pp = 0xf,
+			move2Code = 0x97,
+			move2Pp = 0x28,
+			move3Code = 0x41,
+			move3Pp = 0x14,
+			move4Code = 0x01,
+			move4Pp = 0x23
 		},
 		pokemon3 =
 		{
-			pokemonName = "Raticate",
-			pokemonCode = 0xA6,
+			pokemonName = "CHARIZARD",
+			pokemonCode = 0xB4,
 			pokemonLevel = 0x32,
-			pokemonType1 = 0x00,
-			pokemonType2 = 0x00,
+			pokemonType1 = 0x14,
+			pokemonType2 = 0x02,
 			pokemonHp1 = 0x00,
-			pokemonHp2 = 0x96,
+			pokemonHp2 = 0xad,
 			pokemonAttack1 = 0x00,
-			pokemonAttack2 = 0x6f,
+			pokemonAttack2 = 0x7d,
 			pokemonDefense1 = 0x00,
-			pokemonDefense2 = 0x5d,
+			pokemonDefense2 = 0x68,
 			pokemonSpeed1 = 0x00,
-			pokemonSpeed2 = 0x81,
+			pokemonSpeed2 = 0x71,
 			pokemonSpecial1 = 0x00,
-			pokemonSpecial2 = 0x4c,
-			move1Code = 0x3C,
+			pokemonSpecial2 = 0x7a,
+			move1Code = 0x45,
 			move1Pp = 0x14,
-			move2Code = 0x91,
-			move2Pp = 0x1e,
-			move3Code = 0xA3,
-			move3Pp = 0x14,
-			move4Code = 0x2C,
-			move4Pp = 0x19
+			move2Code = 0x5D,
+			move2Pp = 0x19,
+			move3Code = 0x65,
+			move3Pp = 0xf,
+			move4Code = 0x39,
+			move4Pp = 0xf
 		}
 	},
 	team2 =
 	{
 		pokemon1 =
 		{
-			pokemonName = "Arcanine",
-			pokemonCode = 0x14,
+			pokemonName = "DRATINI",
+			pokemonCode = 0x58,
 			pokemonLevel = 0x32,
-			pokemonType1 = 0x14,
-			pokemonType2 = 0x14,
+			pokemonType1 = 0x1A,
+			pokemonType2 = 0x1A,
 			pokemonHp1 = 0x00,
-			pokemonHp2 = 0xbb,
+			pokemonHp2 = 0x7b,
 			pokemonAttack1 = 0x00,
-			pokemonAttack2 = 0x93,
+			pokemonAttack2 = 0x6a,
 			pokemonDefense1 = 0x00,
-			pokemonDefense2 = 0x75,
+			pokemonDefense2 = 0x4e,
 			pokemonSpeed1 = 0x00,
-			pokemonSpeed2 = 0x8b,
+			pokemonSpeed2 = 0x5e,
 			pokemonSpecial1 = 0x00,
-			pokemonSpecial2 = 0x7f,
-			move1Code = 0x25,
-			move1Pp = 0x14,
-			move2Code = 0x64,
+			pokemonSpecial2 = 0x4d,
+			move1Code = 0x2F,
+			move1Pp = 0xf,
+			move2Code = 0x3E,
 			move2Pp = 0x14,
-			move3Code = 0x20,
-			move3Pp = 0x5,
-			move4Code = 0x3C,
+			move3Code = 0x8B,
+			move3Pp = 0x28,
+			move4Code = 0x31,
 			move4Pp = 0x14
 		},
 		pokemon2 =
 		{
-			pokemonName = "Kingler",
-			pokemonCode = 0x8A,
+			pokemonName = "DIGLETT",
+			pokemonCode = 0x3B,
 			pokemonLevel = 0x32,
-			pokemonType1 = 0x15,
-			pokemonType2 = 0x15,
+			pokemonType1 = 0x04,
+			pokemonType2 = 0x04,
 			pokemonHp1 = 0x00,
-			pokemonHp2 = 0x94,
+			pokemonHp2 = 0x5f,
 			pokemonAttack1 = 0x00,
-			pokemonAttack2 = 0xb2,
+			pokemonAttack2 = 0x57,
 			pokemonDefense1 = 0x00,
-			pokemonDefense2 = 0x8f,
+			pokemonDefense2 = 0x3b,
 			pokemonSpeed1 = 0x00,
-			pokemonSpeed2 = 0x6e,
+			pokemonSpeed2 = 0x8f,
 			pokemonSpecial1 = 0x00,
-			pokemonSpecial2 = 0x59,
-			move1Code = 0x68,
+			pokemonSpecial2 = 0x3d,
+			move1Code = 0x1C,
 			move1Pp = 0xf,
-			move2Code = 0x1E,
-			move2Pp = 0x19,
-			move3Code = 0x63,
+			move2Code = 0x53,
+			move2Pp = 0xf,
+			move3Code = 0x2A,
 			move3Pp = 0x14,
-			move4Code = 0x33,
-			move4Pp = 0x1e
+			move4Code = 0x7D,
+			move4Pp = 0x14
 		},
 		pokemon3 =
 		{
-			pokemonName = "Squirtle",
-			pokemonCode = 0xB1,
+			pokemonName = "OMANYTE",
+			pokemonCode = 0x62,
 			pokemonLevel = 0x32,
-			pokemonType1 = 0x15,
+			pokemonType1 = 0x05,
 			pokemonType2 = 0x15,
 			pokemonHp1 = 0x00,
-			pokemonHp2 = 0x85,
+			pokemonHp2 = 0x64,
 			pokemonAttack1 = 0x00,
-			pokemonAttack2 = 0x45,
+			pokemonAttack2 = 0x4f,
 			pokemonDefense1 = 0x00,
-			pokemonDefense2 = 0x53,
+			pokemonDefense2 = 0x95,
 			pokemonSpeed1 = 0x00,
-			pokemonSpeed2 = 0x54,
+			pokemonSpeed2 = 0x4c,
 			pokemonSpecial1 = 0x00,
-			pokemonSpecial2 = 0x5b,
-			move1Code = 0x8F,
-			move1Pp = 0x5,
-			move2Code = 0x21,
-			move2Pp = 0x23,
-			move3Code = 0x90,
+			pokemonSpecial2 = 0x72,
+			move1Code = 0x93,
+			move1Pp = 0xf,
+			move2Code = 0x2D,
+			move2Pp = 0x28,
+			move3Code = 0x8E,
 			move3Pp = 0xa,
-			move4Code = 0x15,
-			move4Pp = 0x14
+			move4Code = 0x5A,
+			move4Pp = 0x5
 		}
 	}
 }
 
 
 --Address Constants
+
 local pokemonSlot1AAddr = 0xD164
 local pokemonSlot1BAddr = 0xD16B
 local pokemonSlot1Type1 = 0xD170
@@ -244,6 +245,47 @@ local pokemonSlot3Move4Addr = 0xD1CE
 local pokemonSlot3Move4PpAddr = 0xD1E3
 local pokemonSlot3LevelAddr = 0xD1E4
 
+function charToHex(char)
+    --Nidoran gender codes
+    if char == "♂" then
+        return 0xEF
+    elseif char == "♀" then
+        return 0xF5
+    elseif char == 0x50 then
+        return 0x50
+    end
+    local alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    for i = 1, #alphabet do
+        if char == alphabet:sub(i, i) then
+            return 0x80 + i - 1
+        end
+    end
+    return nil;
+end
+
+function writeNameBytes(stringName, slotNumber)
+    local pokemon1NameAddrPointer = 0xD2B5
+    local pokemon2NameAddrPointer = 0xD2C0
+    local pokemon3NameAddrPointer = 0xD2CB
+    local nameLength = 10;
+    for i = 1, nameLength do
+        local char;
+        if i <= #stringName then
+            char = stringName:sub(i,i)
+        else
+            --zero out the remaining name slots so we don't get the data from the previous pokemon's name
+            char = 0x50;
+        end
+            if slotNumber == 1 then
+                memory.writebyte(pokemon1NameAddrPointer + i - 1, charToHex(char))
+            elseif slotNumber == 2 then
+                memory.writebyte(pokemon2NameAddrPointer + i - 1, charToHex(char))
+            elseif slotNumber == 3 then
+                memory.writebyte(pokemon3NameAddrPointer + i - 1, charToHex(char))
+            end
+    end
+end
+
 --Team 1 (Left Screen)
 memory.usememorydomain("L System Bus")
 
@@ -272,6 +314,7 @@ memory.writebyte(pokemonSlot1Move3PpAddr, teams.team1.pokemon1.move3Pp)
 memory.writebyte(pokemonSlot1Move4Addr, teams.team1.pokemon1.move4Code)
 memory.writebyte(pokemonSlot1Move4PpAddr, teams.team1.pokemon1.move4Pp)
 memory.writebyte(pokemonSlot1LevelAddr, teams.team1.pokemon1.pokemonLevel)
+writeNameBytes(teams.team1.pokemon1.pokemonName, 1)
 
 memory.writebyte(pokemonSlot2AAddr, teams.team1.pokemon2.pokemonCode)
 memory.writebyte(pokemonSlot2BAddr, teams.team1.pokemon2.pokemonCode)
@@ -298,6 +341,7 @@ memory.writebyte(pokemonSlot2Move3PpAddr, teams.team1.pokemon2.move3Pp)
 memory.writebyte(pokemonSlot2Move4Addr, teams.team1.pokemon2.move4Code)
 memory.writebyte(pokemonSlot2Move4PpAddr, teams.team1.pokemon2.move4Pp)
 memory.writebyte(pokemonSlot2LevelAddr, teams.team1.pokemon2.pokemonLevel)
+writeNameBytes(teams.team1.pokemon2.pokemonName, 2)
 
 memory.writebyte(pokemonSlot3AAddr, teams.team1.pokemon3.pokemonCode)
 memory.writebyte(pokemonSlot3BAddr, teams.team1.pokemon3.pokemonCode)
@@ -324,6 +368,7 @@ memory.writebyte(pokemonSlot3Move3PpAddr, teams.team1.pokemon3.move3Pp)
 memory.writebyte(pokemonSlot3Move4Addr, teams.team1.pokemon3.move4Code)
 memory.writebyte(pokemonSlot3Move4PpAddr, teams.team1.pokemon3.move4Pp)
 memory.writebyte(pokemonSlot3LevelAddr, teams.team1.pokemon3.pokemonLevel)
+writeNameBytes(teams.team1.pokemon3.pokemonName, 3)
 
 --Team 2 (Right Screen)
 memory.usememorydomain("R System Bus")
@@ -353,6 +398,7 @@ memory.writebyte(pokemonSlot1Move3PpAddr, teams.team2.pokemon1.move3Pp)
 memory.writebyte(pokemonSlot1Move4Addr, teams.team2.pokemon1.move4Code)
 memory.writebyte(pokemonSlot1Move4PpAddr, teams.team2.pokemon1.move4Pp)
 memory.writebyte(pokemonSlot1LevelAddr, teams.team2.pokemon1.pokemonLevel)
+writeNameBytes(teams.team2.pokemon1.pokemonName, 1)
 
 memory.writebyte(pokemonSlot2AAddr, teams.team2.pokemon2.pokemonCode)
 memory.writebyte(pokemonSlot2BAddr, teams.team2.pokemon2.pokemonCode)
@@ -379,6 +425,7 @@ memory.writebyte(pokemonSlot2Move3PpAddr, teams.team2.pokemon2.move3Pp)
 memory.writebyte(pokemonSlot2Move4Addr, teams.team2.pokemon2.move4Code)
 memory.writebyte(pokemonSlot2Move4PpAddr, teams.team2.pokemon2.move4Pp)
 memory.writebyte(pokemonSlot2LevelAddr, teams.team2.pokemon2.pokemonLevel)
+writeNameBytes(teams.team2.pokemon2.pokemonName, 2)
 
 memory.writebyte(pokemonSlot3AAddr, teams.team2.pokemon3.pokemonCode)
 memory.writebyte(pokemonSlot3BAddr, teams.team2.pokemon3.pokemonCode)
@@ -405,3 +452,4 @@ memory.writebyte(pokemonSlot3Move3PpAddr, teams.team2.pokemon3.move3Pp)
 memory.writebyte(pokemonSlot3Move4Addr, teams.team2.pokemon3.move4Code)
 memory.writebyte(pokemonSlot3Move4PpAddr, teams.team2.pokemon3.move4Pp)
 memory.writebyte(pokemonSlot3LevelAddr, teams.team2.pokemon3.pokemonLevel)
+writeNameBytes(teams.team2.pokemon3.pokemonName, 3)

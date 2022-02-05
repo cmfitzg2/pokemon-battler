@@ -78,6 +78,47 @@ local pokemonSlot3Move4Addr = 0xD1CE
 local pokemonSlot3Move4PpAddr = 0xD1E3
 local pokemonSlot3LevelAddr = 0xD1E4
 
+function charToHex(char)
+    --Nidoran gender codes
+    if char == "♂" then
+        return 0xEF
+    elseif char == "♀" then
+        return 0xF5
+    elseif char == 0x50 then
+        return 0x50
+    end
+    local alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    for i = 1, #alphabet do
+        if char == alphabet:sub(i, i) then
+            return 0x80 + i - 1
+        end
+    end
+    return nil;
+end
+
+function writeNameBytes(stringName, slotNumber)
+    local pokemon1NameAddrPointer = 0xD2B5
+    local pokemon2NameAddrPointer = 0xD2C0
+    local pokemon3NameAddrPointer = 0xD2CB
+    local nameLength = 10;
+    for i = 1, nameLength do
+        local char;
+        if i <= #stringName then
+            char = stringName:sub(i,i)
+        else
+            --zero out the remaining name slots so we don't get the data from the previous pokemon's name
+            char = 0x50;
+        end
+            if slotNumber == 1 then
+                memory.writebyte(pokemon1NameAddrPointer + i - 1, charToHex(char))
+            elseif slotNumber == 2 then
+                memory.writebyte(pokemon2NameAddrPointer + i - 1, charToHex(char))
+            elseif slotNumber == 3 then
+                memory.writebyte(pokemon3NameAddrPointer + i - 1, charToHex(char))
+            end
+    end
+end
+
 --Team 1 (Left Screen)
 memory.usememorydomain("L System Bus")
 
@@ -106,6 +147,7 @@ memory.writebyte(pokemonSlot1Move3PpAddr, teams.team1.pokemon1.move3Pp)
 memory.writebyte(pokemonSlot1Move4Addr, teams.team1.pokemon1.move4Code)
 memory.writebyte(pokemonSlot1Move4PpAddr, teams.team1.pokemon1.move4Pp)
 memory.writebyte(pokemonSlot1LevelAddr, teams.team1.pokemon1.pokemonLevel)
+writeNameBytes(teams.team1.pokemon1.pokemonName, 1)
 
 memory.writebyte(pokemonSlot2AAddr, teams.team1.pokemon2.pokemonCode)
 memory.writebyte(pokemonSlot2BAddr, teams.team1.pokemon2.pokemonCode)
@@ -132,6 +174,7 @@ memory.writebyte(pokemonSlot2Move3PpAddr, teams.team1.pokemon2.move3Pp)
 memory.writebyte(pokemonSlot2Move4Addr, teams.team1.pokemon2.move4Code)
 memory.writebyte(pokemonSlot2Move4PpAddr, teams.team1.pokemon2.move4Pp)
 memory.writebyte(pokemonSlot2LevelAddr, teams.team1.pokemon2.pokemonLevel)
+writeNameBytes(teams.team1.pokemon2.pokemonName, 2)
 
 memory.writebyte(pokemonSlot3AAddr, teams.team1.pokemon3.pokemonCode)
 memory.writebyte(pokemonSlot3BAddr, teams.team1.pokemon3.pokemonCode)
@@ -158,6 +201,7 @@ memory.writebyte(pokemonSlot3Move3PpAddr, teams.team1.pokemon3.move3Pp)
 memory.writebyte(pokemonSlot3Move4Addr, teams.team1.pokemon3.move4Code)
 memory.writebyte(pokemonSlot3Move4PpAddr, teams.team1.pokemon3.move4Pp)
 memory.writebyte(pokemonSlot3LevelAddr, teams.team1.pokemon3.pokemonLevel)
+writeNameBytes(teams.team1.pokemon3.pokemonName, 3)
 
 --Team 2 (Right Screen)
 memory.usememorydomain("R System Bus")
@@ -187,6 +231,7 @@ memory.writebyte(pokemonSlot1Move3PpAddr, teams.team2.pokemon1.move3Pp)
 memory.writebyte(pokemonSlot1Move4Addr, teams.team2.pokemon1.move4Code)
 memory.writebyte(pokemonSlot1Move4PpAddr, teams.team2.pokemon1.move4Pp)
 memory.writebyte(pokemonSlot1LevelAddr, teams.team2.pokemon1.pokemonLevel)
+writeNameBytes(teams.team2.pokemon1.pokemonName, 1)
 
 memory.writebyte(pokemonSlot2AAddr, teams.team2.pokemon2.pokemonCode)
 memory.writebyte(pokemonSlot2BAddr, teams.team2.pokemon2.pokemonCode)
@@ -213,6 +258,7 @@ memory.writebyte(pokemonSlot2Move3PpAddr, teams.team2.pokemon2.move3Pp)
 memory.writebyte(pokemonSlot2Move4Addr, teams.team2.pokemon2.move4Code)
 memory.writebyte(pokemonSlot2Move4PpAddr, teams.team2.pokemon2.move4Pp)
 memory.writebyte(pokemonSlot2LevelAddr, teams.team2.pokemon2.pokemonLevel)
+writeNameBytes(teams.team2.pokemon2.pokemonName, 2)
 
 memory.writebyte(pokemonSlot3AAddr, teams.team2.pokemon3.pokemonCode)
 memory.writebyte(pokemonSlot3BAddr, teams.team2.pokemon3.pokemonCode)
@@ -239,3 +285,4 @@ memory.writebyte(pokemonSlot3Move3PpAddr, teams.team2.pokemon3.move3Pp)
 memory.writebyte(pokemonSlot3Move4Addr, teams.team2.pokemon3.move4Code)
 memory.writebyte(pokemonSlot3Move4PpAddr, teams.team2.pokemon3.move4Pp)
 memory.writebyte(pokemonSlot3LevelAddr, teams.team2.pokemon3.pokemonLevel)
+writeNameBytes(teams.team2.pokemon3.pokemonName, 3)

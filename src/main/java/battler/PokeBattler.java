@@ -1,12 +1,12 @@
 package battler;
 
-import beans.Pokemon;
 import beans.KeyValuePair;
-import com.google.gson.JsonArray;
+import beans.Pokemon;
 import utils.FileWriter;
 import utils.JsonParse;
 import utils.StatCalculations;
 
+import java.io.File;
 import java.util.*;
 
 public class PokeBattler {
@@ -36,7 +36,40 @@ public class PokeBattler {
             return;
         }
         statCalculations = new StatCalculations(random);
+        getNewTeam();
+        idleLoop();
+    }
+
+    private void idleLoop() {
+        while (true) {
+            try {
+                Thread.sleep(3000);
+                //Poll for new battle outcome
+                File tempFile = new File("src/main/scripts/battle-log.txt");
+                if (tempFile.exists()) {
+                    if (tempFile.delete()) {
+                        System.out.println("Deleted battle log");
+                        //Delete the log so we are informed when the next battle finishes, the new battle starts around now
+                        //The battler has already loaded its team by now, so we will now get the team for the game after
+                        //This offers a very large cushion of space between when the team is needed and when it's supplied
+                        getNewTeam();
+                    } else {
+                        System.out.println("Failed to delete battle log");
+                        //this is bad, guess we'll exit!
+                        break;
+                    }
+                } else {
+                    System.out.println("Waiting for battle outcome file...");
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void getNewTeam() {
         FileWriter.outputLuaFile(teamSize, getRandomizedTeam(), getRandomizedTeam());
+        idleLoop();
     }
 
     private List<Pokemon> getRandomizedTeam() {

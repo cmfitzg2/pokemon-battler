@@ -17,7 +17,7 @@ public class FileWriter {
             for (int i = 0; i < team1.size(); i++) {
                 Pokemon pokemon = j == 0 ? team1.get(i) : team2.get(i);
                 contents.append("\t\tpokemon").append(i + 1).append(" =\r\n\t\t{\r\n")
-                        .append("\t\t\tpokemonName = \"").append(pokemon.getName()).append("\",\r\n" +
+                        .append("\t\t\tpokemonName = \"").append(pokemon.getName().toUpperCase()).append("\",\r\n" +
                         "\t\t\tpokemonCode = ").append(pokemon.getPokemonCode()).append(",\r\n" +
                         "\t\t\tpokemonLevel = ").append(pokemon.getLevel()).append(",\r\n" +
                         "\t\t\tpokemonType1 = 0x").append(pokemon.getType1()).append(",\r\n" +

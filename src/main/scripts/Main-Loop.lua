@@ -16,9 +16,14 @@ local hpSlot3Byte2 = 0xD1C5;
 --Variables
 local activePokemonP1Index = 1;
 local activePokemonP2Index = 1;
-local p1Mash = true;
-local p2Mash = true;
 local WAIT_OP = "WAIT";
+local turnCount = 0;
+local randomSwitchChanceDefault = 3;
+local randomSwitchChance = randomSwitchChanceDefault;
+local resettingP1 = false;
+local resettingP2 = false;
+local p1Outcome;
+local p2Outcome;
 inputP1 = {};
 inputP2 = {};
 inputQueueP1 = {};
@@ -31,6 +36,8 @@ math.random();
 math.random();
 
 function switchPokemonInputs(playerNum, fromMoveSelect)
+	randomSwitchChance = randomSwitchChanceDefault;
+	turnCount = 0;
 	if fromMoveSelect then
 		insertWaits(20, playerNum);
 		insertOp("B true", playerNum)
@@ -49,7 +56,7 @@ function insertWaits(count, playerNum)
 	else
 		inputQueue = inputQueueP2;
 	end
-	for i = 1,count,1
+	for _ = 1,count,1
 	do
 		table.insert(inputQueue, WAIT_OP);
 	end
@@ -99,6 +106,45 @@ function stringToBoolean(inputString)
 	return bool
 end
 
+function checkWinner(playerNum)
+	local outcomeTextWinLose = 0xC44A
+	local outcomeTextDraw = 0xC448
+	if memory.readbyte(outcomeTextDraw) == 0x83 then
+		if playerNum == 1 then
+			p1Outcome = "DRAW";
+		else
+			p2Outcome = "DRAW";
+		end
+		return true;
+	elseif memory.readbyte(outcomeTextWinLose) == 0x8B then
+		if playerNum == 1 then
+			p1Outcome = "LOSE";
+		else
+			p2Outcome = "LOSE";
+		end
+		return true;
+	elseif memory.readbyte(outcomeTextWinLose) == 0x96 then
+		if playerNum == 1 then
+			p1Outcome = "WIN";
+		else
+			p2Outcome = "WIN";
+		end
+		return true;
+	end
+	return false;
+end
+
+function reset()
+	print("Re-rolling teams");
+	dofile("Randomize-Teams.lua");
+	print("Teams reset. Outputting outcome.")
+	print("P1 " .. p1Outcome);
+	print("P2 " .. p2Outcome);
+	file = io.open("battle-log.txt", "w")
+	file:write("Hello World")
+	file:close()
+end
+
 function doInputs(inputs, memoryDomain)
 	memory.usememorydomain(memoryDomain);
 	local playerNum;
@@ -126,9 +172,14 @@ function doInputs(inputs, memoryDomain)
 
 		if xIndex == 0x05 and memory.readbyte(menuAddr) == moveSelectMenuVal then
 			--attack select menu
-			if totalAlive > 1 and randomChance(3) then
+			if turnCount > 35 and randomSwitchChance < 100 then
+				--this will actually bump the odds by an unpredictable amount since it's based on either player entering the battle menu
+				randomSwitchChance = randomSwitchChance + 1;
+			end
+			if totalAlive > 1 and randomChance(randomSwitchChance) then
 				switchPokemonInputs(playerNum, true);
 			else
+				turnCount = turnCount + 1;
 				move = chooseRandomMove();
 				memory.writebyte(cursorYIndexAddr, move)
 				insertWaits(20, playerNum);
@@ -136,18 +187,24 @@ function doInputs(inputs, memoryDomain)
 		elseif xIndex == pokemonSelectXIndexVal then
 			chooseRandomPokemon(memoryDomain);
 		end
-		--Multi-turn moves block access to the attack menu, check the pokemon switch condition earlier
-		if playerNum == 1 then
-			memory.usememorydomain("R System Bus");
+		if checkWinner(playerNum) then
+			if (resettingP2 == false or resettingP1 == false) then
+				--true if win/lose/draw text is displayed, avoid rerunning the reset every frame
+				if playerNum == 1 and not resettingP1 then
+					resettingP1 = true;
+				elseif playerNum == 2 and not resettingP2 then
+					resettingP2 = true;
+				end
+				if resettingP1 and resettingP2 then
+					reset();
+				end
+			end
 		else
-			memory.usememorydomain("L System Bus");
-		end
-		local enemyMoveStatus = memory.readbyte(battleStatusAddr)
-		memory.usememorydomain(memoryDomain);
-		if totalAlive > 1 and enemyMoveStatus == multiTurnMoveVal and randomChance(3) then
-			print("Switching Pokemon Randomly during multiturn move");
-			switchPokemonInputs(playerNum, false);
-		else
+			--Reset the winners in case they haven't been yet
+			if resettingP1 or resettingP2 then
+				resettingP1 = false;
+				resettingP2 = false;
+			end
 			--Mash A every frame (so every 2 frames)
 			inputs['A'] = true;
 			joypad.set(inputs, playerNum);
