@@ -12,10 +12,13 @@ local hpSlot2Byte1 = 0xD198;
 local hpSlot2Byte2 = 0xD199;
 local hpSlot3Byte1 = 0xD1C4;
 local hpSlot3Byte2 = 0xD1C5;
+local activePokemonIndexAddr = 0xCC2F;
+local ppMove1Addr = 0xD02D;
+local ppMove2Addr = 0xD02E;
+local ppMove3Addr = 0xD02F;
+local ppMove4Addr = 0xD030;
 
 --Variables
-local activePokemonP1Index = 1;
-local activePokemonP2Index = 1;
 local WAIT_OP = "WAIT";
 local turnCount = 0;
 local randomSwitchChanceDefault = 3;
@@ -186,7 +189,7 @@ function doInputs(inputs, memoryDomain)
 				insertWaits(20, playerNum);
 			end
 		elseif xIndex == pokemonSelectXIndexVal then
-			chooseRandomPokemon(memoryDomain);
+			chooseRandomPokemon(playerNum);
 		end
 		if checkWinner(playerNum) then
 			if (resettingP2 == false or resettingP1 == false) then
@@ -236,67 +239,74 @@ function doInputs(inputs, memoryDomain)
 end
 
 function chooseRandomMove()
-	return math.random(1, 4);
+	ppMove1 = memory.readbyte(ppMove1Addr);
+	ppMove2 = memory.readbyte(ppMove2Addr);
+	ppMove3 = memory.readbyte(ppMove3Addr);
+	ppMove4 = memory.readbyte(ppMove4Addr);
+	local availableMoves = {}
+	if ppMove1 > 0 then
+		table.insert(availableMoves, 1);
+	end
+	if ppMove2 > 0 then
+		table.insert(availableMoves, 2);
+	end
+	if ppMove3 > 0 then
+		table.insert(availableMoves, 3);
+	end
+	if ppMove4 > 0 then
+		table.insert(availableMoves, 4);
+	end
+
+	--e.g., availableMoves = {1, 4} -> availableMoves[math.random(1, 2)] will return 1 or 4
+	return availableMoves[math.random(1, #availableMoves)];
 end
 
-function chooseRandomPokemon(memoryDomain)
-	memory.usememorydomain(memoryDomain);
+function chooseRandomPokemon(playerNum)
 	local pokemon1Alive = memory.readbyte(hpSlot1Byte1) ~= 0 or memory.readbyte(hpSlot1Byte2) ~= 0;
 	local pokemon2Alive = memory.readbyte(hpSlot2Byte1) ~= 0 or memory.readbyte(hpSlot2Byte2) ~= 0;
 	local pokemon3Alive = memory.readbyte(hpSlot3Byte1) ~= 0 or memory.readbyte(hpSlot3Byte2) ~= 0;
-	local randNum = math.random(1, 2);
-	local index;
-	if memoryDomain == "L System Bus" then
-		index = activePokemonP1Index;
-	else
-		index = activePokemonP2Index
-	end
+	local randNum = math.random(0, 1);
+	local index = memory.readbyte(activePokemonIndexAddr);
 	--conditions for final pokemon selection
 	if pokemon1Alive and not pokemon2Alive and not pokemon3Alive then
-		index = 1;
+		index = 0;
 	elseif pokemon2Alive and not pokemon1Alive and not pokemon3Alive then
-		index = 2;
+		index = 1;
 	elseif pokemon3Alive and not pokemon1Alive and not pokemon2Alive then
-		index = 3;
+		index = 2;
 	else
-		if index == 1 then
+		if index == 0 then
 			if pokemon2Alive and pokemon3Alive then
-				index = math.random(2, 3);
+				index = math.random(1, 2);
 			elseif pokemon2Alive then
-				index = 2;
-			else
-				index = 3;
-			end
-		elseif index == 2 then
-			if pokemon1Alive and pokemon3Alive then
-				if randNum == 1 then
-					index = 1;
-				else
-					index = 3;
-				end
-			elseif pokemon1Alive then
 				index = 1;
 			else
-				index = 3;
+				index = 2;
 			end
-		elseif index == 3 then
+		elseif index == 1 then
+			if pokemon1Alive and pokemon3Alive then
+				if randNum == 0 then
+					index = 0;
+				else
+					index = 2;
+				end
+			elseif pokemon1Alive then
+				index = 0;
+			else
+				index = 2;
+			end
+		elseif index == 2 then
 			if pokemon1Alive and pokemon2Alive then
 				index = randNum;
 			elseif pokemon1Alive then
-				index = 1;
+				index = 0;
 			else
-				index = 2;
+				index = 1;
 			end
 		end
 	end
-	memory.writebyte(cursorYIndexAddr, index - 1);
-	if memoryDomain == "L System Bus" then
-		activePokemonP1Index = index;
-		insertWaits(20, 1);
-	else
-		activePokemonP2Index = index;
-		insertWaits(20, 2);
-	end
+	memory.writebyte(cursorYIndexAddr, index);
+	insertWaits(20, playerNum);
 end
 
 while (true) do
