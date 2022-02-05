@@ -80,9 +80,9 @@ local pokemonSlot3LevelAddr = 0xD1E4
 
 function charToHex(char)
     --Nidoran gender codes
-    if char == "♂" then
+    if char == "1" then
         return 0xEF
-    elseif char == "♀" then
+    elseif char == "2" then
         return 0xF5
     elseif char == 0x50 then
         return 0x50
@@ -104,18 +104,20 @@ function writeNameBytes(stringName, slotNumber)
     for i = 1, nameLength do
         local char;
         if i <= #stringName then
-            char = stringName:sub(i,i)
+            char = stringName:sub(i, i)
         else
             --zero out the remaining name slots so we don't get the data from the previous pokemon's name
             char = 0x50;
         end
-            if slotNumber == 1 then
-                memory.writebyte(pokemon1NameAddrPointer + i - 1, charToHex(char))
-            elseif slotNumber == 2 then
-                memory.writebyte(pokemon2NameAddrPointer + i - 1, charToHex(char))
-            elseif slotNumber == 3 then
-                memory.writebyte(pokemon3NameAddrPointer + i - 1, charToHex(char))
-            end
+        local address;
+        if slotNumber == 1 then
+            address = pokemon1NameAddrPointer + i - 1;
+        elseif slotNumber == 2 then
+            address = pokemon2NameAddrPointer + i - 1;
+        elseif slotNumber == 3 then
+            address = pokemon3NameAddrPointer + i - 1;
+        end
+        memory.writebyte(address, charToHex(char))
     end
 end
 

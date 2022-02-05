@@ -55,12 +55,11 @@ public class FileWriter {
         }
         contents.append("}\r\n\r\n");
         try {
-            Path fileName = Path.of("src/main/scripts/main-template.lua");
+            Path fileName = Path.of("src/main/scripts/randomize-teams-template.lua");
             String template = Files.readString(fileName);
             contents.append(template);
             BufferedWriter writer = new BufferedWriter(new java.io.FileWriter("src/main/scripts/Randomize-Teams.lua"));
             writer.write(contents.toString());
-            System.out.println(contents.toString());
             writer.close();
         } catch (Exception e) {
             e.printStackTrace();

@@ -4,169 +4,168 @@ local teams =
 	{
 		pokemon1 =
 		{
-			pokemonName = "POLIWHIRL",
-			pokemonCode = 0x6E,
+			pokemonName = "GEODUDE",
+			pokemonCode = 0xA9,
 			pokemonLevel = 0x32,
-			pokemonType1 = 0x15,
-			pokemonType2 = 0x15,
+			pokemonType1 = 0x05,
+			pokemonType2 = 0x04,
 			pokemonHp1 = 0x00,
-			pokemonHp2 = 0x8a,
+			pokemonHp2 = 0x86,
 			pokemonAttack1 = 0x00,
-			pokemonAttack2 = 0x6c,
+			pokemonAttack2 = 0x6b,
 			pokemonDefense1 = 0x00,
-			pokemonDefense2 = 0x58,
+			pokemonDefense2 = 0x86,
 			pokemonSpeed1 = 0x00,
-			pokemonSpeed2 = 0x85,
+			pokemonSpeed2 = 0x2e,
 			pokemonSpecial1 = 0x00,
-			pokemonSpecial2 = 0x45,
-			move1Code = 0x94,
+			pokemonSpecial2 = 0x34,
+			move1Code = 0x7C,
 			move1Pp = 0x14,
-			move2Code = 0x95,
-			move2Pp = 0xf,
-			move3Code = 0x09,
-			move3Pp = 0xf,
-			move4Code = 0x76,
+			move2Code = 0xA0,
+			move2Pp = 0x1e,
+			move3Code = 0x17,
+			move3Pp = 0x14,
+			move4Code = 0x9B,
 			move4Pp = 0xa
 		},
 		pokemon2 =
 		{
-			pokemonName = "SANDSHREW",
-			pokemonCode = 0x60,
+			pokemonName = "NIDORAN1",
+			pokemonCode = 0x03,
 			pokemonLevel = 0x32,
-			pokemonType1 = 0x04,
-			pokemonType2 = 0x04,
+			pokemonType1 = 0x03,
+			pokemonType2 = 0x03,
 			pokemonHp1 = 0x00,
-			pokemonHp2 = 0x8c,
+			pokemonHp2 = 0x89,
 			pokemonAttack1 = 0x00,
-			pokemonAttack2 = 0x75,
+			pokemonAttack2 = 0x56,
 			pokemonDefense1 = 0x00,
-			pokemonDefense2 = 0x76,
+			pokemonDefense2 = 0x4d,
 			pokemonSpeed1 = 0x00,
-			pokemonSpeed2 = 0x45,
+			pokemonSpeed2 = 0x4f,
 			pokemonSpecial1 = 0x00,
-			pokemonSpecial2 = 0x4b,
-			move1Code = 0x26,
-			move1Pp = 0xf,
-			move2Code = 0x97,
-			move2Pp = 0x28,
-			move3Code = 0x41,
-			move3Pp = 0x14,
-			move4Code = 0x01,
-			move4Pp = 0x23
+			pokemonSpecial2 = 0x51,
+			move1Code = 0x6A,
+			move1Pp = 0x1e,
+			move2Code = 0x52,
+			move2Pp = 0xa,
+			move3Code = 0x1B,
+			move3Pp = 0xf,
+			move4Code = 0x98,
+			move4Pp = 0xa
 		},
 		pokemon3 =
 		{
-			pokemonName = "CHARIZARD",
-			pokemonCode = 0xB4,
+			pokemonName = "NIDORAN2",
+			pokemonCode = 0x0F,
 			pokemonLevel = 0x32,
-			pokemonType1 = 0x14,
-			pokemonType2 = 0x02,
+			pokemonType1 = 0x03,
+			pokemonType2 = 0x03,
 			pokemonHp1 = 0x00,
-			pokemonHp2 = 0xad,
+			pokemonHp2 = 0x96,
 			pokemonAttack1 = 0x00,
-			pokemonAttack2 = 0x7d,
+			pokemonAttack2 = 0x52,
 			pokemonDefense1 = 0x00,
-			pokemonDefense2 = 0x68,
+			pokemonDefense2 = 0x56,
 			pokemonSpeed1 = 0x00,
-			pokemonSpeed2 = 0x71,
+			pokemonSpeed2 = 0x59,
 			pokemonSpecial1 = 0x00,
-			pokemonSpecial2 = 0x7a,
-			move1Code = 0x45,
-			move1Pp = 0x14,
-			move2Code = 0x5D,
-			move2Pp = 0x19,
-			move3Code = 0x65,
-			move3Pp = 0xf,
-			move4Code = 0x39,
-			move4Pp = 0xf
+			pokemonSpecial2 = 0x4c,
+			move1Code = 0x7E,
+			move1Pp = 0x5,
+			move2Code = 0x07,
+			move2Pp = 0xf,
+			move3Code = 0x5D,
+			move3Pp = 0x19,
+			move4Code = 0x88,
+			move4Pp = 0x14
 		}
 	},
 	team2 =
 	{
 		pokemon1 =
 		{
-			pokemonName = "DRATINI",
-			pokemonCode = 0x58,
+			pokemonName = "NIDORINO",
+			pokemonCode = 0xA7,
 			pokemonLevel = 0x32,
-			pokemonType1 = 0x1A,
-			pokemonType2 = 0x1A,
+			pokemonType1 = 0x03,
+			pokemonType2 = 0x03,
 			pokemonHp1 = 0x00,
-			pokemonHp2 = 0x7b,
+			pokemonHp2 = 0x82,
 			pokemonAttack1 = 0x00,
-			pokemonAttack2 = 0x6a,
+			pokemonAttack2 = 0x6f,
 			pokemonDefense1 = 0x00,
-			pokemonDefense2 = 0x4e,
+			pokemonDefense2 = 0x60,
 			pokemonSpeed1 = 0x00,
-			pokemonSpeed2 = 0x5e,
+			pokemonSpeed2 = 0x56,
 			pokemonSpecial1 = 0x00,
-			pokemonSpecial2 = 0x4d,
-			move1Code = 0x2F,
-			move1Pp = 0xf,
-			move2Code = 0x3E,
-			move2Pp = 0x14,
-			move3Code = 0x8B,
-			move3Pp = 0x28,
-			move4Code = 0x31,
-			move4Pp = 0x14
+			pokemonSpecial2 = 0x5a,
+			move1Code = 0x3E,
+			move1Pp = 0x14,
+			move2Code = 0x0B,
+			move2Pp = 0x1e,
+			move3Code = 0x5F,
+			move3Pp = 0x14,
+			move4Code = 0x48,
+			move4Pp = 0xa
 		},
 		pokemon2 =
 		{
-			pokemonName = "DIGLETT",
-			pokemonCode = 0x3B,
+			pokemonName = "NIDORAN1",
+			pokemonCode = 0x03,
 			pokemonLevel = 0x32,
-			pokemonType1 = 0x04,
-			pokemonType2 = 0x04,
+			pokemonType1 = 0x03,
+			pokemonType2 = 0x03,
 			pokemonHp1 = 0x00,
-			pokemonHp2 = 0x5f,
+			pokemonHp2 = 0x7d,
 			pokemonAttack1 = 0x00,
-			pokemonAttack2 = 0x57,
+			pokemonAttack2 = 0x54,
 			pokemonDefense1 = 0x00,
-			pokemonDefense2 = 0x3b,
-			pokemonSpeed1 = 0x00,
-			pokemonSpeed2 = 0x8f,
-			pokemonSpecial1 = 0x00,
-			pokemonSpecial2 = 0x3d,
-			move1Code = 0x1C,
-			move1Pp = 0xf,
-			move2Code = 0x53,
-			move2Pp = 0xf,
-			move3Code = 0x2A,
-			move3Pp = 0x14,
-			move4Code = 0x7D,
-			move4Pp = 0x14
-		},
-		pokemon3 =
-		{
-			pokemonName = "OMANYTE",
-			pokemonCode = 0x62,
-			pokemonLevel = 0x32,
-			pokemonType1 = 0x05,
-			pokemonType2 = 0x15,
-			pokemonHp1 = 0x00,
-			pokemonHp2 = 0x64,
-			pokemonAttack1 = 0x00,
-			pokemonAttack2 = 0x4f,
-			pokemonDefense1 = 0x00,
-			pokemonDefense2 = 0x95,
+			pokemonDefense2 = 0x3f,
 			pokemonSpeed1 = 0x00,
 			pokemonSpeed2 = 0x4c,
 			pokemonSpecial1 = 0x00,
-			pokemonSpecial2 = 0x72,
-			move1Code = 0x93,
-			move1Pp = 0xf,
-			move2Code = 0x2D,
-			move2Pp = 0x28,
-			move3Code = 0x8E,
-			move3Pp = 0xa,
-			move4Code = 0x5A,
-			move4Pp = 0x5
+			pokemonSpecial2 = 0x57,
+			move1Code = 0x49,
+			move1Pp = 0xa,
+			move2Code = 0x5A,
+			move2Pp = 0x5,
+			move3Code = 0x94,
+			move3Pp = 0x14,
+			move4Code = 0x87,
+			move4Pp = 0xa
+		},
+		pokemon3 =
+		{
+			pokemonName = "NIDORAN2",
+			pokemonCode = 0x0F,
+			pokemonLevel = 0x32,
+			pokemonType1 = 0x03,
+			pokemonType2 = 0x03,
+			pokemonHp1 = 0x00,
+			pokemonHp2 = 0x8b,
+			pokemonAttack1 = 0x00,
+			pokemonAttack2 = 0x43,
+			pokemonDefense1 = 0x00,
+			pokemonDefense2 = 0x4e,
+			pokemonSpeed1 = 0x00,
+			pokemonSpeed2 = 0x41,
+			pokemonSpecial1 = 0x00,
+			pokemonSpecial2 = 0x49,
+			move1Code = 0x01,
+			move1Pp = 0x23,
+			move2Code = 0x12,
+			move2Pp = 0x14,
+			move3Code = 0x86,
+			move3Pp = 0xf,
+			move4Code = 0x4C,
+			move4Pp = 0xa
 		}
 	}
 }
 
 
 --Address Constants
-
 local pokemonSlot1AAddr = 0xD164
 local pokemonSlot1BAddr = 0xD16B
 local pokemonSlot1Type1 = 0xD170
@@ -247,9 +246,9 @@ local pokemonSlot3LevelAddr = 0xD1E4
 
 function charToHex(char)
     --Nidoran gender codes
-    if char == "♂" then
+    if char == "1" then
         return 0xEF
-    elseif char == "♀" then
+    elseif char == "2" then
         return 0xF5
     elseif char == 0x50 then
         return 0x50
@@ -271,18 +270,20 @@ function writeNameBytes(stringName, slotNumber)
     for i = 1, nameLength do
         local char;
         if i <= #stringName then
-            char = stringName:sub(i,i)
+            char = stringName:sub(i, i)
         else
             --zero out the remaining name slots so we don't get the data from the previous pokemon's name
             char = 0x50;
         end
-            if slotNumber == 1 then
-                memory.writebyte(pokemon1NameAddrPointer + i - 1, charToHex(char))
-            elseif slotNumber == 2 then
-                memory.writebyte(pokemon2NameAddrPointer + i - 1, charToHex(char))
-            elseif slotNumber == 3 then
-                memory.writebyte(pokemon3NameAddrPointer + i - 1, charToHex(char))
-            end
+        local address;
+        if slotNumber == 1 then
+            address = pokemon1NameAddrPointer + i - 1;
+        elseif slotNumber == 2 then
+            address = pokemon2NameAddrPointer + i - 1;
+        elseif slotNumber == 3 then
+            address = pokemon3NameAddrPointer + i - 1;
+        end
+        memory.writebyte(address, charToHex(char))
     end
 end
 

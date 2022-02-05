@@ -141,8 +141,9 @@ function reset()
 	print("P1 " .. p1Outcome);
 	print("P2 " .. p2Outcome);
 	file = io.open("battle-log.txt", "w")
-	file:write("Hello World")
+	file:write(p1Outcome .. "\n" .. p2Outcome);
 	file:close()
+	print("File writing finished")
 end
 
 function doInputs(inputs, memoryDomain)

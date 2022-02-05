@@ -1,7 +1,7 @@
 {
   "0x01": "Rhydon",
   "0x02": "Kangaskhan",
-  "0x03": "Nidoran(f)",
+  "0x03": "Nidoran1",
   "0x04": "Clefairy",
   "0x05": "Spearow",
   "0x06": "Voltorb",
@@ -13,7 +13,7 @@
   "0x0C": "Exeggcute",
   "0x0D": "Grimer",
   "0x0E": "Gengar",
-  "0x0F": "Nidoran(m)",
+  "0x0F": "Nidoran2",
   "0x10": "Nidoqueen",
   "0x11": "Cubone",
   "0x12": "Rhyhorn",
