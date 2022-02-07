@@ -9,9 +9,9 @@ import utils.StatCalculations;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.file.*;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings("rawtypes")
 public class PokeBattler {
@@ -27,7 +27,10 @@ public class PokeBattler {
     public static Map<String, ArrayList> pokemonTypesList;
     public static Map<String, ArrayList> pokemonMovePropsList;
     private long timeBetsOpened;
-    private long betsOpenWindow = 60000000000L;
+    private final long betsOpenWindow = 60000000000L;
+    private final long loyaltyRewardsTimer = 60000000000L;
+    private WatchService watchService;
+    private Path logPath;
 
     public PokeBattler() {
         random = new Random();
@@ -38,6 +41,9 @@ public class PokeBattler {
             pokemonStatsList = jsonParse.getArrayListMapFromJson("src/main/resources/pokemon-stats.json");
             pokemonTypesList = jsonParse.getArrayListMapFromJson("src/main/resources/pokemon-types.json");
             pokemonMovePropsList = jsonParse.getArrayListMapFromJson("src/main/resources/move-props.json");
+            logPath = Paths.get("src/main/scripts");
+            watchService = logPath.getFileSystem().newWatchService();
+            logPath.register(watchService, StandardWatchEventKinds.ENTRY_CREATE);
         } catch (Exception e) {
             e.printStackTrace();
             return;
@@ -51,48 +57,52 @@ public class PokeBattler {
     }
 
     private void idleLoop() {
+        WatchKey watchKey;
         while (true) {
             try {
-                Thread.sleep(2000);
-                //Poll for new battle outcome
-                File tempFile = new File("src/main/scripts/battle-log.txt");
-                if (tempFile.exists()) {
-                    Path fileName = tempFile.toPath();
-                    String contents = Files.readString(fileName);
-                    String[] parts = contents.split("\n");
-                    String p1Outcome = parts[0].trim();
-                    String p2Outcome = parts[1].trim();
-                    if (p1Outcome.equals("WIN") && p2Outcome.equals("LOSE")) {
-                        //agreement, p1 wins
-                        System.out.println("Agreement, p1 wins");
-                        Bot.betManager.payout("red");
-                    } else if (p1Outcome.equals("LOSE") && p2Outcome.equals("WIN")) {
-                        //agreement, p2 wins
-                        System.out.println("Agreement, p2 wins");
-                        Bot.betManager.payout("blue");
-                    } else if (p1Outcome.equals("DRAW") && p2Outcome.equals("DRAW")) {
-                        //agreement, draw
-                        System.out.println("Agreement, draw");
-                        Bot.betManager.refundAll();
-                    } else {
-                        //disagreement, call it a draw (this can happen with certain bugs in gen 1
-                        // like selfdestruct that kills both team's last pokemon = lose / lose)
-                        System.out.println("Disagreement, draw");
-                        Bot.betManager.refundAll();
-                    }
-                    if (tempFile.delete()) {
-                        System.out.println("Deleted battle log");
-                        //Delete the log so we are informed when the next battle finishes, the new battle starts around now
-                        //The battler has already loaded its team by now, so we will now get the team for the game after
-                        //This offers a very large cushion of space between when the team is needed and when it's supplied
-                        Bot.betManager.setBetsOpen(true);
-                        timeBetsOpened = System.nanoTime();
-                        getNewTeam();
-                    } else {
-                        System.out.println("Failed to delete battle log");
-                        //this is bad, guess we'll exit!
-                        Bot.betManager.refundAll();
-                        break;
+                watchKey = watchService.poll(2000, TimeUnit.MILLISECONDS);
+                if (watchKey != null) {
+                    File tempFile = new File(logPath + "/battle-log.txt");
+                    watchService = logPath.getFileSystem().newWatchService();
+                    logPath.register(watchService, StandardWatchEventKinds.ENTRY_CREATE);
+                    if (tempFile.exists()) {
+                        Path fileName = tempFile.toPath();
+                        String contents = Files.readString(fileName);
+                        String[] parts = contents.split("\n");
+                        String p1Outcome = parts[0].trim();
+                        String p2Outcome = parts[1].trim();
+                        if (p1Outcome.equals("WIN") && p2Outcome.equals("LOSE")) {
+                            //agreement, p1 wins
+                            System.out.println("Agreement, p1 wins");
+                            Bot.betManager.payout("red");
+                        } else if (p1Outcome.equals("LOSE") && p2Outcome.equals("WIN")) {
+                            //agreement, p2 wins
+                            System.out.println("Agreement, p2 wins");
+                            Bot.betManager.payout("blue");
+                        } else if (p1Outcome.equals("DRAW") && p2Outcome.equals("DRAW")) {
+                            //agreement, draw
+                            System.out.println("Agreement, draw");
+                            Bot.betManager.refundAll();
+                        } else {
+                            //disagreement, call it a draw (this can happen with certain bugs in gen 1
+                            // like selfdestruct that kills both team's last pokemon = lose / lose)
+                            System.out.println("Disagreement, draw");
+                            Bot.betManager.refundAll();
+                        }
+                        if (tempFile.delete()) {
+                            System.out.println("Deleted battle log");
+                            //Delete the log so we are informed when the next battle finishes, the new battle starts around now
+                            //The battler has already loaded its team by now, so we will now get the team for the game after
+                            //This offers a very large cushion of space between when the team is needed and when it's supplied
+                            Bot.betManager.setBetsOpen(true);
+                            timeBetsOpened = System.nanoTime();
+                            getNewTeam();
+                        } else {
+                            System.out.println("Failed to delete battle log");
+                            //this is bad, guess we'll exit!
+                            Bot.betManager.refundAll();
+                            break;
+                        }
                     }
                 }
                 if (Bot.betManager.isBetsOpen() && System.nanoTime() - timeBetsOpened > betsOpenWindow) {
