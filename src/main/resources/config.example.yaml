@@ -4,13 +4,13 @@ bot:
     version: "0.1"
 
 api:
-    twitch_client_id: f8f71n9mamr2u0zn3tc72j05aiel0m
-    twitch_client_secret: 5ptvn7bp0zvvu332o431h6ot0cnr60
+    twitch_client_id: idhere
+    twitch_client_secret: secrethere
 
 credentials:
     # http://twitchapps.com/tmi)
-    irc: oauth:0t90beuok1a3lcrkoisqmlmmnq8ulz
+    irc: oauth:tokenhere
 
 # Channels - The bot will connect to all listed channels
 channels:
-    - randombets
+    - channelhere

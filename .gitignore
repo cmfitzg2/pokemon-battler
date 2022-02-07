@@ -4,3 +4,4 @@
 *.tsx
 /target
 /src/main/scripts/TeamTable.lua
+/src/main/resources/config.yaml
