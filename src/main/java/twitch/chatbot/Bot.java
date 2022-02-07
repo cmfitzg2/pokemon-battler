@@ -7,9 +7,12 @@ import com.github.twitch4j.TwitchClient;
 import com.github.twitch4j.TwitchClientBuilder;
 import com.github.philippheuer.events4j.simple.SimpleEventHandler;
 
+import twitch.chatbot.beans.User;
 import twitch.chatbot.features.*;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Bot {
 
@@ -17,10 +20,11 @@ public class Bot {
     private TwitchClient twitchClient;
     public static UserManager userManager;
     public static BetManager betManager;
+    public static List<String> recentChatters;
+    private final int loyaltyBonus = 10;
 
     public Bot() {
         loadConfiguration();
-        System.out.println(configuration.toString());
         TwitchClientBuilder clientBuilder = TwitchClientBuilder.builder();
         OAuth2Credential credential = new OAuth2Credential(
                 "twitch",
@@ -51,6 +55,7 @@ public class Bot {
                 .build();
         userManager = new UserManager();
         betManager = new BetManager();
+        recentChatters = new ArrayList<>();
     }
 
     /**
@@ -63,7 +68,7 @@ public class Bot {
         ChannelNotificationOnDonation channelNotificationOnDonation = new ChannelNotificationOnDonation(eventHandler);
         ChannelNotificationOnFollow channelNotificationOnFollow = new ChannelNotificationOnFollow(eventHandler);
         ChannelNotificationOnSubscription channelNotificationOnSubscription = new ChannelNotificationOnSubscription(eventHandler);
-        ProcessComands processComands = new ProcessComands(eventHandler);
+        ChatManager chatManager = new ChatManager(eventHandler);
     }
 
     /**
@@ -92,6 +97,14 @@ public class Bot {
 
     public void sendPublicMessage(String message, String channelName) {
         twitchClient.getChat().sendMessage(channelName, message);
+    }
+
+    public void distributeLoyaltyRewards() {
+        for (String chatter : recentChatters) {
+            User user = userManager.getUser(chatter);
+            user.setBalance(user.getBalance() + loyaltyBonus);
+        }
+        recentChatters = new ArrayList<>();
     }
 
     public TwitchClient getTwitchClient() {

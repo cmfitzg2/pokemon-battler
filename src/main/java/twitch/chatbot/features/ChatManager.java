@@ -10,11 +10,11 @@ import twitch.chatbot.beans.User;
 
 import java.util.Optional;
 
-public class ProcessComands {
+public class ChatManager {
 
     private TwitchClient client;
 
-    public ProcessComands(SimpleEventHandler eventHandler) {
+    public ChatManager(SimpleEventHandler eventHandler) {
         eventHandler.onEvent(ChannelMessageEvent.class, this::onChannelMessage);
         client = PokeBattler.twitchBot.getTwitchClient();
     }
@@ -23,6 +23,7 @@ public class ProcessComands {
         String user = event.getUser().getName();
         String message = event.getMessage();
         String channelName = event.getChannel().getName();
+        addRecentChatter(user);
         if (message.startsWith("!")) {
             String command = message.substring(1);
             String[] parts = command.split(" ");
@@ -206,6 +207,12 @@ public class ProcessComands {
             }
         } else {
             sendPublicMessage("@" + user + " Please !register before trying to use this command", channelName);
+        }
+    }
+
+    private void addRecentChatter(String name) {
+        if (Bot.userManager.userExists(name) && !Bot.recentChatters.contains(name)) {
+            Bot.recentChatters.add(name);
         }
     }
 

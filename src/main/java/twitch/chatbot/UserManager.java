@@ -32,7 +32,7 @@ public class UserManager {
         return matchingObject.orElse(null);
     }
 
-    private boolean userExists(String name) {
+    public boolean userExists(String name) {
         return registeredUsers.stream().map(User::getName).anyMatch(name::equals);
     }
 

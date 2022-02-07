@@ -27,6 +27,7 @@ public class PokeBattler {
     public static Map<String, ArrayList> pokemonTypesList;
     public static Map<String, ArrayList> pokemonMovePropsList;
     private long timeBetsOpened;
+    private long loyaltyRewardsLastTime;
     private final long betsOpenWindow = 60000000000L;
     private final long loyaltyRewardsTimer = 60000000000L;
     private WatchService watchService;
@@ -52,8 +53,8 @@ public class PokeBattler {
         twitchBot.registerFeatures();
         twitchBot.start();
         statCalculations = new StatCalculations(random);
+        loyaltyRewardsLastTime = System.nanoTime();
         getNewTeam();
-        idleLoop();
     }
 
     private void idleLoop() {
@@ -107,6 +108,10 @@ public class PokeBattler {
                 }
                 if (Bot.betManager.isBetsOpen() && System.nanoTime() - timeBetsOpened > betsOpenWindow) {
                     Bot.betManager.setBetsOpen(false);
+                }
+                if (System.nanoTime() - loyaltyRewardsLastTime > loyaltyRewardsTimer) {
+                    twitchBot.distributeLoyaltyRewards();
+                    loyaltyRewardsLastTime = System.nanoTime();
                 }
             } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
