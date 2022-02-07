@@ -2,6 +2,7 @@ package battler;
 
 import beans.KeyValuePair;
 import beans.Pokemon;
+import twitch.chatbot.Bot;
 import utils.FileWriter;
 import utils.JsonParse;
 import utils.StatCalculations;
@@ -19,6 +20,7 @@ public class PokeBattler {
     private Random random;
     private StatCalculations statCalculations;
     private JsonParse jsonParse;
+    public static Bot twitchBot;
     public static Map<String, String> pokemonMasterList;
     public static Map<String, String> movesMasterList;
     public static Map<String, ArrayList> pokemonStatsList;
@@ -38,6 +40,9 @@ public class PokeBattler {
             e.printStackTrace();
             return;
         }
+        twitchBot = new Bot();
+        twitchBot.registerFeatures();
+        twitchBot.start();
         statCalculations = new StatCalculations(random);
         getNewTeam();
         idleLoop();
@@ -58,16 +63,20 @@ public class PokeBattler {
                     if (p1Outcome.equals("WIN") && p2Outcome.equals("LOSE")) {
                         //agreement, p1 wins
                         System.out.println("Agreement, p1 wins");
+                        Bot.betManager.payout("red");
                     } else if (p1Outcome.equals("LOSE") && p2Outcome.equals("WIN")) {
                         //agreement, p2 wins
                         System.out.println("Agreement, p2 wins");
+                        Bot.betManager.payout("blue");
                     } else if (p1Outcome.equals("DRAW") && p2Outcome.equals("DRAW")) {
                         //agreement, draw
                         System.out.println("Agreement, draw");
+                        Bot.betManager.refundAll();
                     } else {
                         //disagreement, call it a draw (this can happen with certain bugs in gen 1
                         // like selfdestruct that kills both team's last pokemon = lose / lose)
                         System.out.println("Disagreement, draw");
+                        Bot.betManager.refundAll();
                     }
                     if (tempFile.delete()) {
                         System.out.println("Deleted battle log");
@@ -79,13 +88,13 @@ public class PokeBattler {
                     } else {
                         System.out.println("Failed to delete battle log");
                         //this is bad, guess we'll exit!
+                        Bot.betManager.refundAll();
                         break;
                     }
-                } else {
-                    System.out.println("Waiting for battle outcome file...");
                 }
             } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
+                Bot.betManager.refundAll();
             }
         }
     }
