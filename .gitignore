@@ -4,4 +4,5 @@
 *.tsx
 /target
 /src/main/scripts/TeamTable.lua
+/src/main/scripts/Randomize-Teams.lua
 /src/main/resources/config.yaml

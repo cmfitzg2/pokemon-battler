@@ -10,7 +10,7 @@ public class BetManager {
 
     public List<Bet> activeBets;
     public List<String> validWinners;
-    private boolean betsOpen = true;
+    private boolean betsOpen = false;
 
     public BetManager() {
         activeBets = new ArrayList<>();

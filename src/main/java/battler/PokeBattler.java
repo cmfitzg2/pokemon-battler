@@ -13,23 +13,25 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
+@SuppressWarnings("rawtypes")
 public class PokeBattler {
 
     private final int teamSize = 3;
     public static final String pokemonLevel = "0x32";
-    private Random random;
+    private final Random random;
     private StatCalculations statCalculations;
-    private JsonParse jsonParse;
     public static Bot twitchBot;
     public static Map<String, String> pokemonMasterList;
     public static Map<String, String> movesMasterList;
     public static Map<String, ArrayList> pokemonStatsList;
     public static Map<String, ArrayList> pokemonTypesList;
     public static Map<String, ArrayList> pokemonMovePropsList;
+    private long timeBetsOpened;
+    private long betsOpenWindow = 60000000000L;
 
     public PokeBattler() {
         random = new Random();
-        jsonParse = new JsonParse();
+        JsonParse jsonParse = new JsonParse();
         try {
             pokemonMasterList = jsonParse.getMapFromJson("src/main/resources/pokemon-codes.json");
             movesMasterList = jsonParse.getMapFromJson("src/main/resources/move-codes.json");
@@ -51,7 +53,7 @@ public class PokeBattler {
     private void idleLoop() {
         while (true) {
             try {
-                Thread.sleep(10000);
+                Thread.sleep(2000);
                 //Poll for new battle outcome
                 File tempFile = new File("src/main/scripts/battle-log.txt");
                 if (tempFile.exists()) {
@@ -83,14 +85,18 @@ public class PokeBattler {
                         //Delete the log so we are informed when the next battle finishes, the new battle starts around now
                         //The battler has already loaded its team by now, so we will now get the team for the game after
                         //This offers a very large cushion of space between when the team is needed and when it's supplied
+                        Bot.betManager.setBetsOpen(true);
+                        timeBetsOpened = System.nanoTime();
                         getNewTeam();
-                        System.out.println("New team output");
                     } else {
                         System.out.println("Failed to delete battle log");
                         //this is bad, guess we'll exit!
                         Bot.betManager.refundAll();
                         break;
                     }
+                }
+                if (Bot.betManager.isBetsOpen() && System.nanoTime() - timeBetsOpened > betsOpenWindow) {
+                    Bot.betManager.setBetsOpen(false);
                 }
             } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
@@ -104,6 +110,7 @@ public class PokeBattler {
         idleLoop();
     }
 
+    @SuppressWarnings("unchecked")
     private List<Pokemon> getRandomizedTeam() {
         List <Pokemon> team = new ArrayList<>();
         try {
