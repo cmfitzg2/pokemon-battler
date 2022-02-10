@@ -80,10 +80,11 @@ public class PokeBattler {
                         String p1Outcome = parts[0].trim();
                         String p2Outcome = parts[1].trim();
                         //Post-game screen in OBS
+                        nextBattleStartTime = Long.parseLong(parts[8].trim());
                         FileWriter.outputOutcomeFileForObs(Boolean.parseBoolean(parts[2].trim()), Boolean.parseBoolean(parts[3].trim()),
                                 Boolean.parseBoolean(parts[4].trim()), Boolean.parseBoolean(parts[5].trim()),
                                 Boolean.parseBoolean(parts[6].trim()), Boolean.parseBoolean(parts[7].trim()),
-                                Long.parseLong(parts[8].trim()));
+                                nextBattleStartTime);
                         if (p1Outcome.equals("WIN") && p2Outcome.equals("LOSE")) {
                             //agreement, p1 wins
                             System.out.println("Agreement, p1 wins");
@@ -137,8 +138,8 @@ public class PokeBattler {
         blueTeam = getRandomizedTeam();
         FileWriter.outputRandomTeamFile(teamSize, redTeam, blueTeam);
         //this is the team for the next run, not the current one
-        //first iteration, need to let a cycle run to get synced
-        FileWriter.outputTeamImages(assets, redTeam.get(0).getPokemonCode(), redTeam.get(1).getPokemonCode(), redTeam.get(2).getPokemonCode(),
+        boolean current = nextBattleStartTime == 0;
+        FileWriter.outputTeamImages(assets, current, redTeam.get(0).getPokemonCode(), redTeam.get(1).getPokemonCode(), redTeam.get(2).getPokemonCode(),
                 blueTeam.get(0).getPokemonCode(), blueTeam.get(1).getPokemonCode(), blueTeam.get(2).getPokemonCode());
         FileWriter.outputTeamsFileForObs(redTeam.get(0).getName(), redTeam.get(1).getName(), redTeam.get(2).getName(),
                 blueTeam.get(0).getName(), blueTeam.get(1).getName(), blueTeam.get(2).getName());

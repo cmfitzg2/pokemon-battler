@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 public class FileWriter {
@@ -71,31 +72,53 @@ public class FileWriter {
         }
     }
 
-    public static void outputTeamImages(Assets assets, String red1, String red2,
+    public static void outputTeamImages(Assets assets, boolean current, String red1, String red2,
                                         String red3, String blue1, String blue2, String blue3) {
+        String path = "src/main/scripts/obs/battle-images/";
         try {
+            if (!current) {
+                File f = new File(path + "future/red1.png");
+                if (f.exists()) {
+                    //move the "future" images to the "current" dir before outputting new future images
+                    Files.move(Path.of(path + "future/red1.png"), Path.of(path + "current/red1.png"),
+                            StandardCopyOption.REPLACE_EXISTING);
+                    Files.move(Path.of(path + "future/red2.png"), Path.of(path + "current/red2.png"),
+                            StandardCopyOption.REPLACE_EXISTING);
+                    Files.move(Path.of(path + "future/red3.png"), Path.of(path + "current/red3.png"),
+                            StandardCopyOption.REPLACE_EXISTING);
+                    Files.move(Path.of(path + "future/blue1.png"), Path.of(path + "current/blue1.png"),
+                            StandardCopyOption.REPLACE_EXISTING);
+                    Files.move(Path.of(path + "future/blue2.png"), Path.of(path + "current/blue2.png"),
+                            StandardCopyOption.REPLACE_EXISTING);
+                    Files.move(Path.of(path + "future/blue3.png"), Path.of(path + "current/blue3.png"),
+                            StandardCopyOption.REPLACE_EXISTING);
+                }
+                path += "future/";
+            } else {
+                path += "current/";
+            }
             BufferedImage red1Image = assets.getImageByCode(red1);
-            File outputFile = new File("src/main/scripts/obs/battle-images/red1.png");
+            File outputFile = new File(path + "red1.png");
             ImageIO.write(red1Image, "png", outputFile);
 
             BufferedImage red2Image = assets.getImageByCode(red2);
-            outputFile = new File("src/main/scripts/obs/battle-images/red2.png");
+            outputFile = new File(path + "red2.png");
             ImageIO.write(red2Image, "png", outputFile);
 
             BufferedImage red3Image = assets.getImageByCode(red3);
-            outputFile = new File("src/main/scripts/obs/battle-images/red3.png");
+            outputFile = new File(path + "red3.png");
             ImageIO.write(red3Image, "png", outputFile);
 
             BufferedImage blue1Image = assets.getImageByCode(blue1);
-            outputFile = new File("src/main/scripts/obs/battle-images/blue1.png");
+            outputFile = new File(path + "blue1.png");
             ImageIO.write(blue1Image, "png", outputFile);
 
             BufferedImage blue2Image = assets.getImageByCode(blue2);
-            outputFile = new File("src/main/scripts/obs/battle-images/blue2.png");
+            outputFile = new File(path + "blue2.png");
             ImageIO.write(blue2Image, "png", outputFile);
 
             BufferedImage blue3Image = assets.getImageByCode(blue3);
-            outputFile = new File("src/main/scripts/obs/battle-images/blue3.png");
+            outputFile = new File(path + "blue3.png");
             ImageIO.write(blue3Image, "png", outputFile);
 
         } catch (IOException e) {
