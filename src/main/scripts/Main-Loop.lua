@@ -4,6 +4,10 @@ local cursorYIndexAddr = 0xCC26;
 local menuAddr = 0xCC4E;
 local moveSelectMenuVal = 0x5D;
 local pokemonSelectXIndexVal = 0x00;
+local pokemonSlot1AAddr = 0xD164;
+local pokemonSlot2AAddr = 0xD165;
+local pokemonSlot3AAddr = 0xD166;
+
 --local battleStatusAddr = 0xD062;
 --local multiTurnMoveVal = 0x20;
 local hpSlot1Byte1 = 0xD16C;
@@ -27,6 +31,9 @@ local resettingP1 = false;
 local resettingP2 = false;
 local p1Outcome;
 local p2Outcome;
+local waiting = false;
+local waitTime = 45; --seconds
+local waitUntil;
 inputP1 = {};
 inputP2 = {};
 inputQueueP1 = {};
@@ -138,15 +145,29 @@ function checkWinner(playerNum)
 end
 
 function reset()
-	print("Re-rolling teams");
+	print("Outputting outcome.")
+	--Write team's pokemon codes
+	memory.usememorydomain("L System Bus");
+	local pokemon1AliveRed = memory.readbyte(hpSlot1Byte1) ~= 0 or memory.readbyte(hpSlot1Byte2) ~= 0;
+	local pokemon2AliveRed = memory.readbyte(hpSlot2Byte1) ~= 0 or memory.readbyte(hpSlot2Byte2) ~= 0;
+	local pokemon3AliveRed = memory.readbyte(hpSlot3Byte1) ~= 0 or memory.readbyte(hpSlot3Byte2) ~= 0;
+	memory.usememorydomain("R System Bus");
+	local pokemon1AliveBlue = memory.readbyte(hpSlot1Byte1) ~= 0 or memory.readbyte(hpSlot1Byte2) ~= 0;
+	local pokemon2AliveBlue = memory.readbyte(hpSlot2Byte1) ~= 0 or memory.readbyte(hpSlot2Byte2) ~= 0;
+	local pokemon3AliveBlue = memory.readbyte(hpSlot3Byte1) ~= 0 or memory.readbyte(hpSlot3Byte2) ~= 0;
+	waitUntil = os.time() + waitTime;
+	--avoid a race condition by rerolling the teams before outputting the log
 	dofile("Randomize-Teams.lua");
-	print("Teams reset. Outputting outcome.")
-	print("P1 " .. p1Outcome);
-	print("P2 " .. p2Outcome);
 	file = io.open("battle-log.txt", "w")
-	file:write(p1Outcome .. "\n" .. p2Outcome);
+	file:write(p1Outcome .. "\n" .. p2Outcome .. "\n");
+	file:write(tostring(pokemon1AliveRed) .. "\n" .. tostring(pokemon2AliveRed) .. "\n" .. tostring(pokemon3AliveRed) .. "\n");
+	file:write(tostring(pokemon1AliveBlue) .. "\n" .. tostring(pokemon2AliveBlue) .. "\n" .. tostring(pokemon3AliveBlue) .. "\n");
+	file:write(waitUntil);
 	file:close()
 	print("File writing finished")
+	resettingP1 = false;
+	resettingP2 = false;
+	waiting = true;
 end
 
 function doInputs(inputs, memoryDomain)
@@ -204,11 +225,6 @@ function doInputs(inputs, memoryDomain)
 				end
 			end
 		else
-			--Reset the winners in case they haven't been yet
-			if resettingP1 or resettingP2 then
-				resettingP1 = false;
-				resettingP2 = false;
-			end
 			--Mash A every frame (so every 2 frames)
 			inputs['A'] = true;
 			joypad.set(inputs, playerNum);
@@ -310,12 +326,19 @@ function chooseRandomPokemon(playerNum)
 end
 
 while (true) do
-	--Clear inputs P1
-	clearInputs(inputP1, "L System Bus");
-	clearInputs(inputP2, "R System Bus");
-	doInputs(inputP1, "L System Bus");
-	doInputs(inputP2, "R System Bus");
-	joypad.set(inputP1, 1)
-	joypad.set(inputP2, 2)
+	if not waiting then
+		--Clear inputs P1
+		clearInputs(inputP1, "L System Bus");
+		clearInputs(inputP2, "R System Bus");
+		doInputs(inputP1, "L System Bus");
+		doInputs(inputP2, "R System Bus");
+		joypad.set(inputP1, 1)
+		joypad.set(inputP2, 2)
+	else
+		if os.time() >= waitUntil then
+			waiting = false;
+			print("done waiting")
+		end
+	end
 	emu.frameadvance()
 end

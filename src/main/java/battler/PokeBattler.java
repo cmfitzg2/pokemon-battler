@@ -2,6 +2,7 @@ package battler;
 
 import beans.KeyValuePair;
 import beans.Pokemon;
+import obs.Assets;
 import twitch.chatbot.Bot;
 import utils.FileWriter;
 import utils.JsonParse;
@@ -28,14 +29,20 @@ public class PokeBattler {
     public static Map<String, ArrayList> pokemonMovePropsList;
     private long timeBetsOpened;
     private long loyaltyRewardsLastTime;
-    private final long betsOpenWindow = 60000000000L;
     private final long loyaltyRewardsTimer = 60000000000L;
+    private long nextBattleStartTime = 0;
     private WatchService watchService;
     private Path logPath;
+    private Assets assets;
+    private List<Pokemon> redTeam;
+    private List<Pokemon> blueTeam;
 
     public PokeBattler() {
         random = new Random();
         JsonParse jsonParse = new JsonParse();
+        assets = new Assets();
+        redTeam = new ArrayList<>();
+        blueTeam = new ArrayList<>();
         try {
             pokemonMasterList = jsonParse.getMapFromJson("src/main/resources/pokemon-codes.json");
             movesMasterList = jsonParse.getMapFromJson("src/main/resources/move-codes.json");
@@ -63,15 +70,20 @@ public class PokeBattler {
             try {
                 watchKey = watchService.poll(2000, TimeUnit.MILLISECONDS);
                 if (watchKey != null) {
-                    File tempFile = new File(logPath + "/battle-log.txt");
                     watchService = logPath.getFileSystem().newWatchService();
                     logPath.register(watchService, StandardWatchEventKinds.ENTRY_CREATE);
+                    File tempFile = new File(logPath + "/battle-log.txt");
                     if (tempFile.exists()) {
                         Path fileName = tempFile.toPath();
                         String contents = Files.readString(fileName);
                         String[] parts = contents.split("\n");
                         String p1Outcome = parts[0].trim();
                         String p2Outcome = parts[1].trim();
+                        //Post-game screen in OBS
+                        FileWriter.outputOutcomeFileForObs(Boolean.parseBoolean(parts[2].trim()), Boolean.parseBoolean(parts[3].trim()),
+                                Boolean.parseBoolean(parts[4].trim()), Boolean.parseBoolean(parts[5].trim()),
+                                Boolean.parseBoolean(parts[6].trim()), Boolean.parseBoolean(parts[7].trim()),
+                                Long.parseLong(parts[8].trim()));
                         if (p1Outcome.equals("WIN") && p2Outcome.equals("LOSE")) {
                             //agreement, p1 wins
                             System.out.println("Agreement, p1 wins");
@@ -96,7 +108,7 @@ public class PokeBattler {
                             //The battler has already loaded its team by now, so we will now get the team for the game after
                             //This offers a very large cushion of space between when the team is needed and when it's supplied
                             Bot.betManager.setBetsOpen(true);
-                            timeBetsOpened = System.nanoTime();
+                            timeBetsOpened = System.currentTimeMillis();
                             getNewTeam();
                         } else {
                             System.out.println("Failed to delete battle log");
@@ -106,7 +118,7 @@ public class PokeBattler {
                         }
                     }
                 }
-                if (Bot.betManager.isBetsOpen() && System.nanoTime() - timeBetsOpened > betsOpenWindow) {
+                if (Bot.betManager.isBetsOpen() && System.currentTimeMillis() - timeBetsOpened > nextBattleStartTime * 1000) {
                     Bot.betManager.setBetsOpen(false);
                 }
                 if (System.nanoTime() - loyaltyRewardsLastTime > loyaltyRewardsTimer) {
@@ -121,7 +133,15 @@ public class PokeBattler {
     }
 
     private void getNewTeam() {
-        FileWriter.outputLuaFile(teamSize, getRandomizedTeam(), getRandomizedTeam());
+        redTeam = getRandomizedTeam();
+        blueTeam = getRandomizedTeam();
+        FileWriter.outputRandomTeamFile(teamSize, redTeam, blueTeam);
+        //this is the team for the next run, not the current one
+        //first iteration, need to let a cycle run to get synced
+        FileWriter.outputTeamImages(assets, redTeam.get(0).getPokemonCode(), redTeam.get(1).getPokemonCode(), redTeam.get(2).getPokemonCode(),
+                blueTeam.get(0).getPokemonCode(), blueTeam.get(1).getPokemonCode(), blueTeam.get(2).getPokemonCode());
+        FileWriter.outputTeamsFileForObs(redTeam.get(0).getName(), redTeam.get(1).getName(), redTeam.get(2).getName(),
+                blueTeam.get(0).getName(), blueTeam.get(1).getName(), blueTeam.get(2).getName());
         idleLoop();
     }
 

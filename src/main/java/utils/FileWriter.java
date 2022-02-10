@@ -1,15 +1,20 @@
 package utils;
 
 import beans.Pokemon;
+import obs.Assets;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
 public class FileWriter {
 
-    public static void outputLuaFile(int teamSize, List<Pokemon> team1, List<Pokemon> team2) {
+    public static void outputRandomTeamFile(int teamSize, List<Pokemon> team1, List<Pokemon> team2) {
         StringBuilder contents = new StringBuilder();
         contents.append("local teams =\r\n{\r\n");
         for (int j = 0; j < 2; j++) {
@@ -66,4 +71,59 @@ public class FileWriter {
         }
     }
 
+    public static void outputTeamImages(Assets assets, String red1, String red2,
+                                        String red3, String blue1, String blue2, String blue3) {
+        try {
+            BufferedImage red1Image = assets.getImageByCode(red1);
+            File outputFile = new File("src/main/scripts/obs/battle-images/red1.png");
+            ImageIO.write(red1Image, "png", outputFile);
+
+            BufferedImage red2Image = assets.getImageByCode(red2);
+            outputFile = new File("src/main/scripts/obs/battle-images/red2.png");
+            ImageIO.write(red2Image, "png", outputFile);
+
+            BufferedImage red3Image = assets.getImageByCode(red3);
+            outputFile = new File("src/main/scripts/obs/battle-images/red3.png");
+            ImageIO.write(red3Image, "png", outputFile);
+
+            BufferedImage blue1Image = assets.getImageByCode(blue1);
+            outputFile = new File("src/main/scripts/obs/battle-images/blue1.png");
+            ImageIO.write(blue1Image, "png", outputFile);
+
+            BufferedImage blue2Image = assets.getImageByCode(blue2);
+            outputFile = new File("src/main/scripts/obs/battle-images/blue2.png");
+            ImageIO.write(blue2Image, "png", outputFile);
+
+            BufferedImage blue3Image = assets.getImageByCode(blue3);
+            outputFile = new File("src/main/scripts/obs/battle-images/blue3.png");
+            ImageIO.write(blue3Image, "png", outputFile);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void outputTeamsFileForObs(String name1, String name2, String name3,
+                                             String name4, String name5, String name6) {
+        String output = name1 + "\n" + name2 + "\n" + name3 + "\n" + name4 + "\n" + name5 + "\n" + name6 + "\n";
+        try {
+            BufferedWriter writer = new BufferedWriter(new java.io.FileWriter("src/main/scripts/obs/teams.txt"));
+            writer.write(output);
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void outputOutcomeFileForObs(boolean red1Alive, boolean red2Alive, boolean red3Alive,
+                                               boolean blue1Alive, boolean blue2Alive, boolean blue3Alive, long startTime) {
+        String output = red1Alive + "\n" + red2Alive + "\n" + red3Alive + "\n" + blue1Alive + "\n" + blue2Alive + "\n" + blue3Alive + "\n" + startTime + "\n";
+        try {
+            BufferedWriter writer = new BufferedWriter(new java.io.FileWriter("src/main/scripts/obs/outcome.txt"));
+            writer.write(output);
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

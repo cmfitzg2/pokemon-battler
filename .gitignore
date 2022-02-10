@@ -3,6 +3,10 @@
 .idea/workspace.xml
 *.tsx
 /target
-/src/main/scripts/TeamTable.lua
-/src/main/scripts/Randomize-Teams.lua
 /src/main/resources/config.yaml
+/src/main/scripts/obs/battle-images/red1.png
+/src/main/scripts/obs/battle-images/red2.png
+/src/main/scripts/obs/battle-images/red3.png
+/src/main/scripts/obs/battle-images/blue1.png
+/src/main/scripts/obs/battle-images/blue2.png
+/src/main/scripts/obs/battle-images/blue3.png

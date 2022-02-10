@@ -15,7 +15,7 @@ public class Assets {
 
     public Assets() {
         try {
-            sheet = ImageIO.read(Assets.class.getResource("src/main/resources/spritesheet.png"));
+            sheet = ImageIO.read(Assets.class.getResource("/spritesheet.png"));
             pokemon = new HashMap<>();
             pokemon.put(GeneralConstants.bulbasaur, crop(0, 0));
             pokemon.put(GeneralConstants.ivysaur, crop(1, 0));
@@ -180,11 +180,6 @@ public class Assets {
             pokemon.put(GeneralConstants.dragonite, crop(4, 12));
             pokemon.put(GeneralConstants.mewtwo, crop(5, 12));
             pokemon.put(GeneralConstants.mew, crop(6, 12));
-            pokemon.put(GeneralConstants.raticate, crop(7, 12));
-            pokemon.put(GeneralConstants.spearow, crop(8, 12));
-            pokemon.put(GeneralConstants.fearow, crop(9, 12));
-            pokemon.put(GeneralConstants.ekans, crop(10, 12));
-            pokemon.put(GeneralConstants.arbok, crop(11, 12));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -192,7 +187,14 @@ public class Assets {
     }
 
     public BufferedImage getImageByCode(String code) {
-        return pokemon.get(code);
+        if (pokemon.containsKey(code)) {
+            return pokemon.get(code);
+        }
+        return null;
+    }
+
+    public BufferedImage getImageByIntCode(int decimalValue) {
+        return pokemon.get("0x" + Integer.toHexString(decimalValue));
     }
 
     private BufferedImage crop(int xIndex, int yIndex) {
