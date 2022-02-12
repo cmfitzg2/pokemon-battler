@@ -36,6 +36,9 @@ public class PokeBattler {
     private Assets assets;
     private List<Pokemon> redTeam;
     private List<Pokemon> blueTeam;
+    private boolean postgame;
+    private long postgameStartTime;
+    private long postgameWindow = 11000;
 
     public PokeBattler() {
         random = new Random();
@@ -104,13 +107,10 @@ public class PokeBattler {
                             Bot.betManager.refundAll();
                         }
                         if (tempFile.delete()) {
+                            //Delete the log so we are informed when the next battle finishes, we're in the postgame summary now
                             System.out.println("Deleted battle log");
-                            //Delete the log so we are informed when the next battle finishes, the new battle starts around now
-                            //The battler has already loaded its team by now, so we will now get the team for the game after
-                            //This offers a very large cushion of space between when the team is needed and when it's supplied
-                            Bot.betManager.setBetsOpen(true);
-                            timeBetsOpened = System.currentTimeMillis();
-                            getNewTeam();
+                            postgame = true;
+                            postgameStartTime = System.currentTimeMillis();
                         } else {
                             System.out.println("Failed to delete battle log");
                             //this is bad, guess we'll exit!
@@ -119,12 +119,22 @@ public class PokeBattler {
                         }
                     }
                 }
-                if (Bot.betManager.isBetsOpen() && System.currentTimeMillis() - timeBetsOpened > nextBattleStartTime * 1000) {
+                if (Bot.betManager.isBetsOpen() && System.currentTimeMillis() - timeBetsOpened >= nextBattleStartTime * 1000) {
                     Bot.betManager.setBetsOpen(false);
                 }
                 if (System.nanoTime() - loyaltyRewardsLastTime > loyaltyRewardsTimer) {
                     twitchBot.distributeLoyaltyRewards();
                     loyaltyRewardsLastTime = System.nanoTime();
+                }
+                if (postgame) {
+                    if (System.currentTimeMillis() - postgameStartTime >= postgameWindow) {
+                        //The battler has already loaded its team by now, so we will now get the team for the game after
+                        //This offers a very large cushion of space between when the team is needed and when it's supplied
+                        postgame = false;
+                        Bot.betManager.setBetsOpen(true);
+                        timeBetsOpened = System.currentTimeMillis();
+                        getNewTeam();
+                    }
                 }
             } catch (InterruptedException | IOException e) {
                 e.printStackTrace();

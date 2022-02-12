@@ -1,6 +1,7 @@
 obs = obslua;
 
 local scriptsDir = "C:/Users/narwhal/Desktop/dev/pokemon-battler/src/main/scripts/obs";
+local currentImagesDir = scriptsDir .. "/battle-images/current";
 local scene = 0;
 local SCENE_INIT_INDEX = 0;
 local SCENE_STARTING_OBS_NAME = "pokemon-init";
@@ -11,12 +12,8 @@ local SCENE_BATTLING_OBS_NAME = "pokemon-battle";
 local SCENE_POSTGAME_INDEX = 3;
 local SCENE_POSTGAME_OBS_NAME = "pokemon-postgame";
 local startTime = 0;
-local pokemon1Alive;
-local pokemon2Alive;
-local pokemon3Alive;
-local pokemon4Alive;
-local pokemon5Alive;
-local pokemon6Alive;
+local postGameTimer = 0;
+local postGameLength = 10;
 
 function find_source_by_name_in_list(source_list, name)
     for i, source in pairs(source_list) do
@@ -58,18 +55,64 @@ function stringToBoolean(inputString)
     return bool
 end
 
+function updatePreviewImages()
+    for j = 1, 2 do
+        local team = "red";
+        if j == 2 then
+            team = "blue";
+        end
+        for i = 1, 3 do
+            local source = obs.obs_get_source_by_name(team .. i);
+            if source ~= nil then
+                local settings = obs.obs_source_get_settings(source)
+                obs.obs_data_set_string(settings, "file", currentImagesDir .. "/" .. team .. i .. ".png")
+                obs.obs_source_update(source, settings)
+                obs.obs_data_release(settings)
+                obs.obs_source_release(source)
+            end
+        end
+    end
+end
+
+function setFilters(pokemonAlive)
+    for j = 1, 2 do
+        local team = "red";
+        if j == 2 then
+            team = "blue";
+        end
+        for i = 1, 3 do
+            local source = obs.obs_get_source_by_name(team .. i)
+            if source ~= nil then
+                local alive = stringToBoolean(pokemonAlive[i * j]);
+                local filter = obs.obs_source_get_filter_by_name(source, "gray-filter");
+                local settings = obs.obs_source_get_settings(filter)
+                if alive then
+                    obs.obs_data_set_string(settings, "saturation", "0.0");
+                else
+                    obs.obs_data_set_string(settings, "saturation", "-1.0");
+                end
+                obs.obs_source_update(filter, settings);
+                obs.obs_data_release(settings)
+                obs.obs_source_release(source)
+                obs.obs_source_release(filter)
+            end
+        end
+    end
+end
+
 --this is a global obs function called every frame (so it's basically a while true)
 function script_tick(seconds)
     if scene == SCENE_INIT_INDEX then
         if fileExists(scriptsDir .. "/teams.txt") then
+            updatePreviewImages();
+            setFilters({"true", "true", "true", "true", "true", "true"});
+            os.remove(scriptsDir .. "/teams.txt");
             scene = SCENE_BETTING_INDEX;
             activate_scene(SCENE_BETTING_OBS_NAME);
-            os.remove(scriptsDir .. "/teams.txt");
-            print("switching to " .. SCENE_BETTING_OBS_NAME);
         end
     elseif scene == SCENE_BETTING_INDEX then
         if startTime == 0 then
-            --loop 1, need to find our when to start betting
+            --loop 1, need to find out when to start betting
             if fileExists(scriptsDir .. "/outcome.txt") then
                 local lines = getFileLines(scriptsDir .. "/outcome.txt");
                 startTime = tonumber(lines[7]);
@@ -78,21 +121,23 @@ function script_tick(seconds)
         elseif startTime <= os.time() and startTime > os.time() - 10 then
             --if the time is more than 10 seconds old, we can be confident it's from the previous loop
             scene = SCENE_BATTLING_INDEX;
+            activate_scene(SCENE_BATTLING_OBS_NAME);
         end
     elseif scene == SCENE_BATTLING_INDEX then
         if fileExists(scriptsDir .. "/outcome.txt") then
             local lines = getFileLines(scriptsDir .. "/outcome.txt");
-            pokemon1Alive = stringToBoolean(lines[1]);
-            pokemon2Alive = stringToBoolean(lines[2]);
-            pokemon3Alive = stringToBoolean(lines[3]);
-            pokemon4Alive = stringToBoolean(lines[4]);
-            pokemon5Alive = stringToBoolean(lines[5]);
-            pokemon6Alive = stringToBoolean(lines[6]);
+            local pokemonAlive = {lines[1], lines[2], lines[3], lines[4], lines[5], lines[6]};
+            setFilters(pokemonAlive);
             startTime = tonumber(lines[7]);
+            os.remove(scriptsDir .. "/outcome.txt");
             scene = SCENE_POSTGAME_INDEX;
+            postGameTimer = os.time();
+            activate_scene(SCENE_POSTGAME_OBS_NAME);
         end
     elseif scene == SCENE_POSTGAME_INDEX then
-        print(tostring(pokemon1Alive) .. tostring(pokemon2Alive) .. tostring(pokemon3Alive) .. tostring(pokemon4Alive .. tostring(pokemon5Alive) .. tostring(pokemon6Alive)));
-        scene = SCENE_BETTING_INDEX;
+        if os.time() - postGameTimer > postGameLength then
+            scene = SCENE_BETTING_INDEX;
+            activate_scene(SCENE_BETTING_OBS_NAME);
+        end
     end
 end
