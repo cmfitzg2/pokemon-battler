@@ -104,6 +104,7 @@ public class PokeBattler {
                             //disagreement, call it a draw (this can happen with certain bugs in gen 1
                             // like selfdestruct that kills both team's last pokemon = lose / lose)
                             System.out.println("Disagreement, draw");
+                            System.out.println(p1Outcome + ", " + p2Outcome);
                             Bot.betManager.refundAll();
                         }
                         if (tempFile.delete()) {

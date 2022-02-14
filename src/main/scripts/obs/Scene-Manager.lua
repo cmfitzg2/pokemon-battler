@@ -85,14 +85,7 @@ function setFilters(pokemonAlive)
             if source ~= nil then
                 local alive = stringToBoolean(pokemonAlive[i * j]);
                 local filter = obs.obs_source_get_filter_by_name(source, "gray-filter");
-                local settings = obs.obs_source_get_settings(filter)
-                if alive then
-                    obs.obs_data_set_string(settings, "saturation", "0.0");
-                else
-                    obs.obs_data_set_string(settings, "saturation", "-1.0");
-                end
-                obs.obs_source_update(filter, settings);
-                obs.obs_data_release(settings)
+                obs.obs_source_set_enabled(filter, not alive)
                 obs.obs_source_release(source)
                 obs.obs_source_release(filter)
             end
@@ -137,6 +130,7 @@ function script_tick(seconds)
     elseif scene == SCENE_POSTGAME_INDEX then
         if os.time() - postGameTimer > postGameLength then
             scene = SCENE_BETTING_INDEX;
+            setFilters({"true", "true", "true", "true", "true", "true"});
             activate_scene(SCENE_BETTING_OBS_NAME);
         end
     end
