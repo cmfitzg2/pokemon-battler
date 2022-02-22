@@ -216,7 +216,7 @@ public class ChatManager {
         }
     }
 
-    private void sendPublicMessage(String message, String channelName) {
+    public void sendPublicMessage(String message, String channelName) {
         client.getChat().sendMessage(channelName, message);
     }
 }

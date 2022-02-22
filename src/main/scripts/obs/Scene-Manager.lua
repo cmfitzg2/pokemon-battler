@@ -15,6 +15,12 @@ local startTime = 0;
 local postGameTimer = 0;
 local postGameLength = 10;
 
+function printItemsInTable(table)
+    for i = 1, #table do
+        print(tostring(table[i]));
+    end
+end
+
 function find_source_by_name_in_list(source_list, name)
     for i, source in pairs(source_list) do
         source_name = obs.obs_source_get_name(source)
@@ -83,7 +89,7 @@ function setFilters(pokemonAlive)
         for i = 1, 3 do
             local source = obs.obs_get_source_by_name(team .. i)
             if source ~= nil then
-                local alive = stringToBoolean(pokemonAlive[i * j]);
+                local alive = stringToBoolean(pokemonAlive[i + 3 * (j - 1)]);
                 local filter = obs.obs_source_get_filter_by_name(source, "gray-filter");
                 obs.obs_source_set_enabled(filter, not alive)
                 obs.obs_source_release(source)
@@ -128,6 +134,10 @@ function script_tick(seconds)
             activate_scene(SCENE_POSTGAME_OBS_NAME);
         end
     elseif scene == SCENE_POSTGAME_INDEX then
+        if fileExists(scriptsDir .. "/teams.txt") then
+            --get the names here if needed
+            os.remove(scriptsDir .. "/teams.txt");
+        end
         if os.time() - postGameTimer > postGameLength then
             scene = SCENE_BETTING_INDEX;
             setFilters({"true", "true", "true", "true", "true", "true"});

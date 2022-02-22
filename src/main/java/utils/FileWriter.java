@@ -130,9 +130,15 @@ public class FileWriter {
                                              String name4, String name5, String name6) {
         String output = name1 + "\n" + name2 + "\n" + name3 + "\n" + name4 + "\n" + name5 + "\n" + name6 + "\n";
         try {
-            BufferedWriter writer = new BufferedWriter(new java.io.FileWriter("src/main/scripts/obs/teams.txt"));
+            BufferedWriter writer = new BufferedWriter(new java.io.FileWriter("src/main/scripts/obs/teams-tmp.txt"));
             writer.write(output);
             writer.close();
+            //Race condition, the file needs to be written fully before it can be made available (BufferedWriter line creates it)
+            File source = new File("src/main/scripts/obs/teams-tmp.txt");
+            File destination = new File("src/main/scripts/obs/teams.txt");
+            if (!source.renameTo(destination)) {
+                throw new IOException();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -142,9 +148,15 @@ public class FileWriter {
                                                boolean blue1Alive, boolean blue2Alive, boolean blue3Alive, long startTime) {
         String output = red1Alive + "\n" + red2Alive + "\n" + red3Alive + "\n" + blue1Alive + "\n" + blue2Alive + "\n" + blue3Alive + "\n" + startTime + "\n";
         try {
-            BufferedWriter writer = new BufferedWriter(new java.io.FileWriter("src/main/scripts/obs/outcome.txt"));
+            BufferedWriter writer = new BufferedWriter(new java.io.FileWriter("src/main/scripts/obs/outcome-tmp.txt"));
             writer.write(output);
             writer.close();
+            //Race condition, the file needs to be written fully before it can be made available (BufferedWriter line creates it)
+            File source = new File("src/main/scripts/obs/outcome-tmp.txt");
+            File destination = new File("src/main/scripts/obs/outcome.txt");
+            if (!source.renameTo(destination)) {
+                throw new IOException();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

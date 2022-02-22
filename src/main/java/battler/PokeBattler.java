@@ -5,6 +5,7 @@ import beans.Pokemon;
 import obs.Assets;
 import twitch.chatbot.Bot;
 import utils.FileWriter;
+import utils.GeneralConstants;
 import utils.JsonParse;
 import utils.StatCalculations;
 
@@ -27,7 +28,6 @@ public class PokeBattler {
     public static Map<String, ArrayList> pokemonStatsList;
     public static Map<String, ArrayList> pokemonTypesList;
     public static Map<String, ArrayList> pokemonMovePropsList;
-    private long timeBetsOpened;
     private long loyaltyRewardsLastTime;
     private final long loyaltyRewardsTimer = 60000000000L;
     private long nextBattleStartTime = 0;
@@ -65,6 +65,7 @@ public class PokeBattler {
         statCalculations = new StatCalculations(random);
         loyaltyRewardsLastTime = System.nanoTime();
         getNewTeam();
+        idleLoop();
     }
 
     private void idleLoop() {
@@ -77,51 +78,15 @@ public class PokeBattler {
                     logPath.register(watchService, StandardWatchEventKinds.ENTRY_CREATE);
                     File tempFile = new File(logPath + "/battle-log.txt");
                     if (tempFile.exists()) {
-                        Path fileName = tempFile.toPath();
-                        String contents = Files.readString(fileName);
-                        String[] parts = contents.split("\n");
-                        String p1Outcome = parts[0].trim();
-                        String p2Outcome = parts[1].trim();
-                        //Post-game screen in OBS
-                        nextBattleStartTime = Long.parseLong(parts[8].trim());
-                        FileWriter.outputOutcomeFileForObs(Boolean.parseBoolean(parts[2].trim()), Boolean.parseBoolean(parts[3].trim()),
-                                Boolean.parseBoolean(parts[4].trim()), Boolean.parseBoolean(parts[5].trim()),
-                                Boolean.parseBoolean(parts[6].trim()), Boolean.parseBoolean(parts[7].trim()),
-                                nextBattleStartTime);
-                        if (p1Outcome.equals("WIN") && p2Outcome.equals("LOSE")) {
-                            //agreement, p1 wins
-                            System.out.println("Agreement, p1 wins");
-                            Bot.betManager.payout("red");
-                        } else if (p1Outcome.equals("LOSE") && p2Outcome.equals("WIN")) {
-                            //agreement, p2 wins
-                            System.out.println("Agreement, p2 wins");
-                            Bot.betManager.payout("blue");
-                        } else if (p1Outcome.equals("DRAW") && p2Outcome.equals("DRAW")) {
-                            //agreement, draw
-                            System.out.println("Agreement, draw");
-                            Bot.betManager.refundAll();
-                        } else {
-                            //disagreement, call it a draw (this can happen with certain bugs in gen 1
-                            // like selfdestruct that kills both team's last pokemon = lose / lose)
-                            System.out.println("Disagreement, draw");
-                            System.out.println(p1Outcome + ", " + p2Outcome);
-                            Bot.betManager.refundAll();
-                        }
-                        if (tempFile.delete()) {
-                            //Delete the log so we are informed when the next battle finishes, we're in the postgame summary now
-                            System.out.println("Deleted battle log");
-                            postgame = true;
-                            postgameStartTime = System.currentTimeMillis();
-                        } else {
-                            System.out.println("Failed to delete battle log");
-                            //this is bad, guess we'll exit!
-                            Bot.betManager.refundAll();
+                        if (!processBattleLog(tempFile)) {
                             break;
                         }
                     }
                 }
-                if (Bot.betManager.isBetsOpen() && System.currentTimeMillis() - timeBetsOpened >= nextBattleStartTime * 1000) {
-                    Bot.betManager.setBetsOpen(false);
+                if (Bot.betManager.isBetsOpen()) {
+                    if (System.currentTimeMillis() >= nextBattleStartTime * 1000) {
+                        closeBets();
+                    }
                 }
                 if (System.nanoTime() - loyaltyRewardsLastTime > loyaltyRewardsTimer) {
                     twitchBot.distributeLoyaltyRewards();
@@ -129,19 +94,110 @@ public class PokeBattler {
                 }
                 if (postgame) {
                     if (System.currentTimeMillis() - postgameStartTime >= postgameWindow) {
-                        //The battler has already loaded its team by now, so we will now get the team for the game after
-                        //This offers a very large cushion of space between when the team is needed and when it's supplied
-                        postgame = false;
-                        Bot.betManager.setBetsOpen(true);
-                        timeBetsOpened = System.currentTimeMillis();
-                        getNewTeam();
+                        openBets();
                     }
                 }
             } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
                 Bot.betManager.refundAll();
+                break;
             }
         }
+    }
+
+    private boolean processBattleLog(File tempFile) throws IOException {
+        Path fileName = tempFile.toPath();
+        String contents = Files.readString(fileName);
+        String[] parts = contents.split("\n");
+        String p1Outcome = parts[0].trim();
+        String p2Outcome = parts[1].trim();
+        //Post-game screen in OBS
+        nextBattleStartTime = Long.parseLong(parts[8].trim());
+        FileWriter.outputOutcomeFileForObs(Boolean.parseBoolean(parts[2].trim()), Boolean.parseBoolean(parts[3].trim()),
+                Boolean.parseBoolean(parts[4].trim()), Boolean.parseBoolean(parts[5].trim()),
+                Boolean.parseBoolean(parts[6].trim()), Boolean.parseBoolean(parts[7].trim()),
+                nextBattleStartTime);
+        System.out.println(nextBattleStartTime);
+        if (p1Outcome.equals("WIN") && p2Outcome.equals("LOSE")) {
+            //agreement, p1 wins
+            System.out.println("Agreement, p1 wins");
+            twitchBot.getChatManager().sendPublicMessage("Red wins!", GeneralConstants.twitchChannelName);
+            Bot.betManager.payout("red");
+            twitchBot.getChatManager().sendPublicMessage("All winner payouts processed.", GeneralConstants.twitchChannelName);
+        } else if (p1Outcome.equals("LOSE") && p2Outcome.equals("WIN")) {
+            //agreement, p2 wins
+            System.out.println("Agreement, p2 wins");
+            twitchBot.getChatManager().sendPublicMessage("Blue wins!", GeneralConstants.twitchChannelName);
+            Bot.betManager.payout("blue");
+            twitchBot.getChatManager().sendPublicMessage("All winner payouts processed.", GeneralConstants.twitchChannelName);
+        } else if (p1Outcome.equals("DRAW") && p2Outcome.equals("DRAW")) {
+            //agreement, draw
+            twitchBot.getChatManager().sendPublicMessage("The battle was a draw!", GeneralConstants.twitchChannelName);
+            System.out.println("Agreement, draw");
+            Bot.betManager.refundAll();
+            twitchBot.getChatManager().sendPublicMessage("All players have had their bets refunded.", GeneralConstants.twitchChannelName);
+        } else {
+            //disagreement, call it a draw (this can happen with certain bugs in gen 1
+            // like selfdestruct that kills both team's last pokemon = lose / lose)
+            System.out.println("Disagreement, draw");
+            twitchBot.getChatManager().sendPublicMessage("Due to a conflict in the reported results, the battle is a draw!", GeneralConstants.twitchChannelName);
+            System.out.println(p1Outcome + ", " + p2Outcome);
+            Bot.betManager.refundAll();
+            twitchBot.getChatManager().sendPublicMessage("All players have had their bets refunded.", GeneralConstants.twitchChannelName);
+        }
+        if (tempFile.delete()) {
+            //Delete the log so we are informed when the next battle finishes, we're in the postgame summary now
+            System.out.println("Deleted battle log");
+            postgame = true;
+            postgameStartTime = System.currentTimeMillis();
+            return true;
+        } else {
+            System.out.println("Failed to delete battle log");
+            //this is bad, guess we'll refund!
+            Bot.betManager.refundAll();
+            return false;
+        }
+    }
+
+
+    private void openBets() {
+        postgame = false;
+        Bot.betManager.setBetsOpen(true);
+        twitchBot.getChatManager().sendPublicMessage("Bets are now open!", GeneralConstants.twitchChannelName);
+        StringBuilder vsMessage = new StringBuilder("RED (");
+        buildVsMessage(vsMessage, redTeam);
+        vsMessage.append(") vs BLUE (");
+        buildVsMessage(vsMessage, blueTeam);
+        vsMessage.append(")");
+        twitchBot.getChatManager().sendPublicMessage(vsMessage.toString(), GeneralConstants.twitchChannelName);
+
+        //The battler has already loaded its team by now, so we will now get the team for the game after
+        //This offers a very large cushion of space between when the team is needed and when it's supplied
+        getNewTeam();
+        //idleLoop();
+    }
+
+    private void buildVsMessage(StringBuilder vsMessage, List<Pokemon> team) {
+        for (int i = 0; i < team.size(); i++) {
+            if (i == team.size() - 1) {
+                vsMessage.append("and ");
+            }
+            String name = team.get(i).getName();
+            if (name.equalsIgnoreCase("nidoran1")) {
+                name = "Nidoran♂";
+            } else if (name.equalsIgnoreCase("nidoran2")) {
+                name = "Nidoran♀";
+            }
+            vsMessage.append(name);
+            if (i < team.size() - 1) {
+                vsMessage.append(", ");
+            }
+        }
+    }
+
+    private void closeBets() {
+        twitchBot.getChatManager().sendPublicMessage("Bets are now closed!", GeneralConstants.twitchChannelName);
+        Bot.betManager.setBetsOpen(false);
     }
 
     private void getNewTeam() {
@@ -154,7 +210,6 @@ public class PokeBattler {
                 blueTeam.get(0).getPokemonCode(), blueTeam.get(1).getPokemonCode(), blueTeam.get(2).getPokemonCode());
         FileWriter.outputTeamsFileForObs(redTeam.get(0).getName(), redTeam.get(1).getName(), redTeam.get(2).getName(),
                 blueTeam.get(0).getName(), blueTeam.get(1).getName(), blueTeam.get(2).getName());
-        idleLoop();
     }
 
     @SuppressWarnings("unchecked")

@@ -22,6 +22,10 @@ public class Bot {
     public static BetManager betManager;
     public static List<String> recentChatters;
     private final int loyaltyBonus = 10;
+    private ChannelNotificationOnDonation channelNotificationOnDonation;
+    private ChannelNotificationOnFollow channelNotificationOnFollow;
+    private ChannelNotificationOnSubscription channelNotificationOnSubscription;
+    private ChatManager chatManager;
 
     public Bot() {
         loadConfiguration();
@@ -65,10 +69,10 @@ public class Bot {
         SimpleEventHandler eventHandler = twitchClient.getEventManager().getEventHandler(SimpleEventHandler.class);
 
         // Register Event-based features
-        ChannelNotificationOnDonation channelNotificationOnDonation = new ChannelNotificationOnDonation(eventHandler);
-        ChannelNotificationOnFollow channelNotificationOnFollow = new ChannelNotificationOnFollow(eventHandler);
-        ChannelNotificationOnSubscription channelNotificationOnSubscription = new ChannelNotificationOnSubscription(eventHandler);
-        ChatManager chatManager = new ChatManager(eventHandler);
+        channelNotificationOnDonation = new ChannelNotificationOnDonation(eventHandler);
+        channelNotificationOnFollow = new ChannelNotificationOnFollow(eventHandler);
+        channelNotificationOnSubscription = new ChannelNotificationOnSubscription(eventHandler);
+        chatManager = new ChatManager(eventHandler);
     }
 
     /**
@@ -95,10 +99,6 @@ public class Bot {
         }
     }
 
-    public void sendPublicMessage(String message, String channelName) {
-        twitchClient.getChat().sendMessage(channelName, message);
-    }
-
     public void distributeLoyaltyRewards() {
         for (String chatter : recentChatters) {
             User user = userManager.getUser(chatter);
@@ -109,5 +109,21 @@ public class Bot {
 
     public TwitchClient getTwitchClient() {
         return twitchClient;
+    }
+
+    public ChannelNotificationOnDonation getChannelNotificationOnDonation() {
+        return channelNotificationOnDonation;
+    }
+
+    public ChannelNotificationOnFollow getChannelNotificationOnFollow() {
+        return channelNotificationOnFollow;
+    }
+
+    public ChannelNotificationOnSubscription getChannelNotificationOnSubscription() {
+        return channelNotificationOnSubscription;
+    }
+
+    public ChatManager getChatManager() {
+        return chatManager;
     }
 }

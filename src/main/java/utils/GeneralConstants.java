@@ -152,4 +152,6 @@ public class GeneralConstants {
     public static String bellsprout = "0xBC";
     public static String weepinbell = "0xBD";
     public static String victreebel = "0xBE";
+
+    public static String twitchChannelName = "randombets";
 }
