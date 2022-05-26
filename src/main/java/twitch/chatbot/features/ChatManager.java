@@ -103,7 +103,7 @@ public class ChatManager {
                 } else {
                     try {
                         long amount = Long.parseLong(parts[1]);
-                        String winner = parts[2];
+                        String winner = parts[2].toLowerCase();
                         if (amount < 0) {
                             sendPublicMessage("@" + user + " Bet must be a positive number", channelName);
                         } else {

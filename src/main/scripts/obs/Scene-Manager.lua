@@ -105,19 +105,18 @@ function script_tick(seconds)
         if fileExists(scriptsDir .. "/teams.txt") then
             updatePreviewImages();
             setFilters({"true", "true", "true", "true", "true", "true"});
+            --get the names here if needed
             os.remove(scriptsDir .. "/teams.txt");
+        end
+        if fileExists(scriptsDir .. "/outcome.txt") then
+            local lines = getFileLines(scriptsDir .. "/outcome.txt");
+            startTime = tonumber(lines[7]);
+            os.remove(scriptsDir .. "/outcome.txt");
             scene = SCENE_BETTING_INDEX;
             activate_scene(SCENE_BETTING_OBS_NAME);
         end
     elseif scene == SCENE_BETTING_INDEX then
-        if startTime == 0 then
-            --loop 1, need to find out when to start betting
-            if fileExists(scriptsDir .. "/outcome.txt") then
-                local lines = getFileLines(scriptsDir .. "/outcome.txt");
-                startTime = tonumber(lines[7]);
-                os.remove(scriptsDir .. "/outcome.txt");
-            end
-        elseif startTime <= os.time() and startTime > os.time() - 10 then
+        if startTime <= os.time() and startTime > os.time() - 10 then
             --if the time is more than 10 seconds old, we can be confident it's from the previous loop
             scene = SCENE_BATTLING_INDEX;
             activate_scene(SCENE_BATTLING_OBS_NAME);
